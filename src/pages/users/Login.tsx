@@ -45,24 +45,22 @@ const Login: React.FC = () => {
     }
   };
   return (
-    <div className="my-10">
-      <div className="pt-20 border border-red-800">
-        <h1 className="text-center text-4xl mb-5 border border-red-500">
+    <div >
+      <div className="pt-12">
+        <h1 className="text-center text-4xl mb-5 ">
           Login <span className="text-accent">Here</span>
         </h1>
         <div className="grid lg:grid-cols-2  gap-4">
-          <div>
+          <div className="">
             <img
               src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg?t=st=1710130697~exp=1710134297~hmac=f1b21d9c1823a0657d339c256a1c4ad8301168480e35b35aeba5106568a21010&w=740"
-              width={500}
-              height={200}
               alt="login page"
-              className="w-full h-[85%]"
+              className="w-full h-76 object-conte border border-red-900"
             />
           </div>
-          <div className="card w-[70%] h-[80%] shadow-xl bg-base-100">
+          <div className=" border border-red-800 p-5 card w-[70%] h-[80%] shadow-xl bg-base-100">
             <form className="my-8 space-y-6" onSubmit={handleSubmit}>
-              <div>
+              <div className="border border-red-800">
                 <label
                   htmlFor="email"
                   className="block text-sm text-gray-700 font-medium mb-2"

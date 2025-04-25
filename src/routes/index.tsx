@@ -16,6 +16,7 @@ import UserInfo from "../Dashboarditems/UserInfo";
 import AddProduct from "../Dashboarditems/AddProduct";
 import EditProduct from "../Dashboarditems/EditProduce";
 import ProductPage from "../pages/product/ProductPage";
+import Gallery from "../pages/Gallery/Gallery";
 
 export const router = createBrowserRouter([
   {
@@ -38,13 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product-page",
-        element: (
-          <ProductPage />
-
-          // <ProtectedRoute>
-          //   <Products />{" "}
-          // </ProtectedRoute>
-        ),
+        element: <ProductPage />,
       },
       {
         path: "/checkout",
@@ -70,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery />,
       },
       {
         path: "/contact",
