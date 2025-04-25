@@ -1,108 +1,209 @@
-// Footer.tsx
-import React from "react";
+import { FaPaperPlane } from "react-icons/fa";
+import qrCode from "../../src/assets/assets/qrCode.png";
+import googlePlay from "../../src/assets/assets/googlePlay.png";
+import appStore from "../../src/assets/assets/appstore.png";
 
-const Footer: React.FC = () => {
+import FooterSection from "./shareHome/FooterSection";
+
+const Footer = () => {
+  const Accounts = [
+    {
+      title: "My Profile",
+      href: "/my-profile",
+    },
+
+    {
+      title: "Login/Register",
+      href: "/login",
+    },
+
+    {
+      title: "Cart",
+      href: "/cart",
+    },
+    {
+      title: "All products",
+      href: "/allproduct",
+    },
+  ];
+  const QuickLinks = [
+    {
+      title: "Privacy Policy",
+      href: "/login",
+    },
+    {
+      title: "Terms of Use",
+      href: "/termsOfUse",
+    },
+    {
+      title: "FAQ",
+      href: "/FAQ",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
+    },
+  ];
+  const Support = [
+    {
+      title: "Dhonia,Savar, Dhaka,  DH 1515, Bangladesh.",
+    },
+    {
+      title: "carbazaar@gmail.com",
+    },
+    {
+      title: "+8801640011818",
+    },
+  ];
+
   return (
-    <footer className="bg-slate-800 mt-2 text-white ">
-      <div className=" mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-semibold   text-white  hover:bg-emerald-500 hover:text-slate-800">
-              FitGear
-            </h2>
-            <p className="mt-2 text-white">
-              Your go-to destination for premium fitness equipment.
-            </p>
-          </div>
-
-          <div className="mt-4 md:mt-0">
-            <h3 className="text-lg font-semibold text-gray-800">Quick Links</h3>
-            <ul className="mt-2 space-y-2">
-              <li>
-                <a
-                  href="/"
-                  className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/product"
-                  className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                >
-                  Products
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about"
-                  className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                >
-                  About Us
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="mt-4 md:mt-0">
-            <h3 className="text-lg font-semibold rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800">
-              Follow Us
-            </h3>
-            <div className="mt-2 flex space-x-4 justify-center md:justify-start">
-              <a
-                href="https://facebook.com"
-                className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                aria-label="Facebook"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M22 12.07c0-5.5-4.5-10-10-10S2 6.57 2 12.07c0 4.9 3.61 8.98 8.31 9.89V14.89h-2.5v-2.82h2.5v-2.08c0-2.48 1.49-3.84 3.69-3.84 1.06 0 2.11.08 2.11.08v2.3h-1.19c-1.17 0-1.53.73-1.53 1.49v1.78h2.76l-.44 2.82h-2.32v7.07C18.39 21.05 22 16.98 22 12.07z" />
-                </svg>
-              </a>
-              <a
-                href="https://twitter.com"
-                 className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                aria-label="Twitter"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M23 3a10.8 10.8 0 0 1-3.13.86A5.43 5.43 0 0 0 22.37 2a10.87 10.87 0 0 1-3.41 1.3A5.36 5.36 0 0 0 16.8 1a5.4 5.4 0 0 0-5.4 5.4c0 .43.05.86.13 1.27A15.23 15.23 0 0 1 1.67 3.13a5.36 5.36 0 0 0-.73 2.71A5.38 5.38 0 0 0 2.5 8a5.28 5.28 0 0 1-2.45-.67v.07c0 2.6 1.85 4.77 4.29 5.27a5.43 5.43 0 0 1-2.43.09c.69 2.18 2.69 3.78 5.06 3.83a10.8 10.8 0 0 1-6.65 2.3c-.43 0-.85-.03-1.27-.07A15.23 15.23 0 0 0 12 21.8a15.18 15.18 0 0 0 15-15v-.7a10.76 10.76 0 0 0 2.63-2.73z" />
-                </svg>
-              </a>
-              <a
-                href="https://instagram.com"
-                 className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                aria-label="Instagram"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2.2c3.75 0 4.2.01 5.7.08 1.54.07 2.82.69 3.75 1.62.93.93 1.56 2.21 1.62 3.75.07 1.5.08 2.95.08 5.7s-.01 4.2-.08 5.7c-.07 1.54-.69 2.82-1.62 3.75-.93.93-2.21 1.56-3.75 1.62-1.5.07-2.95.08-5.7.08s-4.2-.01-5.7-.08c-1.54-.07-2.82-.69-3.75-1.62-.93-.93-1.56-2.21-1.62-3.75C2.21 16.4 2.2 14.95 2.2 12s.01-4.2.08-5.7c.07-1.54.69-2.82 1.62-3.75.93-.93 2.21-1.56 3.75-1.62 1.5-.07 2.95-.08 5.7-.08zM12 0c-3.8 0-4.25.02-5.75.08-1.48.07-2.77.66-3.78 1.67-1.01 1.01-1.6 2.3-1.67 3.78-.06 1.5-.08 2.95-.08 5.75s.02 4.25.08 5.75c.07 1.48.66 2.77 1.67 3.78 1.01 1.01 2.3 1.6 3.78 1.67 1.5.06 2.95.08 5.75.08s4.25-.02 5.75-.08c1.48-.07 2.77-.66 3.78-1.67 1.01-1.01 1.6-2.3 1.67-3.78.06-1.5.08-2.95.08-5.75s-.02-4.25-.08-5.75c-.07-1.48-.66-2.77-1.67-3.78-1.01-1.01-2.3-1.6-3.78-1.67-1.5-.06-2.95-.08-5.75-.08zM12 6.7a5.3 5.3 0 1 0 0 10.6 5.3 5.3 0 0 0 0-10.6zm0 8.9a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2zm3.2-6.6a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z" />
-                </svg>
-              </a>
+    <section className="text-white bg-black">
+      <footer className=" max-w-7xl px-4 md:px-0 mx-auto grid grid-cols-1 gap-5 py-10 lg:grid-cols-5">
+        <div>
+          <p className="text-lg font-medium lg:text-xl">Fitness</p>
+          <p className="my-4">Subscribe</p>
+          <p className="md:text-sm text-[12px] font-normal">
+            Get 10% of your first order
+          </p>
+          <form className="relative flex items-center my-2 w-[80%]">
+            <input
+              className="flex-1 pr-8 z-10 bg-transparent placeholder:text-gray-200 border-slate-500 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-slate-500"
+              type="email"
+              required
+              name={"email"}
+              placeholder={"Enter Your Email"}
+            />
+            <button
+              type="submit"
+              className="absolute right-2.5 z-30 -translate-y-1/2 top-1/2"
+            >
+              <FaPaperPlane className="text-slate-300" size={20} />
+            </button>
+          </form>
+        </div>
+        <div>
+          <FooterSection data={Support} title="Support" />
+        </div>
+        <div>
+          <FooterSection data={QuickLinks} title="Quick Links" />
+        </div>
+        <div>
+          <FooterSection data={Accounts} title="Accounts" />
+        </div>
+        <div>
+          <p className="text-lg font-medium lg:text-xl">Download App</p>
+          <p className="md:text-sm text-[12px] font-normal mt-7">
+            Save $3 with app new user only
+          </p>
+          <div className="flex my-3">
+            <img alt="QR Code" src={qrCode} className="me-3" />
+            <div>
+              <img alt="Google Play Store" src={googlePlay} />
+              <img alt="App Store" src={appStore} />
             </div>
           </div>
+
+          <div className="flex gap-4 mt-3 ">
+            <a href="https://www.facebook.com/jsjunayet73">
+              <FacebookIcon className="w-4 h-4 sm:w-6 xsm:w-5 sm:h-6 xsm:h-5" />
+            </a>
+            <a href="#">
+              <TwitterIcon className="w-4 h-4 sm:w-6 xsm:w-5 sm:h-6 xsm:h-5" />
+            </a>
+            <a href="#">
+              <YoutubeIcon className="w-4 h-4 sm:w-6 xsm:w-5 sm:h-6 xsm:h-5" />
+            </a>
+            <a href="https://www.linkedin.com/in/jsjunayet">
+              <LinkedinIcon className="w-4 h-4 sm:w-6 xsm:w-5 sm:h-6 xsm:h-5" />
+            </a>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </section>
   );
 };
 
 export default Footer;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function FacebookIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function LinkedinIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function TwitterIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    </svg>
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function YoutubeIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+      <path d="m10 15 5-3-5-3z" />
+    </svg>
+  );
+}
