@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import ProductCard from "./ProductCard";
-import { useGetAllProductQuery } from "../redux/api/productApi/ProductApi";
-import ProductCardSkeleton from "./Skeleton/ProductCartSkeleton";
+import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
+import ProductCart from "../ProductCard";
+import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
+import { Button } from "../ui/button";
 
-const Products = () => {
+
+const HomeProducts = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
   const products = data?.data;
 
@@ -17,8 +18,9 @@ const Products = () => {
           ? Array.from({ length: 8 }).map((_, index) => (
               <ProductCardSkeleton key={index} />
             ))
-          : products?.map((product: any) => (
-              <ProductCard key={product._id} product={product} />
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          : products?.slice(0,8)?.map((product: any) => (
+              <ProductCart key={product._id} product={product} />
             ))}
       </div>
     </div>
@@ -26,5 +28,4 @@ const Products = () => {
   );
 };
 
-export default Products;
-
+export default HomeProducts;

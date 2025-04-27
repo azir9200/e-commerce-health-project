@@ -53,15 +53,6 @@ export const router = createBrowserRouter([
         path: "payment/success",
         element: <PaymentSuccess />,
       },
-
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
       {
         path: "/about",
         element: <About />,
@@ -94,5 +85,13 @@ export const router = createBrowserRouter([
         element: <EditProduct></EditProduct>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);

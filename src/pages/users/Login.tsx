@@ -10,9 +10,7 @@ import { verifyToken } from "../../redux/utils";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { name, email, password } = useAppSelector(
-    (state: RootState) => state.login
-  );
+  const { email, password } = useAppSelector((state: RootState) => state.login);
 
   const [login] = useLoginMutation();
   const navigate = useNavigate();
@@ -21,20 +19,12 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const result = await login({ name, email, password }).unwrap();
-      console.log("result login", result);
-
+      const result = await login({ email, password }).unwrap();
       const user = verifyToken(result.data.accessToken);
-      console.log("user", user);
       dispatch(setUser({ user: user, token: result.data.accessToken }));
 
       if (result.success && result.data?.accessToken) {
-        toast.success(
-          <div className="justify-center items-center text-white text-3xl p-22  bg-gradient-to-r from-sky-700 to-yellow-600">
-            {" "}
-            Your login is successfully!{" "}
-          </div>
-        );
+        toast.success("Login successful!");
         navigate("/");
       } else {
         toast.error("Login failed. Please check your credentials.");
@@ -44,68 +34,81 @@ const Login: React.FC = () => {
       toast.error("An error occurred while logging in.");
     }
   };
-  return (
-    <div >
-      <div className="pt-12">
-        <h1 className="text-center text-4xl mb-5 ">
-          Login <span className="text-accent">Here</span>
-        </h1>
-        <div className="grid lg:grid-cols-2  gap-4">
-          <div className="">
-            <img
-              src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg?t=st=1710130697~exp=1710134297~hmac=f1b21d9c1823a0657d339c256a1c4ad8301168480e35b35aeba5106568a21010&w=740"
-              alt="login page"
-              className="w-full h-76 object-conte border border-red-900"
-            />
-          </div>
-          <div className=" border border-red-800 p-5 card w-[70%] h-[80%] shadow-xl bg-base-100">
-            <form className="my-8 space-y-6" onSubmit={handleSubmit}>
-              <div className="border border-red-800">
-                <label
-                  htmlFor="email"
-                  className="block text-sm text-gray-700 font-medium mb-2"
-                >
-                  Email
-                </label>
-                <input
-                  type="text"
-                  id="email"
-                  value={email}
-                  onChange={(e) => dispatch(setEmail(e.target.value))}
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-md"
-                />
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block text-gray-700 font-medium mb-2"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => dispatch(setPassword(e.target.value))}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg"
-                />
-              </div>
 
-              <div className="form-control mt-6">
-                <button type="submit" className="btn btn-accent btn-outline">
-                  Login
-                </button>
-              </div>
-              <p className="text-center">
-                Don&apos;t have an account?{" "}
-                <Link className="text-accent" to="/register">
-                  Create an account
-                </Link>
-              </p>
-            </form>
-          </div>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4">
+      <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-5xl grid grid-cols-1 md:grid-cols-2">
+        {/* Image Section */}
+        <div className="hidden md:block">
+          <img
+            src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg"
+            alt="Login"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Form Section */}
+        <div className="p-8 mt-10">
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Welcome Back
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Email Field */}
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => dispatch(setEmail(e.target.value))}
+                required
+                placeholder="Enter your email"
+                className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              />
+            </div>
+
+            {/* Password Field */}
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => dispatch(setPassword(e.target.value))}
+                required
+                placeholder="Enter your password"
+                className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+
+          {/* Bottom Link */}
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-indigo-600 hover:underline font-medium">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </div>
