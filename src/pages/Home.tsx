@@ -1,16 +1,20 @@
+import ProductCard from "../components/ProductCard";
 import Products from "../components/Products";
 import HomeSlide from "../components/shareHome/Carousal";
 
 const Home = () => {
+  // const { data, isLoading } = useGetAllProductQuery(1);
+  // const products = data?.data;
+
   return (
     <div className=" border border-red-600">
       <HomeSlide />
       {/* <Banner /> */}
       <Products />
-      <div className="bg-green-600 m-4">
-        <div className=" bg-red-400 h-20 ">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4"></div>
-        </div>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2  my-12 gap-8">
+        {/* {products.slice(0, 6).map((product: any) => (
+          <ProductCard key={product.id} product={product} />
+        ))} */}
       </div>
     </div>
   );
