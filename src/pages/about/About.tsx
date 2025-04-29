@@ -1,8 +1,12 @@
 import React from "react";
 
 const About: React.FC = () => {
-
+  
   return (
+    <div>
+
+
+      
     <div className="bg-slate-700 py-12 mt-2">
       
       <div className="max-w-7xl text-white mx-auto px-4 sm:px-6  lg:px-8">
@@ -104,6 +108,7 @@ const About: React.FC = () => {
           </p>
         </section>
       </div>
+    </div>
     </div>
   );
 };
