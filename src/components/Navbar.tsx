@@ -1,6 +1,6 @@
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/image/logo.png";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { logout, selectCurrentUser } from "../redux/features/userSlice";
@@ -9,31 +9,7 @@ import { useGetMeQuery } from "../redux/api/getMeApi/getMeApi";
 const Header = () => {
   const { data } = useGetMeQuery(undefined);
   const myself = data?.data;
-  console.log("object", myself);
-  const location = useLocation();
-
-  const navLink = [
-    {
-      name: "Home",
-      pathName: "/",
-    },
-    {
-      name: "Product",
-      pathName: "/product-page",
-    },
-    {
-      name: "About",
-      pathName: "/about",
-    },
-    {
-      name: "Gallery",
-      pathName: "/gallery",
-    },
-    {
-      name: "Contact",
-      pathName: "/contact",
-    },
-  ];
+  console.log("object", myself?.name);
 
   const dispatch = useAppDispatch();
   const products = useAppSelector((store) => store.cart.products);
@@ -49,35 +25,55 @@ const Header = () => {
     dispatch(logout());
   };
   return (
-    <header className=" border border-red-700 mx-auto text-white text-lg p-2">
-      <nav className="px-20  fixed top-0 left-0 w-full z-50 flex items-center justify-between space-x-10 py-2 bg-slate-700">
-        <Link to={"/"} className="  hover:bg-emerald-700 rounded ">
+    <header className=" text-gray-800 text-lg">
+  
+    <nav className="fixed top-0 left-0 w-full bg-white z-50  border-b-[2px] ">
+ <div>
+ <div className="max-w-7xl mx-auto flex items-center justify-between space-x-10 py-2 md:px-0 px-4">
+       <Link to={"/"} className=" ">
           <img src={logo} alt="logo" className="w-16  " />
         </Link>
 
         <div className="hidden md:flex items-center space-x-5 ">
           <ul className="flex items-center space-x-5">
-            {/* // navLink */}
-
-            {navLink.map((item) => (
-              <li key={item.pathName}>
-                <Link
-                  className={`rounded-lg ${
-                    location.pathname == item.pathName ? "bg-emerald-700" : ""
-                  } backdrop-blur-[2px] p-1 inline-block  transition-transform transform hover:scale-105 hover:shadow-2xl  text-white  hover:bg-emerald-500 hover:text-slate-800`}
-                  to={item.pathName}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-
+            <li>
+              <Link
+                className="rounded-lg font-serif  backdrop-blur-[2px] p-1 inline-block  transition-transform transform hover:scale-105 hover:shadow-2xl    "
+                to={"/"}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block  transition-transform transform hover:scale-105 hover:shadow-2xl   "
+                to={"/product-page"}
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <a
+                className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
+                href="/about"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
+                href="/contact"
+              >
+                Contact
+              </a>
+            </li>
             {/* Authentication Buttons */}
             {user ? (
               <>
                 <li>
                   <a
-                    className="rounded-lg backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl  text-white  hover:bg-emerald-500 hover:text-slate-800"
+                    className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
                     href="dashboard/user"
                   >
                     Dashboard
@@ -85,12 +81,12 @@ const Header = () => {
                 </li>
                 <li className="relative">
                   <Link
-                    className="rounded-lg backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl  text-white  hover:bg-emerald-500 hover:text-slate-800"
+                    className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
                     to={"/cart"}
                   >
                     <ShoppingCart size={24} />
                   </Link>
-                  <span className="rounded-full absolute top-[-10px] left-[20px] bg-emerald-400 text-white text-center size-[25px]">
+                  <span className="rounded-full font-serif absolute top-[-10px] left-[20px] bg-emerald-400  text-center size-[25px]">
                     {products.length}
                   </span>
                 </li>
@@ -104,7 +100,7 @@ const Header = () => {
               <>
                 <button
                   onClick={handleLogout}
-                  className="rounded-md text-xl font-medium hover:text-red  transition-transform transform hover:scale-105 hover:shadow-2xl  text-white  hover:bg-emerald-500 hover:text-slate-800"
+                  className="rounded-md font-serif text-xl font-medium hover:text-red  transition-transform transform hover:scale-105 hover:shadow-2xl    "
                 >
                   {myself?.name} Logout
                 </button>
@@ -112,7 +108,7 @@ const Header = () => {
             ) : (
               <li>
                 <Link
-                  className="rounded-lg backdrop-blur-[2px] p-4 inline-block  text-white  hover:bg-emerald-500 hover:text-slate-800"
+                  className="rounded-lg font-serif backdrop-blur-[2px] inline-block    "
                   to={"/login"}
                 >
                   Login
@@ -126,7 +122,7 @@ const Header = () => {
         <div className="md:hidden bg-slate-300 flex items-center">
           <button
             onClick={handleMenuToggle}
-            className=" p-2 rounded-md bg-white  text-black  hover:bg-black hover:text-white focus:outline-none"
+            className=" p-2 rounded-md   text-black  hover:bg-black hover:text-white focus:outline-none"
           >
             <svg
               className="w-6 h-6 "
@@ -153,14 +149,17 @@ const Header = () => {
             </svg>
           </button>
         </div>
+       </div>
+ </div>
       </nav>
+    
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <ul className="md:hidden bg-blue-900 flex flex-col items-center mt-8 py-4 w-full ">
-          <li className="">
+        <ul className="md:hidden fixed  top-16 left-0 bg-blue-900 flex flex-col items-center py-4 w-full overflow-y-auto  z-50  transition-all duration-500 ease-in-out">
+        <li className="">
             <Link
-              className="rounded-lg backdrop-blur-[4px] p-1 inline-block   text-white  hover:bg-emerald-500 hover:text-slate-800"
+              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
               to={"/product-page"}
               onClick={handleMenuToggle}
             >
@@ -169,7 +168,7 @@ const Header = () => {
           </li>
           <li>
             <a
-              className="rounded-lg backdrop-blur-[4px] p-1 inline-block   text-white  hover:bg-emerald-500 hover:text-slate-800"
+              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
               href="/about"
               onClick={handleMenuToggle}
             >
@@ -178,7 +177,7 @@ const Header = () => {
           </li>
           <li>
             <a
-              className="rounded-lg backdrop-blur-[4px] p-1 inline-block   text-white  hover:bg-emerald-500 hover:text-slate-800"
+              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
               href="/contact"
               onClick={handleMenuToggle}
             >
@@ -187,13 +186,13 @@ const Header = () => {
           </li>
           <li className="relative">
             <Link
-              className="rounded-lg backdrop-blur-[4px] p-1 inline-block   text-white  hover:bg-emerald-500 hover:text-slate-800"
+              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
               to={"/cart"}
               onClick={handleMenuToggle}
             >
               <ShoppingCart size={24} />
             </Link>
-            <span className="rounded-full absolute top-[-10px] left-[20px] bg-primary text-white text-center size-[25px]">
+            <span className="rounded-full font-serif absolute top-[-10px] left-[20px] bg-primary text-white text-center size-[25px]">
               {products.length}
             </span>
           </li>
@@ -203,7 +202,7 @@ const Header = () => {
             <>
               <button
                 onClick={handleLogout}
-                className="rounded-lg backdrop-blur-[4px] p-1 inline-block  text-white  hover:bg-emerald-500 hover:text-slate-800"
+                className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block  text-white  "
               >
                 Logout
               </button>
@@ -211,7 +210,7 @@ const Header = () => {
           ) : (
             <li>
               <Link
-                className="rounded-lg backdrop-blur-[2px] p-1 inline-block  text-white  hover:bg-emerald-500 hover:text-slate-800"
+                className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block  text-white  "
                 to={"/login"}
               >
                 Login

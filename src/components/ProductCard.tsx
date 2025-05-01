@@ -37,19 +37,19 @@ const ProductCard = ({ product }: { product: any }) => {
 
       <div
         onClick={() => handleShowModal(product)}
-        className="border rounded-lg shadow-lg overflow-hidden bg-slate-800 transition-transform transform hover:scale-105 hover:shadow-2xl flex flex-col h-full"
+        className="border rounded-lg shadow-lg bg-base-100 transition-transform transform flex flex-col h-full"
       >
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover transition-opacity duration-300 hover:opacity-75"
+          className="w-full h-40 object-cover transition-opacity duration-300 hover:opacity-75"
         />
         <div className="p-4 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold text-white mb-2">{product.name}</h3>
-          <p className="text-white font-semibold text-lg mb-4 flex-grow">
-            {product.description}
+          <h3 className="text-xl font-bold  mb-2">{product.name}</h3>
+          <p className=" font-semibold text-lg mb-4 flex-grow">
+          {product.description.split(" ").slice(0, 5).join(" ") + (product.description.split(" ").length > 5 ? "..." : "")}
           </p>
-          <p className="text-lg font-bold text-white mb-4">
+          <p className="text-lg font-bold text-[#2453DF]  mb-4">
             {" "}
             Price: ${product.price}
           </p>
@@ -58,8 +58,8 @@ const ProductCard = ({ product }: { product: any }) => {
               e.stopPropagation();
               handleAddToCart(product);
             }}
-            className="bg-slate-950 text-white  hover:bg-white hover:text-slate-800 font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
-          >
+            className="bg-[#2453DF]  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
+          >  
             Add to Cart
           </button>
         </div>

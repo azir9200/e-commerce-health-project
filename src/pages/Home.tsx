@@ -1,21 +1,18 @@
-import ProductCard from "../components/ProductCard";
-import Products from "../components/Products";
+
+// import ProductCard from "./ProductCard";
 import HomeSlide from "../components/shareHome/Carousal";
+import HomeProducts from "../components/shareHome/HomeProduct";
+import { useGetAllProductQuery } from "../redux/api/productApi/ProductApi";
 
 const Home = () => {
-  // const { data, isLoading } = useGetAllProductQuery(1);
-  // const products = data?.data;
-
+  const { data } = useGetAllProductQuery(null);
+  const products = data?.data;
+  console.log(products);
   return (
-    <div className=" border border-red-600">
+    <div className="">
       <HomeSlide />
       {/* <Banner /> */}
-      <Products />
-      <div className="grid lg:grid-cols-3 md:grid-cols-2  my-12 gap-8">
-        {/* {products.slice(0, 6).map((product: any) => (
-          <ProductCard key={product.id} product={product} />
-        ))} */}
-      </div>
+      <HomeProducts/>
     </div>
   );
 };
