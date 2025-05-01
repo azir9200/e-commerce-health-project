@@ -5,7 +5,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cartSlice";
 import toast from "react-hot-toast";
 
-const ProductCart = ({ product }: { product: any }) => {
+const ProductCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -68,4 +68,4 @@ const ProductCart = ({ product }: { product: any }) => {
   );
 };
 
-export default ProductCart;
+export default ProductCard;
