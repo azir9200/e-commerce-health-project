@@ -16,41 +16,44 @@ const CartDetails = ({ product }: any) => {
   };
 
   return (
-    <div className="flex items-center justify-between space-x-4 border border-gray-300 rounded-lg p-4 bg-slate-600 shadow-md transition-transform transform hover:scale-105 hover:shadow-lg w-full max-w-md mx-auto">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-24 h-24 object-cover rounded-md"
-      />
-      <div className="flex-grow mx-4">
-        <h3 className="text-lg font-semibold text-white truncate mb-2">
-          {product.name}
-        </h3>
-        <p className="text-lg font-bold text-white">${product.price}</p>
-      </div>
-      <div className="flex items-center space-x-2">
-        <button
-          onClick={() => handleQuantity("decrement", product._id)}
-          className="bg-white text-slate-800 p-2 rounded-full hover:bg-emerald-500"
-          disabled={product.quantity === 1}
-        >
-          <Minus size={18} />
-        </button>
-        <span className="text-lg font-semibold">{product.quantity}</span>
-        <button
-          onClick={() => handleQuantity("increment", product._id)}
-          className="bg-white text-slate-800 p-2 rounded-full hover:bg-emerald-500"
-        >
-          <Plus size={18} />
-        </button>
-      </div>
+    <div className="flex items-center justify-between gap-4 border border-slate-200 rounded-lg p-4 bg-white shadow-sm transition-transform hover:shadow-md w-full">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-20 h-20 object-cover rounded-md"
+    />
+    <div className="flex-grow mx-4">
+      <h3 className="text-lg font-semibold text-slate-800 truncate mb-1">
+        {product.name}
+      </h3>
+      <p className="text-lg font-bold text-slate-700">${product.price.toFixed(2)}</p>
+    </div>
+    <div className="flex items-center space-x-2">
       <button
-        onClick={() => handleRemove(product._id)}
-        className="bg-red-600 text-white p-2 rounded-full hover:bg-emerald-700"
+        onClick={() => handleQuantity("decrement", product._id)}
+        className="bg-slate-100 text-slate-800 p-2 rounded-full hover:bg-emerald-100 transition-colors"
+        disabled={product.quantity === 1}
+        aria-label="Decrease quantity"
       >
-        <Trash2 size={18} />
+        <Minus size={16} />
+      </button>
+      <span className="text-lg font-semibold text-slate-800 w-6 text-center">{product.quantity}</span>
+      <button
+         onClick={() => handleQuantity("increment", product._id)}
+        className="bg-slate-100 text-slate-800 p-2 rounded-full hover:bg-emerald-100 transition-colors"
+        aria-label="Increase quantity"
+      >
+        <Plus size={16} />
       </button>
     </div>
+    <button
+        onClick={() => handleRemove(product._id)}
+      className="bg-white text-slate-600 border border-slate-200 p-2 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
+      aria-label="Remove item"
+    >
+      <Trash2 size={16} />
+    </button>
+  </div>
   );
 };
 
