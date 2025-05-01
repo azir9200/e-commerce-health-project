@@ -217,6 +217,7 @@ const About: React.FC = () => {
         </motion.section>
       </div>
     </div>
+    </div>
   );
 };
 

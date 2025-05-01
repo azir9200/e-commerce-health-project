@@ -1,3 +1,4 @@
+
 // import ProductCard from "./ProductCard";
 import HomeSlide from "../components/shareHome/Carousal";
 import HomeProducts from "../components/shareHome/HomeProduct";
@@ -12,7 +13,6 @@ const Home = () => {
       <HomeSlide />
       {/* <Banner /> */}
       <HomeProducts/>
-
     </div>
   );
 };
