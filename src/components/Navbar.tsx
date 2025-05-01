@@ -33,7 +33,6 @@ const Header = () => {
        <Link to={"/"} className=" ">
           <img src={logo} alt="logo" className="w-16  " />
         </Link>
-
         <div className="hidden md:flex items-center space-x-5 ">
           <ul className="flex items-center space-x-5">
             <li>
@@ -97,14 +96,15 @@ const Header = () => {
 
             {/* Authentication Buttons */}
             {user ? (
-              <>
+              <div className=" flex gap-4">
+              <p className="rounded-md font-serif text-xl font-medium"> {myself?.name} |</p>
                 <button
                   onClick={handleLogout}
                   className="rounded-md font-serif text-xl font-medium hover:text-red  transition-transform transform hover:scale-105 hover:shadow-2xl    "
                 >
-                  {myself?.name} Logout
+                   Logout
                 </button>
-              </>
+              </div>
             ) : (
               <li>
                 <Link

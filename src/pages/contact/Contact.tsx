@@ -1,115 +1,164 @@
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
 
-const ContactPage = () => {
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+import { useForm } from "react-hook-form";
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
+import { Button } from "../../components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
+import { Facebook, Instagram, Twitter } from "lucide-react";
+import toast from "react-hot-toast";
+
+type ContactFormValues = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const Contact = () => {
+  const form = useForm<ContactFormValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (data: ContactFormValues) => {
     console.log(data);
     toast.success(
-      "You Message sent to the authority, You will have response as soon as possible, thank you."
+      "Your message has been sent. We'll respond as soon as possible. Thank you!"
     );
+    form.reset();
   };
 
   return (
-    <div className=" bg-slate-600 min-h-screen flex flex-col items-center justify-center py-10 px-4 mt-6">
-      <h1 className="text-3xl font-bold text-white mb-6">Contact Us</h1>
+    <div className="min-h-screen flex flex-col items-center md:mt-0 mt-16 justify-center py-10 px-4 bg-white">
+      <h1 className="text-4xl font-bold mb-8 text-gradient">Contact Us</h1>
 
-      <div className="max-w-4xl bg-slate-700 shadow-lg rounded-lg p-6 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <Card className="max-w-4xl w-full shadow-xl border border-gray-200 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
           {/* Contact Information */}
-          <div>
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Get in Touch
-            </h2>
-            <p className="text-white mb-6">
-              Have a question or want to reach out? We'd love to hear from you!
-            </p>
-            <div className="mb-4">
-              <h3 className="text-lg font-medium text-white">Address:</h3>
-              <p className="text-white">123 Fitness Street, Lisbon, Portugal</p>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-lg font-medium text-gray-700">Phone:</h3>
-              <p className="text-white">+351 123 456 789</p>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-lg font-medium text-white">Email:</h3>
-              <p className="text-white">info@fitnessstore.com</p>
-            </div>
-            <div className="flex space-x-4 mt-4">
-              {/* Social Media Links */}
-              <a
-                href="#"
-                className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                aria-label="Facebook"
-              >
-                <i className="fab fa-facebook text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                className="rounded-md  text-white  hover:bg-emerald-500 hover:text-slate-800"
-                aria-label="Twitter"
-              >
-                <i className="fab fa-twitter text-2xl"></i>
-              </a>
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-800"
-                aria-label="Instagram"
-              >
-                <i className="fab fa-instagram text-2xl"></i>
-              </a>
-            </div>
+          <div className="bg-gradient-to-br from-purple-500 to-[#2453DF] p-8 rounded-l-lg text-white">
+            <CardHeader className="p-0 pb-6">
+              <CardTitle className="text-2xl font-semibold mb-2">Get in Touch</CardTitle>
+              <CardDescription className="text-white/90 text-base">
+                Have questions or want to reach out? We'd love to hear from you!
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent className="p-0 space-y-6">
+              <div>
+                <h3 className="text-lg font-medium">Address:</h3>
+                <p className="opacity-90">123 Fitness Street, Lisbon, Portugal</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium">Phone:</h3>
+                <p className="opacity-90">+351 123 456 789</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium">Email:</h3>
+                <p className="opacity-90">info@fitgear.com</p>
+              </div>
+              
+              <div className="pt-4">
+                <p className="mb-4 font-medium">Connect with us:</p>
+                <div className="flex space-x-4">
+                  <a
+                    href="#"
+                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <Facebook size={20} />
+                  </a>
+                  <a
+                    href="#"
+                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    aria-label="Twitter"
+                  >
+                    <Twitter size={20} />
+                  </a>
+                  <a
+                    href="#"
+                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <Instagram size={20} />
+                  </a>
+                </div>
+              </div>
+            </CardContent>
           </div>
+          
           {/* Contact Form */}
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Send a Message
-            </h2>
-            <form onSubmit={onSubmit} className="space-y-4">
-              <div>
-                <label className="block text-black text-sm font-medium mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 text-sm font-medium mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 text-sm font-medium mb-1">
-                  Message
-                </label>
-                <textarea
-                  placeholder="Your Message"
-                  className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none px-3 py-2"
-                  rows={4}
-                ></textarea>
-              </div>
+          <div className="p-8">
+            <CardHeader className="p-0 pb-6">
+              <CardTitle className="text-2xl font-semibold text-gray-800">Send a Message</CardTitle>
+              <CardDescription>
+                Fill out the form below and we'll get back to you soon
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent className="p-0">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your Name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="Your Email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Your Message" className="resize-none" {...field} rows={4} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <button
-                type="submit"
-                // onClick={() => navigate("/products")}
-                className="w-full bg-white  text-black  hover:bg-emerald-500 hover:text-white text-xl font-bold py-2 px-4 rounded shadow-md transition duration-300 mb-4"
-              >
-                Submit
-              </button>
-            </form>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-purple-500 to-[#2453DF] text-white hover:from-purple-600 hover:to-[#2453DF]"
+                  >
+                    Submit
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };
 
-export default ContactPage;
+export default Contact;

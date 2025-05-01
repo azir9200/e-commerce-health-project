@@ -6,15 +6,18 @@ import { useAppSelector } from "../../redux/hooks";
 const Cart = () => {
   const products = useAppSelector((store) => store.cart.products);
   return (
-    <div className="container mt-10 mx-auto">
-      <div className="flex lg:flex-row flex-col-reverse justify-center lg:space-x-40 ">
-        <div className="space-y-5 lg:mt-0 mt-5">
+    <div className=" max-w-7xl mx-auto min-h-[70vh] mt-20">
+      <div className="flex lg:flex-row flex-col-reverse justify-center gap-6">
+        <div className="space-y-5 lg:mt-0 mt-5 w-full lg:w-2/3 mb-6 md:mb-0">
           {products.length ? (
             products.map((product: any) => (
               <CartDetails key={product.id} product={product} />
             ))
           ) : (
-            <p className="text-2xl text-red-500"> not product found</p>
+            <div className="bg-white rounded-lg p-8 shadow-md text-center">
+              <p className="text-2xl text-slate-600">Your cart is empty</p>
+              <p className="text-slate-500 mt-2">Add some products to your cart to continue shopping</p>
+            </div>
           )}
         </div>
         <OrderSummary />
