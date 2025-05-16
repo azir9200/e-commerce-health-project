@@ -1,12 +1,12 @@
-import React from "react";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import React from "react";
 
 const About: React.FC = () => {
   return (
     <div className="min-h-screen  py-16 mt-10">
       <div className="max-w-7xl mx-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -19,7 +19,7 @@ const About: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.section 
+          <motion.section
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -30,16 +30,19 @@ const About: React.FC = () => {
               Welcome to FitGear Store
             </h2>
             <p className="text-lg leading-relaxed text-slate-700">
-              At <span className="font-semibold text-purple-700">FitGear Store</span>, we believe that fitness is not
-              just a goal—it's a lifestyle. We are dedicated to providing
-              top-quality fitness equipment and accessories to help you stay
-              active, healthy, and strong. Whether you are a seasoned athlete or
-              just beginning your fitness journey, we have everything you need to
-              achieve your goals.
+              At{" "}
+              <span className="font-semibold text-purple-700">
+                FitGear Store
+              </span>
+              , we believe that fitness is not just a goal—it's a lifestyle. We
+              are dedicated to providing top-quality fitness equipment and
+              accessories to help you stay active, healthy, and strong. Whether
+              you are a seasoned athlete or just beginning your fitness journey,
+              we have everything you need to achieve your goals.
             </p>
           </motion.section>
 
-          <motion.section 
+          <motion.section
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -51,14 +54,14 @@ const About: React.FC = () => {
             </h2>
             <p className="text-lg leading-relaxed text-slate-700">
               Our mission is to empower individuals to live healthier lives by
-              offering a wide range of high-quality fitness products that cater to
-              all levels of fitness enthusiasts. We are passionate about helping
-              our customers find the perfect gear to suit their needs, from
-              weightlifting equipment to yoga accessories.
+              offering a wide range of high-quality fitness products that cater
+              to all levels of fitness enthusiasts. We are passionate about
+              helping our customers find the perfect gear to suit their needs,
+              from weightlifting equipment to yoga accessories.
             </p>
           </motion.section>
-          
-          <motion.section 
+
+          <motion.section
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -72,37 +75,43 @@ const About: React.FC = () => {
               {[
                 {
                   title: "Quality Products",
-                  description: "We source the best fitness equipment to ensure durability and performance."
+                  description:
+                    "We source the best fitness equipment to ensure durability and performance.",
                 },
                 {
                   title: "Wide Range of Selections",
-                  description: "From gym machines to small accessories, we offer a comprehensive selection for every fitness need."
+                  description:
+                    "From gym machines to small accessories, we offer a comprehensive selection for every fitness need.",
                 },
                 {
                   title: "Customer-Centered Experience",
-                  description: "Our platform is designed to make shopping for fitness gear effortless and enjoyable."
+                  description:
+                    "Our platform is designed to make shopping for fitness gear effortless and enjoyable.",
                 },
                 {
                   title: "Expert Support",
-                  description: "Our customer support team is knowledgeable and always ready to help you find the right product."
-                }
+                  description:
+                    "Our customer support team is knowledgeable and always ready to help you find the right product.",
+                },
               ].map((item, index) => (
-                <motion.li 
+                <motion.li
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                   className="bg-white p-4 rounded-lg border border-slate-200 shadow hover:shadow-md transition-all duration-300"
                 >
-                  <h3 className="text-xl font-semibold text-purple-700 mb-2">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-purple-700 mb-2">
+                    {item.title}
+                  </h3>
                   <p className="text-slate-600">{item.description}</p>
                 </motion.li>
               ))}
             </ul>
           </motion.section>
         </div>
-        
-        <motion.section 
+
+        <motion.section
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -116,22 +125,26 @@ const About: React.FC = () => {
             {[
               {
                 title: "Top Fitness Equipment",
-                description: "State-of-the-art machines, weights, and workout accessories."
+                description:
+                  "State-of-the-art machines, weights, and workout accessories.",
               },
               {
                 title: "Curated Collections",
-                description: "Carefully selected fitness gear for strength training, cardio, yoga, and more."
+                description:
+                  "Carefully selected fitness gear for strength training, cardio, yoga, and more.",
               },
               {
                 title: "Product Details and Reviews",
-                description: "Detailed product descriptions and honest customer reviews to help you make informed decisions."
+                description:
+                  "Detailed product descriptions and honest customer reviews to help you make informed decisions.",
               },
               {
                 title: "Secure Checkout",
-                description: "With integrated payment solutions, we ensure a safe and smooth purchasing experience."
-              }
+                description:
+                  "With integrated payment solutions, we ensure a safe and smooth purchasing experience.",
+              },
             ].map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -142,7 +155,9 @@ const About: React.FC = () => {
                   <ArrowRight className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-purple-700 mb-1">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-purple-700 mb-1">
+                    {item.title}
+                  </h3>
                   <p className="text-slate-600">{item.description}</p>
                 </div>
               </motion.div>
@@ -151,7 +166,7 @@ const About: React.FC = () => {
         </motion.section>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
-          <motion.section 
+          <motion.section
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -163,12 +178,13 @@ const About: React.FC = () => {
             </h2>
             <p className="text-lg leading-relaxed text-slate-700">
               We envision a world where fitness is accessible and enjoyable for
-              everyone. By constantly evolving our product offerings and enhancing
-              our customer experience, we strive to be your go-to fitness partner.
+              everyone. By constantly evolving our product offerings and
+              enhancing our customer experience, we strive to be your go-to
+              fitness partner.
             </p>
           </motion.section>
 
-          <motion.section 
+          <motion.section
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
@@ -179,15 +195,15 @@ const About: React.FC = () => {
               Meet the Team
             </h2>
             <p className="text-lg leading-relaxed text-slate-700">
-              Our dedicated team is made up of fitness enthusiasts and experts who
-              work tirelessly to bring you the best products and advice. We are
-              passionate about fitness, and we bring that energy into everything
-              we do—from product selection to customer service.
+              Our dedicated team is made up of fitness enthusiasts and experts
+              who work tirelessly to bring you the best products and advice. We
+              are passionate about fitness, and we bring that energy into
+              everything we do—from product selection to customer service.
             </p>
           </motion.section>
         </div>
 
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
@@ -205,7 +221,7 @@ const About: React.FC = () => {
             or visit our FAQ page for quick answers.
           </p>
           <div className="mt-8">
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-white text-purple-700 font-medium rounded-full shadow-lg hover:shadow-purple-500/30 transition-all duration-300 flex items-center mx-auto"
@@ -216,7 +232,6 @@ const About: React.FC = () => {
           </div>
         </motion.section>
       </div>
-    </div>
     </div>
   );
 };

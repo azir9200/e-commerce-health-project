@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import Modal from "./Modal";
-import { useAppDispatch } from "../redux/hooks";
-import { addToCart } from "../redux/features/cartSlice";
 import toast from "react-hot-toast";
+import { useCartcreateMutation } from "../redux/api/Cart/CartApi";
+import { useAppDispatch } from "../redux/hooks";
+import Modal from "./Modal";
 
 const ProductCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
+  const [Cartcreate] = useCartcreateMutation();
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
@@ -20,8 +21,8 @@ const ProductCard = ({ product }: { product: any }) => {
     setShowModal(false);
   };
 
-  const handleAddToCart = (product: any) => {
-    dispatch(addToCart(product));
+  const handleAddToCart = async (product: any) => {
+    const res = await Cartcreate({ productId: product._id });
     toast.success(<div> You Product added to cart successfully! </div>);
   };
 
@@ -47,7 +48,8 @@ const ProductCard = ({ product }: { product: any }) => {
         <div className="p-4 flex flex-col flex-grow">
           <h3 className="text-xl font-bold  mb-2">{product.name}</h3>
           <p className=" font-semibold text-lg mb-4 flex-grow">
-          {product.description.split(" ").slice(0, 5).join(" ") + (product.description.split(" ").length > 5 ? "..." : "")}
+            {product.description.split(" ").slice(0, 5).join(" ") +
+              (product.description.split(" ").length > 5 ? "..." : "")}
           </p>
           <p className="text-lg font-bold text-[#2453DF]  mb-4">
             {" "}
@@ -59,7 +61,7 @@ const ProductCard = ({ product }: { product: any }) => {
               handleAddToCart(product);
             }}
             className="bg-[#2453DF]  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
-          >  
+          >
             Add to Cart
           </button>
         </div>

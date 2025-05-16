@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CartDetails from "../../components/CartDetails";
 import OrderSummary from "../../components/OrderSummary";
-import { useAppSelector } from "../../redux/hooks";
+import { useGetAllCartQuery } from "../../redux/api/Cart/CartApi";
 
 const Cart = () => {
-  const products = useAppSelector((store) => store.cart.products);
+  const res = useGetAllCartQuery();
+  const products = res.data.data;
   return (
     <div className=" max-w-7xl mx-auto min-h-[70vh] mt-20">
       <div className="flex lg:flex-row flex-col-reverse justify-center gap-6">
@@ -16,7 +17,9 @@ const Cart = () => {
           ) : (
             <div className="bg-white rounded-lg p-8 shadow-md text-center">
               <p className="text-2xl text-slate-600">Your cart is empty</p>
-              <p className="text-slate-500 mt-2">Add some products to your cart to continue shopping</p>
+              <p className="text-slate-500 mt-2">
+                Add some products to your cart to continue shopping
+              </p>
             </div>
           )}
         </div>
