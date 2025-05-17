@@ -1,17 +1,19 @@
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../assets/image/logo.png";
-import { useGetAllCartQuery } from "../redux/api/Cart/CartApi";
 import { useGetMeQuery } from "../redux/api/getMeApi/getMeApi";
 import { logout, selectCurrentUser } from "../redux/features/userSlice";
 import { useAppSelector } from "../redux/hooks";
+import { RootState } from "../redux/store";
 
 const Header = () => {
   const { data } = useGetMeQuery(undefined);
-  const res = useGetAllCartQuery();
-  const products = res.data.data;
+
+  const prouducts = useSelector((state: RootState) => state.cart.products);
   const myself = data?.data;
+
   console.log("object", myself?.name);
 
   const user = useAppSelector(selectCurrentUser);
@@ -85,7 +87,7 @@ const Header = () => {
                         <ShoppingCart size={24} />
                       </Link>
                       <span className="rounded-full font-serif absolute top-[-10px] left-[20px] bg-emerald-400  text-center size-[25px]">
-                        {products.length}
+                        {prouducts?.length}
                       </span>
                     </li>
                   </>

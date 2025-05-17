@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useCartcreateMutation } from "../redux/api/Cart/CartApi";
+import { addToCart } from "../redux/features/cartSlice";
 import { useAppDispatch } from "../redux/hooks";
 import Modal from "./Modal";
 
 const ProductCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
-  const [Cartcreate] = useCartcreateMutation();
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
@@ -22,7 +21,7 @@ const ProductCard = ({ product }: { product: any }) => {
   };
 
   const handleAddToCart = async (product: any) => {
-    const res = await Cartcreate({ productId: product._id });
+    dispatch(addToCart(product));
     toast.success(<div> You Product added to cart successfully! </div>);
   };
 

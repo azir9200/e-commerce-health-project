@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useSelector } from "react-redux";
 import CartDetails from "../../components/CartDetails";
 import OrderSummary from "../../components/OrderSummary";
-import { useGetAllCartQuery } from "../../redux/api/Cart/CartApi";
+import { RootState } from "../../redux/store";
 
 const Cart = () => {
-  const res = useGetAllCartQuery();
-  const products = res.data.data;
+  const products = useSelector((state: RootState) => state.cart.products);
+  console.log(products);
   return (
     <div className=" max-w-7xl mx-auto min-h-[70vh] mt-20">
       <div className="flex lg:flex-row flex-col-reverse justify-center gap-6">
