@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
 import React from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../redux/api/authApi/authApi";
+import { setEmail, setPassword } from "../../redux/features/loginSlice";
+import { setUser } from "../../redux/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
-import { setEmail, setPassword } from "../../redux/features/loginSlice";
-import { useLoginMutation } from "../../redux/api/authApi/authApi";
-import toast from "react-hot-toast";
-import { setUser } from "../../redux/features/userSlice";
 import { verifyToken } from "../../redux/utils";
 
 const Login: React.FC = () => {
@@ -105,8 +105,10 @@ const Login: React.FC = () => {
           {/* Bottom Link */}
           <p className="text-center text-sm text-gray-600 mt-6">
             Don't have an account?{" "}
-            <Link to="/register" className="text-indigo-600 hover:underline font-medium">
-
+            <Link
+              to="/register"
+              className="text-indigo-600 hover:underline font-medium"
+            >
               Sign Up
             </Link>
           </p>

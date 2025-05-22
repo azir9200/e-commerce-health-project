@@ -18,11 +18,21 @@ const BillingDetails = () => {
           </div>
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" type="email" placeholder="john.doe@example.com" defaultValue="john.doe@example.com" />
+            <Input
+              id="email"
+              type="email"
+              placeholder="john.doe@example.com"
+              defaultValue="john.doe@example.com"
+            />
           </div>
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="phone">Phone Number</Label>
-            <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
+            <Input
+              id="phone"
+              type="tel"
+              placeholder="+1 (555) 123-4567"
+              defaultValue="+880 1640011818"
+            />
           </div>
         </div>
       </div>
@@ -34,15 +44,27 @@ const BillingDetails = () => {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="address">Street Address</Label>
-            <Input id="address" placeholder="123 Main St" defaultValue="123 Main St" />
+            <Input
+              id="address"
+              placeholder="123 Main St"
+              defaultValue="123 Main St"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="city">City</Label>
-            <Input id="city" placeholder="San Francisco" defaultValue="San Francisco" />
+            <Input
+              id="city"
+              placeholder="San Francisco"
+              defaultValue="San Francisco"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="state">State/Province</Label>
-            <Input id="state" placeholder="California" defaultValue="California" />
+            <Input
+              id="state"
+              placeholder="California"
+              defaultValue="California"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="zip">ZIP/Postal Code</Label>
@@ -50,7 +72,11 @@ const BillingDetails = () => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="country">Country</Label>
-            <Input id="country" placeholder="United States" defaultValue="United States" />
+            <Input
+              id="country"
+              placeholder="United States"
+              defaultValue="United States"
+            />
           </div>
         </div>
       </div>

@@ -1,22 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../pages/Home";
-import Cart from "../pages/carts/Cart";
-import About from "../pages/about/About";
-import Login from "../pages/users/Login";
-import Register from "../pages/users/Register";
-import ProtectedRoute from "../components/layouts/ProtectedRoute";
-import CheckOutPage from "../pages/CheckOutPage/CheckOutPage";
-import PaymentFailed from "../pages/payments/PaymentFailed";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import PaymentSuccess from "../pages/payments/PaymentSuccess";
-import ContactPage from "../pages/contact/Contact";
 import Dashboard from "../components/layouts/Dashboard";
-import UserInfo from "../Dashboarditems/UserInfo";
+import ProtectedRoute from "../components/layouts/ProtectedRoute";
 import AddProduct from "../Dashboarditems/AddProduct";
 import EditProduct from "../Dashboarditems/EditProduce";
-import ProductPage from "../pages/product/ProductPage";
+import UserInfo from "../Dashboarditems/UserInfo";
+import About from "../pages/about/About";
+import Cart from "../pages/carts/Cart";
+import CheckOutPage from "../pages/CheckOutPage/CheckOutPage";
+import ContactPage from "../pages/contact/Contact";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Gallery from "../pages/Gallery/Gallery";
+import Home from "../pages/Home";
+import ManageOrder from "../pages/Order/DashoardOrder";
+import Order from "../pages/Order/Order";
+import PaymentFailed from "../pages/payments/PaymentFailed";
+import PaymentSuccess from "../pages/payments/PaymentSuccess";
+import ProductPage from "../pages/product/ProductPage";
+import Login from "../pages/users/Login";
+import Register from "../pages/users/Register";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +67,10 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <ContactPage />,
       },
+      {
+        path: "/order",
+        element: <Order />,
+      },
     ],
   },
   //dashboard routes
@@ -83,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: "editProduct",
         element: <EditProduct></EditProduct>,
+      },
+      {
+        path: "allorder",
+        element: <ManageOrder></ManageOrder>,
       },
     ],
   },
