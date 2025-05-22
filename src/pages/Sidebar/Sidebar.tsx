@@ -1,12 +1,12 @@
 import {
-  Cog6ToothIcon,
   ChatBubbleOvalLeftEllipsisIcon,
+  Cog6ToothIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 
-import { NavLink } from "react-router-dom";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import { Edit, Home } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -66,6 +66,17 @@ const Sidebar = () => {
           }
         >
           User
+          <UserCircleIcon className="h-7 w-7 group-hover:text-white " />
+        </NavLink>
+        <NavLink
+          to="/dashboard/allorder"
+          className={({ isActive }) =>
+            isActive
+              ? "p-2 rounded-2xl bg-white text-slate-800 cursor-pointer"
+              : "p-2 rounded-2xl group hover:bg-emerald-500 text-white cursor-pointer transition-all"
+          }
+        >
+          Order
           <UserCircleIcon className="h-7 w-7 group-hover:text-white " />
         </NavLink>
 

@@ -13,14 +13,14 @@ import {
 } from "../../components/ui/card";
 import { Label } from "../../components/ui/label";
 import { Separator } from "../../components/ui/separator";
-import { useToast } from "../../hooks/use-toast";
+import { useOrderCreateMutation } from "../../redux/api/orderApi/orderApi";
 import { useAppSelector } from "../../redux/hooks";
 import CartSummary from "./CartSummary";
 import BillingDetails from "./billingDetails";
 import CheckoutLayout from "./checkoutLayout";
 
 const Checkout = () => {
-  const { toast } = useToast();
+  const [OrderCreate] = useOrderCreateMutation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { products, totalPrice, tax, taxRate, grandTotal } = useAppSelector(
     (store) => store.cart
@@ -50,8 +50,15 @@ const Checkout = () => {
         billingData,
         totalAmount: Number(total.toFixed(2)),
       };
-      console.log(orderPayload);
-      setIsSubmitting(false);
+      const res = await OrderCreate(orderPayload);
+      console.log(res);
+      if (res?.data.data) {
+        window.location.href = res.data.data;
+        setIsSubmitting(false);
+      } else {
+        console.error("Payment URL not found in response.");
+        setIsSubmitting(false);
+      }
     } catch (err) {
       console.log(err);
       setIsSubmitting(false);

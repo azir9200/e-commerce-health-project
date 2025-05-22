@@ -1,26 +1,50 @@
 import { baseApi } from "../baseApi/baseApi";
 
-const productApi = baseApi.injectEndpoints({
+export const OderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // Fetch all products
+    OrderCreate: builder.mutation({
+      query: (payload) => ({
+        url: `api/order/create`,
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["Orders"],
+    }),
+    getVerifyOrder: builder.query({
+      query: (order_id) => ({
+        url: `api/order/verify`,
+        params: { order_id },
+        method: "GET",
+      }),
+      providesTags: ["Orders"],
+    }),
+    getAllOrder: builder.query({
+      query: () => ({
+        url: `api/order`,
+        method: "GET",
+      }),
+      providesTags: ["Orders"],
+    }),
+    getSingleOrder: builder.query({
+      query: () => ({
+        url: `api/order/personal`,
+        method: "GET",
+      }),
+      providesTags: ["Orders"],
+    }),
     getAllProduct: builder.query({
       query: () => ({
         url: "api/product",
         method: "GET",
       }),
     }),
-
-    // Add a new product
-    createOrder: builder.mutation({
-      query: (data) => {
-        return {
-          url: "api/order/create",
-          method: "POST",
-          body: data,
-        };
-      },
-    }),
   }),
 });
 
-export const { useGetAllProductQuery, useCreateOrderMutation } = productApi;
+export const {
+  useGetVerifyOrderQuery,
+  useOrderCreateMutation,
+  useGetAllOrderQuery,
+  useGetSingleOrderQuery,
+  useGetAllProductQuery,
+} = OderApi;
