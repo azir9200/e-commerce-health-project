@@ -9,7 +9,7 @@ const Banner = () => {
           Your gateway to quality products and excellent service.
         </p>
         <a
-          href="/product"
+          href="/product-page"
           className="bg-emerald-500 text-slate-800  hover:bg-white hover:text-slate-800 transition duration-300 shadow-lg font-semibold py-2 px-6 rounded-lg"
         >
           Shop Now

@@ -1,5 +1,5 @@
-
 // import ProductCard from "./ProductCard";
+import Banner from "../components/Banner";
 import HomeSlide from "../components/shareHome/Carousal";
 import HomeProducts from "../components/shareHome/HomeProduct";
 import { useGetAllProductQuery } from "../redux/api/productApi/ProductApi";
@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <div className="">
       <HomeSlide />
-      {/* <Banner /> */}
-      <HomeProducts/>
+      <Banner />
+      <HomeProducts />
     </div>
   );
 };
