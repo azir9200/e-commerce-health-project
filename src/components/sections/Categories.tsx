@@ -1,5 +1,3 @@
-
-
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 
@@ -8,7 +6,12 @@ const categories = [
     id: 1,
     name: "Weight Training",
     description: "Dumbbells, barbells, weight plates and more",
-    icon: "🏋️‍♂️",
+    image: (
+      <img
+        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+        alt=""
+      />
+    ),
     productCount: 150,
     color: "from-primary/20 to-primary/10",
   },
@@ -16,7 +19,12 @@ const categories = [
     id: 2,
     name: "Cardio Equipment",
     description: "Treadmills, bikes, ellipticals for cardio workouts",
-    icon: "🚴‍♀️",
+    image: (
+      <img
+        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+        alt=""
+      />
+    ),
     productCount: 89,
     color: "from-accent/20 to-accent/10",
   },
@@ -24,7 +32,12 @@ const categories = [
     id: 3,
     name: "Yoga & Pilates",
     description: "Mats, blocks, straps and yoga accessories",
-    icon: "🧘‍♀️",
+    image: (
+      <img
+        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+        alt=""
+      />
+    ),
     productCount: 76,
     color: "from-secondary/20 to-secondary/10",
   },
@@ -32,7 +45,12 @@ const categories = [
     id: 4,
     name: "Fitness Accessories",
     description: "Gloves, belts, straps and workout gear",
-    icon: "🥊",
+    image: (
+      <img
+        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+        alt=""
+      />
+    ),
     productCount: 234,
     color: "from-muted/20 to-muted/10",
   },
@@ -40,7 +58,12 @@ const categories = [
     id: 5,
     name: "Supplements",
     description: "Protein powders, vitamins and nutrition",
-    icon: "💊",
+    image: (
+      <img
+        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+        alt=""
+      />
+    ),
     productCount: 128,
     color: "from-primary/20 to-primary/10",
   },
@@ -48,7 +71,12 @@ const categories = [
     id: 6,
     name: "Apparel",
     description: "Workout clothes, shoes and fitness wear",
-    icon: "👕",
+    image: (
+      <img
+        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+        alt=""
+      />
+    ),
     productCount: 312,
     color: "from-accent/20 to-accent/10",
   },
@@ -78,7 +106,12 @@ export function Categories() {
                 <div
                   className={`bg-gradient-to-br ${category.color} p-8 text-center`}
                 >
-                  <div className="text-5xl mb-4">{category.icon}</div>
+                  <div className="text-5xl mb-4">
+                    <img
+                      src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+                      alt=""
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-foreground mb-2">
                     {category.name}
                   </h3>
