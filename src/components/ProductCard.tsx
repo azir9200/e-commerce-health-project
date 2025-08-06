@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import toast from "react-hot-toast";
+
 import { addToCart } from "../redux/features/cartSlice";
 import { useAppDispatch } from "../redux/hooks";
 import Modal from "./Modal";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ const ProductCard = ({ product }: { product: any }) => {
     dispatch(addToCart(product));
     toast.success(<div> You Product added to cart successfully! </div>);
   };
+  console.log(handleAddToCart);
 
   return (
     <div className="relative">

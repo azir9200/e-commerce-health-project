@@ -19,6 +19,7 @@ import PaymentSuccess from "../pages/payments/PaymentSuccess";
 import ProductPage from "../pages/product/ProductPage";
 import Login from "../pages/users/Login";
 import Register from "../pages/users/Register";
+import { Categories } from "../components/sections/Categories";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/product-page",
         element: <ProductPage />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
       },
       {
         path: "/checkout",

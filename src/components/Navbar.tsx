@@ -1,229 +1,221 @@
-import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../assets/image/logo.png";
+import { Search, ShoppingCart, Menu, X, User } from "lucide-react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { useSelector } from "react-redux";
 import { useGetMeQuery } from "../redux/api/getMeApi/getMeApi";
 import { logout, selectCurrentUser } from "../redux/features/userSlice";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
-const Header = () => {
-  const { data } = useGetMeQuery(undefined);
-
-  const prouducts = useSelector((state: RootState) => state.cart.products);
-  const myself = data?.data;
-
-  console.log("object", myself?.name);
-
-  const user = useAppSelector(selectCurrentUser);
-
+export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const { data } = useGetMeQuery(undefined);
+  const myself = data?.data;
+  const products = useSelector((state: RootState) => state.cart.products);
+  const user = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
+
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/product-page" },
+    { name: "Categories", href: "/categories" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
+
   return (
-    <header className=" text-gray-800 text-lg">
-      <nav className="fixed top-0 left-0 w-full bg-white z-50  border-b-[2px] ">
-        <div>
-          <div className="max-w-7xl mx-auto flex items-center justify-between space-x-10 py-2 md:px-0 px-4">
-            <Link to={"/"} className=" ">
-              <img src={logo} alt="logo" className="w-16  " />
-            </Link>
-            <div className="hidden md:flex items-center space-x-5 ">
-              <ul className="flex items-center space-x-5">
-                <li>
-                  <Link
-                    className="rounded-lg font-serif  backdrop-blur-[2px] p-1 inline-block  transition-transform transform hover:scale-105 hover:shadow-2xl    "
-                    to={"/"}
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block  transition-transform transform hover:scale-105 hover:shadow-2xl   "
-                    to={"/product-page"}
-                  >
-                    Products
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
-                    href="/about"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
-                    href="/contact"
-                  >
-                    Contact
-                  </a>
-                </li>
-                {/* Authentication Buttons */}
-                {user ? (
-                  <>
-                    <li>
-                      <a
-                        className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
-                        href="dashboard/user"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li className="relative">
-                      <Link
-                        className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block transition-transform transform hover:scale-105 hover:shadow-2xl    "
-                        to={"/cart"}
-                      >
-                        <ShoppingCart size={24} />
-                      </Link>
-                      <span className="rounded-full font-serif absolute top-[-10px] left-[20px] bg-emerald-400  text-center size-[25px]">
-                        {prouducts?.length}
-                      </span>
-                    </li>
-                  </>
-                ) : (
-                  " "
-                )}
-
-                {/* Authentication Buttons */}
-                {user ? (
-                  <div className=" flex gap-4">
-                    <p className="rounded-md font-serif text-xl font-medium">
-                      {" "}
-                      {myself?.name} |
-                    </p>
-                    <button
-                      onClick={handleLogout}
-                      className="rounded-md font-serif text-xl font-medium hover:text-red  transition-transform transform hover:scale-105 hover:shadow-2xl    "
-                    >
-                      Logout
-                    </button>
-                  </div>
-                ) : (
-                  <li>
-                    <Link
-                      className="rounded-lg font-serif backdrop-blur-[2px] inline-block    "
-                      to={"/login"}
-                    >
-                      Login
-                    </Link>
-                  </li>
-                )}
-              </ul>
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b ">
+      <div className="container  px-4">
+        <div className="flex items-center justify-between gap-12 h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">
+                FG
+              </span>
             </div>
+            <span className="text-xl font-bold text-foreground">
+              FitGear Store
+            </span>
+          </Link>
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden bg-slate-300 flex items-center">
-              <button
-                onClick={handleMenuToggle}
-                className=" p-2 rounded-md   text-black  hover:bg-black hover:text-white focus:outline-none"
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <svg
-                  className="w-6 h-6 "
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {isMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    />
-                  )}
-                </svg>
-              </button>
+                {item.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop Search */}
+          <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
+            <div className="relative w-full">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Input
+                type="search"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 w-full"
+              />
             </div>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <ul className="md:hidden fixed  top-16 left-0 bg-blue-900 flex flex-col items-center py-4 w-full overflow-y-auto  z-50  transition-all duration-500 ease-in-out">
-          <li className="">
-            <Link
-              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
-              to={"/product-page"}
-              onClick={handleMenuToggle}
-            >
-              Products
-            </Link>
-          </li>
-          <li>
-            <a
-              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
-              href="/about"
-              onClick={handleMenuToggle}
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a
-              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
-              href="/contact"
-              onClick={handleMenuToggle}
-            >
-              Contact
-            </a>
-          </li>
-          <li className="relative">
-            <Link
-              className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block   text-white  "
-              to={"/cart"}
-              onClick={handleMenuToggle}
-            >
-              <ShoppingCart size={24} />
-            </Link>
-            <span className="rounded-full font-serif absolute top-[-10px] left-[20px] bg-primary text-white text-center size-[25px]">
-              {products.length}
-            </span>
-          </li>
+          {/* Right Side */}
+          <div className="flex items-center space-x-4">
+            {/* Desktop Auth & Cart */}
+            {user ? (
+              <>
+                <Link to="/cart" className="relative hidden md:flex">
+                  <ShoppingCart className="w-5 h-5" />
+                  {products?.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {products.length}
+                    </span>
+                  )}
+                </Link>
 
-          {/* Authentication Buttons */}
-          {user ? (
-            <>
-              <button
-                onClick={handleLogout}
-                className="rounded-lg font-serif backdrop-blur-[4px] p-1 inline-block  text-white  "
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <li>
-              <Link
-                className="rounded-lg font-serif backdrop-blur-[2px] p-1 inline-block  text-white  "
-                to={"/login"}
-              >
-                Login
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="hidden md:flex"
+                    >
+                      <User className="w-5 h-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <div className="px-2 py-1 text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">
+                        {myself?.name}
+                      </span>
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link to="/dashboard/user">Dashboard</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleLogout}>
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <Link to="/login">
+                <Button variant="outline" size="sm" className="hidden md:flex">
+                  Login
+                </Button>
               </Link>
-            </li>
-          )}
-        </ul>
-      )}
-    </header>
-  );
-};
+            )}
 
-export default Header;
+            {/* Mobile Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden border-t py-4 px-4">
+            {/* Search */}
+            <div className="relative mb-4">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Input
+                type="search"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 w-full"
+              />
+            </div>
+
+            {/* Navigation Links */}
+            <div className="flex flex-col space-y-2 mb-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Auth / User Actions */}
+            {user ? (
+              <>
+                <div className="flex items-center space-x-2 mb-2">
+                  <User className="w-5 h-5" />
+                  <span className="text-sm">{myself?.name}</span>
+                </div>
+                <Link
+                  to="/cart"
+                  className="relative flex items-center gap-2 mb-2"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  <span>Cart</span>
+                  {products?.length > 0 && (
+                    <span className="ml-auto bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {products.length}
+                    </span>
+                  )}
+                </Link>
+                <Link to="/dashboard/user">
+                  <Button variant="ghost" className="w-full mb-2">
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  onClick={handleLogout}
+                  className="w-full"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link to="/login">
+                <Button variant="outline" className="w-full">
+                  Login
+                </Button>
+              </Link>
+            )}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+}
