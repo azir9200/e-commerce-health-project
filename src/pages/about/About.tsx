@@ -4,7 +4,7 @@ import React from "react";
 
 const About: React.FC = () => {
   return (
-    <div className="min-h-screen  py-16 mt-10">
+    <div className="min-h-screen   mt-10">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -12,7 +12,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent text-indigo-400 ">
             About FitGear
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mt-4 rounded-full"></div>

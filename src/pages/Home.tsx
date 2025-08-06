@@ -1,5 +1,5 @@
 // import ProductCard from "./ProductCard";
-import Banner from "../components/Banner";
+
 import { AboutUs } from "../components/sections/AboutUs";
 import { Benefits } from "../components/sections/Benefits";
 import { BestSellers } from "../components/sections/BestSellers";
@@ -9,7 +9,7 @@ import { Hero } from "../components/sections/Hero";
 import { NewsletterSignup } from "../components/sections/NewsletterSignup";
 import { InstagramFeed } from "../components/sections/SocialPosts";
 import { Testimonials } from "../components/sections/Testimonials";
-import HomeProducts from "../components/shareHome/HomeProduct";
+
 import { useGetAllProductQuery } from "../redux/api/productApi/ProductApi";
 
 const Home = () => {
@@ -19,8 +19,8 @@ const Home = () => {
   return (
     <div className="">
       {/* <HomeSlide /> */}
-      <Banner />
-      <HomeProducts />
+      {/* <Banner />
+      <HomeProducts /> */}
       <Hero />
       <FeaturedProducts />
       <Categories />
