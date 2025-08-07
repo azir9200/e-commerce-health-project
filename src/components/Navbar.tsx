@@ -137,9 +137,9 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5" />
+                <X className="w-2 h-2" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Menu className="w-2 h-2" />
               )}
             </Button>
           </div>
@@ -147,10 +147,10 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t py-4 px-4">
+          <div className="md:hidden border-t py-2 px-2">
             {/* Search */}
             <div className="relative mb-4">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-2 h-2" />
               <Input
                 type="search"
                 placeholder="Search products..."
@@ -161,7 +161,7 @@ export function Navbar() {
             </div>
 
             {/* Navigation Links */}
-            <div className="flex flex-col space-y-2 mb-4">
+            <div className="flex flex-col space-y-2 mb-2">
               {navItems.map((item) => (
                 <Link
                   key={item.name}

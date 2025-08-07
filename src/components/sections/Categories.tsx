@@ -1,88 +1,92 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useGetAllCategoryQuery } from "../../redux/api/categoryApi/categoryApi";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 
-const categories = [
-  {
-    id: 1,
-    name: "Weight Training",
-    description: "Dumbbells, barbells, weight plates and more",
-    image: (
-      <img
-        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-        alt=""
-      />
-    ),
-    productCount: 150,
-    color: "from-primary/20 to-primary/10",
-  },
-  {
-    id: 2,
-    name: "Cardio Equipment",
-    description: "Treadmills, bikes, ellipticals for cardio workouts",
-    image: (
-      <img
-        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-        alt=""
-      />
-    ),
-    productCount: 89,
-    color: "from-accent/20 to-accent/10",
-  },
-  {
-    id: 3,
-    name: "Yoga & Pilates",
-    description: "Mats, blocks, straps and yoga accessories",
-    image: (
-      <img
-        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-        alt=""
-      />
-    ),
-    productCount: 76,
-    color: "from-secondary/20 to-secondary/10",
-  },
-  {
-    id: 4,
-    name: "Fitness Accessories",
-    description: "Gloves, belts, straps and workout gear",
-    image: (
-      <img
-        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-        alt=""
-      />
-    ),
-    productCount: 234,
-    color: "from-muted/20 to-muted/10",
-  },
-  {
-    id: 5,
-    name: "Supplements",
-    description: "Protein powders, vitamins and nutrition",
-    image: (
-      <img
-        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-        alt=""
-      />
-    ),
-    productCount: 128,
-    color: "from-primary/20 to-primary/10",
-  },
-  {
-    id: 6,
-    name: "Apparel",
-    description: "Workout clothes, shoes and fitness wear",
-    image: (
-      <img
-        src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-        alt=""
-      />
-    ),
-    productCount: 312,
-    color: "from-accent/20 to-accent/10",
-  },
-];
+// const categories = [
+//   {
+//     id: 1,
+//     name: "Weight Training",
+//     description: "Dumbbells, barbells, weight plates and more",
+//     image: (
+//       <img
+//         src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+//         alt=""
+//       />
+//     ),
+//     productCount: 150,
+//     color: "from-primary/20 to-primary/10",
+//   },
+//   {
+//     id: 2,
+//     name: "Cardio Equipment",
+//     description: "Treadmills, bikes, ellipticals for cardio workouts",
+//     image: (
+//       <img
+//         src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+//         alt=""
+//       />
+//     ),
+//     productCount: 89,
+//     color: "from-accent/20 to-accent/10",
+//   },
+//   {
+//     id: 3,
+//     name: "Yoga & Pilates",
+//     description: "Mats, blocks, straps and yoga accessories",
+//     image: (
+//       <img
+//         src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+//         alt=""
+//       />
+//     ),
+//     productCount: 76,
+//     color: "from-secondary/20 to-secondary/10",
+//   },
+//   {
+//     id: 4,
+//     name: "Fitness Accessories",
+//     description: "Gloves, belts, straps and workout gear",
+//     image: (
+//       <img
+//         src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+//         alt=""
+//       />
+//     ),
+//     productCount: 234,
+//     color: "from-muted/20 to-muted/10",
+//   },
+//   {
+//     id: 5,
+//     name: "Supplements",
+//     description: "Protein powders, vitamins and nutrition",
+//     image: (
+//       <img
+//         src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+//         alt=""
+//       />
+//     ),
+//     productCount: 128,
+//     color: "from-primary/20 to-primary/10",
+//   },
+//   {
+//     id: 6,
+//     name: "Apparel",
+//     description: "Workout clothes, shoes and fitness wear",
+//     image: (
+//       <img
+//         src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
+//         alt=""
+//       />
+//     ),
+//     productCount: 312,
+//     color: "from-accent/20 to-accent/10",
+//   },
+// ];
 
 export function Categories() {
+  const { data, isLoading } = useGetAllCategoryQuery(null);
+  const categories = data?.data;
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -97,7 +101,7 @@ export function Categories() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category) => (
+          {categories.map((category: any) => (
             <Card
               key={category.id}
               className="group hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/20 overflow-hidden"

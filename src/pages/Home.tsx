@@ -4,7 +4,8 @@ import { AboutUs } from "../components/sections/AboutUs";
 import { Benefits } from "../components/sections/Benefits";
 import { BestSellers } from "../components/sections/BestSellers";
 import { Categories } from "../components/sections/Categories";
-import { FeaturedProducts } from "../components/sections/FeaturedProducts";
+import FeaturedProducts from "../components/sections/FeaturedProducts";
+
 import { Hero } from "../components/sections/Hero";
 import { NewsletterSignup } from "../components/sections/NewsletterSignup";
 import { InstagramFeed } from "../components/sections/SocialPosts";

@@ -2,7 +2,7 @@
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 import ProductCart from "../ProductCard";
 import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
-import { Button } from "../ui/button";
+
 
 const HomeProducts = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
@@ -24,6 +24,8 @@ const HomeProducts = () => {
                   <ProductCart key={product._id} product={product} />
                 ))}
         </div>
+
+        
       </div>
     </div>
   );

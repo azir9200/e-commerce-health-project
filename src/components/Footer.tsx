@@ -14,7 +14,6 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -81,7 +80,7 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-2">
         <div className="bg-stone-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2 space-y-4">
@@ -95,9 +94,6 @@ const Footer = () => {
                 FitGear Store
               </span>
             </div>
-            <p className="text-muted-foreground max-w-sm">
-              Your trusted partner to achieve your fitness goals.
-            </p>
 
             {/* Contact Info */}
             <div className="space-y-2">
@@ -154,8 +150,8 @@ const Footer = () => {
       </div>
 
       {/* Newsletter Signup */}
-      <div className="border-t">
-        <div className="container mx-auto px-4 py-8">
+      {/* <div className="border-t">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div>
               <h3 className="font-semibold text-foreground mb-1">
@@ -175,19 +171,19 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Bottom Bar */}
       <div className="border-t">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+        <div className="container mx-auto px-2">
+          <div className="flex flex-col md:flex-row items-center justify-between  md:space-y-0">
             <div className="text-sm text-muted-foreground">
               © {currentYear} FitGear Store. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-muted-foreground">
               <Link
                 to="/privacy"
-                className="hover:text-foreground transition-colors"
+                className="hover:text-foreground transition-colorsS"
               >
                 Privacy Policy
               </Link>
