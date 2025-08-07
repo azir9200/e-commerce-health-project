@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllCategoryQuery } from "../../redux/api/categoryApi/categoryApi";
-import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
+import CategoryCard from "../category/CategoryCard";
+import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
 
 // const categories = [
 //   {
@@ -86,7 +86,8 @@ import { Card, CardContent } from "../ui/card";
 
 export function Categories() {
   const { data, isLoading } = useGetAllCategoryQuery(null);
-  const categories = data?.data;
+  const categories = data?.data?.data;
+  console.log("category", categories);
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -99,42 +100,17 @@ export function Categories() {
             organized categories.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category: any) => (
-            <Card
-              key={category.id}
-              className="group hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/20 overflow-hidden"
-            >
-              <CardContent className="p-0">
-                <div
-                  className={`bg-gradient-to-br ${category.color} p-8 text-center`}
-                >
-                  <div className="text-5xl mb-4">
-                    <img
-                      src="https://imagizer.imageshack.com/img924/4629/XZAq25.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {category.name}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    {category.description}
-                  </p>
-                  <div className="text-sm text-primary font-semibold mb-4">
-                    {category.productCount} Products
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                  >
-                    Shop Now
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+          {isLoading
+            ? Array.from({ length: 8 }).map((_, index) => (
+                <ProductCardSkeleton key={index} />
+              ))
+            : Array.isArray(categories) &&
+              categories
+                .slice(0, 4)
+                .map((category: any) => (
+                  <CategoryCard key={category._id} category={category} />
+                ))}
         </div>
       </div>
     </section>
