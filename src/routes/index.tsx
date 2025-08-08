@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Dashboard from "../components/layouts/Dashboard";
-import ProtectedRoute from "../components/layouts/ProtectedRoute";
+
 import AddProduct from "../Dashboarditems/AddProduct";
 import EditProduct from "../Dashboarditems/EditProduce";
 import UserInfo from "../Dashboarditems/UserInfo";
@@ -33,12 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: (
-          <ProtectedRoute>
-            {" "}
-            <Cart />{" "}
-          </ProtectedRoute>
-        ),
+        element: <Cart />,
       },
       {
         path: "/product-page",
@@ -80,14 +75,16 @@ export const router = createBrowserRouter([
     ],
   },
   //dashboard routes
+
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
     children: [
       {
         path: "user",
-        element: <UserInfo></UserInfo>,
+        element: <UserInfo />,
       },
+
       {
         path: "addProduct",
         element: <AddProduct></AddProduct>,

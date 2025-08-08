@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -121,10 +122,7 @@ const ManageTable: React.FC<ManageTableProps> = ({
                     </Link>
                   )}
                   {isvalue == "user" && (
-                    <button
-                      onClick={() => UpdateRole(item._id)}
-                      className="px-2 py-1 cursor-pointer text-blue-500 transition border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white"
-                    >
+                    <button className="px-2 py-1 cursor-pointer text-blue-500 transition border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white">
                       {"Update Role"}
                     </button>
                   )}

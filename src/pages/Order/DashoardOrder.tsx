@@ -3,22 +3,9 @@ import ManageTable from "../../redux/features/ManageTable";
 
 const ManageOrder = () => {
   const { data, isLoading } = useGetSingleOrderQuery(undefined);
-  // const[deleteOrder, { isLoading:deletedLoading, isSuccess, data:deletedData, isError, error }]=useDeleteOrderMutation()
-  // const handleDelete = async(id:string) => {
-  //     await deleteOrder(id);
-  //   };
-  //   const toastId = "orderProduct";
-  //   useEffect(() => {
-  //     if (deletedLoading) toast.loading("Processing ...", { id: toastId });
-
-  //     if (isSuccess) {
-  //       toast.success(deletedData?.message, { id: toastId });
-  //     }
-
-  //     if (isError) toast.error(JSON.stringify(error), { id: toastId });
-  //   }, [deletedData?.data, deletedData?.message, error, isError, deletedLoading, isSuccess]);
-
-  // Handle Update
+  const handleDelete = () => {
+    console.log(handleDelete);
+  };
 
   const columns = [
     { label: "Order ID", value: "_id" },
@@ -38,7 +25,7 @@ const ManageOrder = () => {
         isvalue={"order"}
         columns={columns}
         loading={isLoading}
-        // onDelete={handleDelete}
+        onDelete={handleDelete}
       />
     </div>
   );

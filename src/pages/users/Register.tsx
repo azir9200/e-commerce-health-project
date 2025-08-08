@@ -1,13 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
-import { setAddress, setEmail, setName, setPassword } from "../../redux/features/RegisterSlice";
+import {
+  setAddress,
+  setEmail,
+  setName,
+  setPassword,
+} from "../../redux/features/RegisterSlice";
 import { useSignUpMutation } from "../../redux/api/authApi/authApi";
 import toast from "react-hot-toast";
 
 const Register: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { name, email, password, address } = useAppSelector((state: RootState) => state.register);
+  const { name, email, password, address } = useAppSelector(
+    (state: RootState) => state.register
+  );
   const [signUp] = useSignUpMutation();
   const navigate = useNavigate();
 
@@ -25,7 +32,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-200 p-4">
       <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-5xl grid grid-cols-1 md:grid-cols-2">
         {/* Image Section */}
         <div className="hidden md:block">
@@ -38,13 +45,13 @@ const Register: React.FC = () => {
 
         {/* Form Section */}
         <div className="p-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-        Create Your Account
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Create Your Account
           </h2>
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Field */}
             <div>
-            <label
+              <label
                 htmlFor="fullName"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
@@ -77,11 +84,11 @@ const Register: React.FC = () => {
               />
             </div>
             <div>
-            <label
+              <label
                 htmlFor="address"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                 Address
+                Address
               </label>
               <input
                 type="text"
@@ -115,7 +122,7 @@ const Register: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+                className="w-full bg-slate-500 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition duration-300"
               >
                 SignUp
               </button>
@@ -123,9 +130,12 @@ const Register: React.FC = () => {
           </form>
           {/* Bottom Link */}
           <p className="text-center text-sm text-gray-600 mt-6">
-          Already have an account?{" "}
-            <Link to="/login" className="text-indigo-600 hover:underline font-medium">
-            Login Here
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-indigo-600 hover:underline font-medium"
+            >
+              Login Here
             </Link>
           </p>
         </div>

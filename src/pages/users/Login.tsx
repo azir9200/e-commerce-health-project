@@ -36,7 +36,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-200 p-4">
       <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-5xl grid grid-cols-1 md:grid-cols-2">
         {/* Image Section */}
         <div className="hidden md:block">
@@ -95,7 +95,7 @@ const Login: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+                className="w-full bg-slate-500 hover:bg-slate-700 text-white py-3 rounded-lg font-semibold transition duration-300"
               >
                 Login
               </button>

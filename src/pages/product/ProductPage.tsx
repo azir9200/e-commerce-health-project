@@ -1,10 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useMemo } from "react";
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 import ProductCardSkeleton from "../../components/Skeleton/ProductCartSkeleton";
 import ProductCart from "../../components/ProductCard";
 import ProductFilters from "./ProductFilters";
-
-
 
 const ProductPage = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
@@ -15,13 +14,14 @@ const ProductPage = () => {
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   // Extract unique categories from products
-  const categories = useMemo(() => {
+  const categories: string[] = useMemo(() => {
     if (!products) return [];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return Array.from(new Set(products.map((product: any) => product.category)));
+    return Array.from(
+      new Set(products.map((product: any) => product.category))
+    );
   }, [products]);
 
-  // Filter products based on search, category, and price
   const filteredProducts = useMemo(() => {
     if (!products) return [];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,12 +63,12 @@ const ProductPage = () => {
                 ? Array.from({ length: 6 }).map((_, index) => (
                     <ProductCardSkeleton key={index} />
                   ))
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                : filteredProducts.map((product: any) => (
+                : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  filteredProducts.map((product: any) => (
                     <ProductCart key={product._id} product={product} />
                   ))}
             </div>
-            
+
             {/* No results message */}
             {!isLoading && filteredProducts.length === 0 && (
               <div className="text-center py-10">

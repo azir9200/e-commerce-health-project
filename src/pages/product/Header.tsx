@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/image/logo.png";
 import { useGetMeQuery } from "../../redux/api/getMeApi/getMeApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectCurrentUser } from "../../redux/features/userSlice";
+import { logout, selectCurrentUser } from "../../redux/features/userSlice";
 
 const Header = () => {
   const { data } = useGetMeQuery(undefined);

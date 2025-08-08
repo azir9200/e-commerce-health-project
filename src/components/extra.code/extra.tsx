@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCreateOrderMutation } from "../../redux/api/orderApi/orderApi";
+
 import { useAppSelector } from "../../redux/hooks";
 import { useGetMeQuery } from "../../redux/api/getMeApi/getMeApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useOrderCreateMutation } from "../../redux/api/orderApi/orderApi";
 
 export default function CheckOutPage() {
   const navigate = useNavigate();
-  const [createOrder] = useCreateOrderMutation();
+  const [createOrder] = useOrderCreateMutation();
   //get me query
   const { data } = useGetMeQuery(undefined);
 

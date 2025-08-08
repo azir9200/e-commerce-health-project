@@ -15,8 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-
-export function Navbar() {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -40,8 +39,8 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b ">
-      <div className="container  px-4">
-        <div className="flex items-center justify-between gap-12 h-16">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between gap-10 h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -218,4 +217,5 @@ export function Navbar() {
       </div>
     </nav>
   );
-}
+};
+export default Navbar;

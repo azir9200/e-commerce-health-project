@@ -5,40 +5,6 @@ import { Badge } from "../ui/badge";
 import { Star, TrendingUp } from "lucide-react";
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
-import ProductCard from "../ProductCard";
-
-const bestSellers = [
-  {
-    id: 1,
-    name: "Adjustable Dumbbell Set",
-    price: 449.99,
-    rating: 4.9,
-    reviews: 567,
-    image: "🏋️",
-    discount: 20,
-    soldCount: "2.5k+ sold",
-  },
-  {
-    id: 2,
-    name: "Home Gym Multi-Station",
-    price: 899.99,
-    rating: 4.8,
-    reviews: 234,
-    image: "🏠",
-    discount: 15,
-    soldCount: "1.2k+ sold",
-  },
-  {
-    id: 3,
-    name: "Olympic Barbell Set",
-    price: 599.99,
-    rating: 4.7,
-    reviews: 345,
-    image: "🏋️‍♀️",
-    discount: 25,
-    soldCount: "3.1k+ sold",
-  },
-];
 
 export function BestSellers() {
   const { data, isLoading } = useGetAllProductQuery(null);
@@ -61,19 +27,6 @@ export function BestSellers() {
             </p>
           </div>
         </div>
-
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {isLoading
-            ? Array.from({ length: 8 }).map((_, index) => (
-                <ProductCardSkeleton key={index} />
-              ))
-            : Array.isArray(products) &&
-              products
-                .slice(6, 9)
-                .map((product: any) => (
-                  <ProductCard key={product._id} product={product} />
-                ))}
-        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {isLoading

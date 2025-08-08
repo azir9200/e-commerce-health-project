@@ -61,7 +61,7 @@ const ProductCard = ({ product }: { product: any }) => {
               e.stopPropagation();
               handleAddToCart(product);
             }}
-            className="bg-[#2453DF]  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
+            className="bg-slate-700  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
           >
             Add to Cart
           </button>

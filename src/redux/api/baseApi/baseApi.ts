@@ -5,8 +5,6 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000",
-   
-   
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
@@ -18,8 +16,9 @@ export const baseApi = createApi({
       return headers;
     },
   }),
+
+  tagTypes: ["Orders", "Products", "cart"],
+
   endpoints: () => ({}),
 });
-
-// baseUrl: "http://localhost:5000",
-// baseUrl: "https://better-manage-project.vercel.app",
+// https://better-manage-project.vercel.app
