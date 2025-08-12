@@ -12,6 +12,12 @@ import { InstagramFeed } from "../components/sections/SocialPosts";
 import { Testimonials } from "../components/sections/Testimonials";
 
 import { useGetAllProductQuery } from "../redux/api/productApi/ProductApi";
+import AwardSection from "./home/Award";
+import BannerLayout from "./home/Bannar/BannerLayout";
+import ChooseSection from "./home/ChooseSection";
+import ContactSection from "./home/ContactSection";
+import NewsLetter from "./home/NewsLetter";
+import ProductSection from "./home/ProductSection";
 
 const Home = () => {
   const { data } = useGetAllProductQuery(null);
@@ -22,6 +28,14 @@ const Home = () => {
       {/* <HomeSlide /> */}
       {/* <Banner />
       <HomeProducts /> */}
+      <BannerLayout />
+      <ProductSection />
+      <ChooseSection />
+      {/* <Statistics /> */}
+      <AwardSection />
+      <ContactSection />
+      <NewsLetter />
+      {/* my data */}
       <Hero />
       <FeaturedProducts />
       <Categories />

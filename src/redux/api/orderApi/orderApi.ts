@@ -25,6 +25,13 @@ export const OderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Orders"],
     }),
+    allOrderAndStatus: builder.query({
+      query: () => ({
+        url: `orders/allOrderAndStatus`,
+        method: "GET",
+      }),
+      providesTags: ["Orders"],
+    }),
     getSingleOrder: builder.query({
       query: () => ({
         url: `api/order/personal`,
@@ -32,19 +39,21 @@ export const OderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Orders"],
     }),
-    getAllProduct: builder.query({
-      query: () => ({
-        url: "api/product",
-        method: "GET",
+    deleteOrder: builder.mutation({
+      query: (id) => ({
+        url: `orders/${id}`,
+        method: "DELETE",
       }),
+      invalidatesTags: ["Orders"],
     }),
   }),
 });
 
 export const {
-  useGetVerifyOrderQuery,
   useOrderCreateMutation,
+  useGetVerifyOrderQuery,
   useGetAllOrderQuery,
+  useAllOrderAndStatusQuery,
   useGetSingleOrderQuery,
-  useGetAllProductQuery,
+  useDeleteOrderMutation,
 } = OderApi;

@@ -17,8 +17,9 @@ export const baseApi = createApi({
     },
   }),
 
-  tagTypes: ["Orders", "Products", "cart"],
+  tagTypes: ["Orders", "Products", "cart", "Auth"],
 
   endpoints: () => ({}),
 });
+
 // https://better-manage-project.vercel.app

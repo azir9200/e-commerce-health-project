@@ -20,62 +20,67 @@ import ProductPage from "../pages/product/ProductPage";
 import Login from "../pages/users/Login";
 import Register from "../pages/users/Register";
 import { Categories } from "../components/sections/Categories";
+import AdminPrivateRoute from "../pages/PrivateRoute/AdminPrivateRoute";
+import MainDashbaord from "../pages/Dashboard/MainDashbaord";
+import PrivateRoute from "../pages/PrivateRoute/UserPrivateRoute";
+import { routerGenerator } from "../lib/routerGenerator";
+import { Adminpaths, userpaths, userspaths } from "./user.route";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-      {
-        path: "/product-page",
-        element: <ProductPage />,
-      },
-      {
-        path: "/categories",
-        element: <Categories />,
-      },
-      {
-        path: "/checkout",
-        element: <CheckOutPage />,
-      },
-      {
-        path: "payment/failed",
-        element: <PaymentFailed></PaymentFailed>,
-      },
-      {
-        path: "payment/success",
-        element: <PaymentSuccess />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-        // element: <AboutUs />,
-      },
-      {
-        path: "/gallery",
-        element: <Gallery />,
-      },
-      {
-        path: "/contact",
-        element: <ContactPage />,
-      },
-      {
-        path: "/order",
-        element: <Order />,
-      },
-    ],
-  },
-  //dashboard routes
+    children: routerGenerator(userspaths),
 
+    // children: [
+    //   {
+    //     index: true,
+    //     element: <Home />,
+    //   },
+    //   {
+    //     path: "/cart",
+    //     element: <Cart />,
+    //   },
+    //   {
+    //     path: "/product-page",
+    //     element: <ProductPage />,
+    //   },
+    //   {
+    //     path: "/categories",
+    //     element: <Categories />,
+    //   },
+    //   {
+    //     path: "/checkout",
+    //     element: <CheckOutPage />,
+    //   },
+    //   {
+    //     path: "payment/failed",
+    //     element: <PaymentFailed></PaymentFailed>,
+    //   },
+    //   {
+    //     path: "payment/success",
+    //     element: <PaymentSuccess />,
+    //   },
+    //   {
+    //     path: "/about",
+    //     element: <About />,
+    //   },
+    //   {
+    //     path: "/gallery",
+    //     element: <Gallery />,
+    //   },
+    //   {
+    //     path: "/contact",
+    //     element: <ContactPage />,
+    //   },
+    //   {
+    //     path: "/order",
+    //     element: <Order />,
+    //   },
+    // ],
+  },
+
+  //dashboard routes
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
@@ -107,4 +112,32 @@ export const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  {
+    path: "/profile",
+    element: (
+      <PrivateRoute>
+        <MainDashbaord />
+      </PrivateRoute>
+    ),
+    children: routerGenerator(userpaths),
+  },
+  // {
+  //   path: "/dashboard",
+  //   element: (
+  //     <AdminPrivateRoute>
+  //       <MainDashbaord />
+  //     </AdminPrivateRoute>
+  //   ),
+  //   children: routerGenerator(Adminpaths),
+  // },
+  // {
+  //   path: "/profile",
+  //   element: (
+  //     <PrivateRoute>
+  //       <MainDashbaord />
+  //     </PrivateRoute>
+  //   ),
+  //   children: routerGenerator(userpaths),
+  // },
 ]);
+export default router;

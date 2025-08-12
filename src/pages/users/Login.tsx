@@ -20,10 +20,12 @@ const Login: React.FC = () => {
 
     try {
       const result = await login({ email, password }).unwrap();
-      const user = verifyToken(result.data.accessToken);
-      dispatch(setUser({ user: user, token: result.data.accessToken }));
+      console.log("result", result);
+      const user = verifyToken(result.data);
+      dispatch(setUser({ user: user, token: result.data }));
+      console.log("object user", user);
 
-      if (result.success && result.data?.accessToken) {
+      if (result.success && result.data) {
         toast.success("Login successful!");
         navigate("/");
       } else {

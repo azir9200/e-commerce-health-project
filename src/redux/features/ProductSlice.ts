@@ -28,6 +28,7 @@ const productSlice = createSlice({
     setRatings: (state, action: PayloadAction<string>) => {
       state.ratings = action.payload;
     },
+    
   },
 });
 export const { setName, setDescription, setPrice, setImage, setRatings } =

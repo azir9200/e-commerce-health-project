@@ -16,6 +16,60 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    getAllUser: builder.query({
+      query: () => ({
+        url: `auth/alluser`,
+        method: "GET",
+      }),
+      providesTags: ["Auth"],
+    }),
+
+    getSingleUser: builder.query({
+      query: () => ({
+        url: `auth/sigleuser`,
+        method: "GET",
+      }),
+      providesTags: ["Auth"],
+    }),
+    updateRoleUser: builder.mutation({
+      query: (id) => ({
+        url: `auth/updateRole/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    updateUser: builder.mutation({
+      query: (body) => ({
+        url: `auth/upateuser`,
+        method: "PUT",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    changePassword: builder.mutation({
+      query: (body) => ({
+        url: `auth/changePassword`,
+        method: "PUT",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `auth/deletedUser/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
-export const { useSignUpMutation, useLoginMutation } = authApi;
+export const {
+  useSignUpMutation,
+  useLoginMutation,
+  useGetAllUserQuery,
+  useGetSingleUserQuery,
+  useUpdateRoleUserMutation,
+  useUpdateUserMutation,
+  useChangePasswordMutation,
+  useDeleteUserMutation,
+} = authApi;
