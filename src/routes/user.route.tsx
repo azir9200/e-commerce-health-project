@@ -1,13 +1,10 @@
 import ContactPage from "../pages/contact/Contact";
-import CheckOutPage from "../components/extra.code/extra";
 import About from "../pages/about/About";
-import Cart from "../pages/carts/Cart";
 import Home from "../pages/Home";
 import ProductPage from "../pages/product/ProductPage";
 import AdminPrivateRoute from "../pages/PrivateRoute/AdminPrivateRoute";
 import PrivateRoute from "../pages/PrivateRoute/UserPrivateRoute";
 import SingleProduct from "../pages/SingleProduct/SingleProduct";
-import OrderVerify from "../pages/payments/Orderdetails";
 import DashboardHome from "../pages/Dashboard/DashbordHome/DashboardHome";
 import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
 import UpateProduct from "../pages/Dashboard/MangeProduct/UpateProduct";
@@ -80,7 +77,7 @@ export const userspaths = [
 
 export const Adminpaths = [
   {
-    name: "Dashborad",
+    name: "Dashboard",
     path: "/dashboard",
     element: (
       <AdminPrivateRoute>

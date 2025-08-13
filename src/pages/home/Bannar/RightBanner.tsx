@@ -5,12 +5,15 @@ import { Button } from "../../../components/ui/button";
 
 export default function RightBanner() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  //
+  //
+  // 
+  // https://i.ibb.co/dJrmrQxX/workout-equipment-with-christmas-theme-decorations.jpg
 
   const promotionData = [
     {
       id: 1,
-      image:
-        "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: " https://i.ibb.co/hx5ddvtz/front-view-book-arrangement.jpg",
       badge: "Limited Offer",
       title: "Weekend Special",
       description: "Up to 30% off on premium rentals",
@@ -21,8 +24,19 @@ export default function RightBanner() {
     {
       id: 2,
       image:
-        "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+        " https://i.ibb.co/8n1KPWt4/copy-space-gym-equipment-hydration-means.jpg",
       badge: "New Location",
+      title: "Now Open",
+      description: "Visit our downtown branch",
+      details: "Grand opening discounts",
+      icon: MapPin,
+      color: "bg-green-500",
+    },
+    {
+      id: 2,
+      image:
+        " https://i.ibb.co/1t0jtFvt/flat-lay-desk-concept-wooden-table.jpg",
+      badge: "New Outlook",
       title: "Now Open",
       description: "Visit our downtown branch",
       details: "Grand opening discounts",

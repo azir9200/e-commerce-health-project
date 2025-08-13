@@ -12,6 +12,10 @@ import {
   Search,
   ShoppingCart,
   Star,
+  LogOut,
+  User,
+  BookDashed,
+  Divide,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
@@ -34,6 +38,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 const Navbar = () => {
@@ -45,7 +51,9 @@ const Navbar = () => {
   const location = useLocation();
 
   const { data } = useGetMeQuery(undefined);
+  console.log("data", data);
   const myself = data?.data;
+  console.log("myself", myself);
   const products = useSelector((state: RootState) => state.cart.products);
   const user = useAppSelector(selectCurrentUser);
   const token = useAppSelector((state) => state.user.token);
@@ -85,7 +93,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center space-x-8">
               <div className="flex items-center space-x-2 group cursor-pointer">
                 <a
-                  href="https://wa.me/8801640011818"
+                  href="https://wa.me/00353838485737"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 group cursor-pointer"
@@ -94,7 +102,7 @@ const Navbar = () => {
                     <Phone className="h-3.5 w-3.5" />
                   </div>
                   <span className="group-hover:text-blue-200 transition-colors">
-                    +880 1640 011818
+                    +353838485737
                   </span>
                 </a>
               </div>
@@ -106,7 +114,7 @@ const Navbar = () => {
                   <Mail className="h-3.5 w-3.5" />
                 </div>
                 <span className="group-hover:text-blue-200 transition-colors">
-                  junayetshiblu0@gmail.com
+                  aziruddin83@gmail.com
                 </span>
               </a>
               <div className="flex items-center space-x-2 group cursor-pointer">
@@ -114,7 +122,7 @@ const Navbar = () => {
                   <MapPin className="h-3.5 w-3.5" />
                 </div>
                 <span className="group-hover:text-blue-200 transition-colors">
-                  Dhaka, Bangladesh
+                  Dublin, Ireland
                 </span>
               </div>
             </div>
@@ -245,38 +253,118 @@ const Navbar = () => {
               </Button>
 
               {/* data Menu */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300">
+              <div className="hidden md:flex items-center gap-3">
                 {user ? (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Avatar className="cursor-pointer">
-                        <AvatarImage
-                          src={data?.image || "/default-avatar.png"}
-                          alt="Profile"
-                        />
-                        <p className=" text-slate-800">
-                          <AvatarFallback>
-                            {data?.name?.charAt(0)}
-                          </AvatarFallback>
-                        </p>
-                      </Avatar>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      {data?.role == "admin" && (
-                        <DropdownMenuItem>
-                          <Link to={"/dashboard"}>dashboard</Link>
-                        </DropdownMenuItem>
-                      )}
-                      <DropdownMenuItem>
-                        <Link to={"/profile"}>Profile</Link>
-                      </DropdownMenuItem>
+                  <div className="flex items-center gap-4">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="rounded-full"
+                        >
+                          <Avatar className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-8 w-8 border-2 border-streetgrub-orange cursor-pointer">
+                            <AvatarImage src={user?.image || ""} alt="User" />
 
-                      <div onClick={handleLogout}>
-                        <DropdownMenuItem>Logout</DropdownMenuItem>
-                      </div>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                            <AvatarFallback>
+                              <p>AU</p>
+                              {myself?.name?.charAt(0).toUpperCase()}
+                            </AvatarFallback>
+                          </Avatar>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem asChild>
+                          <Link
+                            to="/profile"
+                            className="flex items-center cursor-pointer"
+                          >
+                            <User className="mr-2 h-4 w-4" />
+                            Profile
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+
+                        {myself?.role == "admin" && (
+                          <div>
+                            <DropdownMenuItem asChild>
+                              <Link
+                                to="/dashboard"
+                                className="flex items-center cursor-pointer"
+                              >
+                                <BookDashed className="mr-2 h-4 w-4" />
+                                Dashboard
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                          </div>
+                        )}
+                        <DropdownMenuItem>
+                          <p
+                            onClick={() => handleLogout()}
+                            className="  text-[#333333] flex items-center gap-1 hover:text-[#FF6b35] transition-colors cursor-pointer"
+                          >
+                            <LogOut className="mr-2 h-4 w-4" />
+                            Logout
+                          </p>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 ) : (
+                  <div className="flex items-center gap-3">
+                    <Link to={"login"}>
+                      <Button
+                        variant="ghost"
+                        className="  text-[#333333]  transition-colors"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to={"/register"}>
+                      <Button className="bg-[#FF6b35] text-white hover:bg-[#FF6b35]/90">
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* <div className="border border-red-500">
+                {user ? (
+                  <p> {myself?.name} </p>
+                ) : (
+                  // <DropdownMenu>
+                  //   <DropdownMenuTrigger asChild>
+                  //     <Avatar className="cursor-pointer">
+                  //       <AvatarImage
+                  //         // src={data?.image || "/default-avatar.png"}
+                  //         src={data?.image}
+                  //       />
+                  //       <p className=" text-slate-800">
+                  //         <AvatarFallback>
+                  //           {data?.name?.charAt(0)}
+                  //         </AvatarFallback>
+                  //       </p>
+                  //     </Avatar>
+                  //   </DropdownMenuTrigger>
+                  //   <DropdownMenuContent align="end">
+                  //     {data?.role == "admin" && (
+                  //       <DropdownMenuItem>
+                  //         <Link to={"/dashboard"}>dashboard</Link>
+                  //       </DropdownMenuItem>
+                  //     )}
+                  //     <DropdownMenuItem>
+                  //       <Link to={"/profile"}>Profile</Link>
+                  //     </DropdownMenuItem>
+
+                  //     <div onClick={handleLogout}>
+                  //       <DropdownMenuItem>Logout</DropdownMenuItem>
+                  //     </div>
+                  //   </DropdownMenuContent>
+                  // </DropdownMenu>
                   <div className="hidden lg:flex items-center space-x-3">
                     <Button
                       variant="ghost"
@@ -295,7 +383,7 @@ const Navbar = () => {
                     </Button>
                   </div>
                 )}
-              </div>
+              </div> */}
 
               {/* Mobile Menu */}
               <Drawer>

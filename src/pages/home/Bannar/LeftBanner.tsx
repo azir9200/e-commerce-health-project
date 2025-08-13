@@ -7,29 +7,28 @@ export default function LeftBanner() {
   const [isPlaying, setIsPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+
   const bannerData = [
     {
       id: 1,
-      image:
-        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      title: "Premium Luxury Cars",
-      subtitle: "Experience the ultimate driving pleasure",
+      image: "https://i.ibb.co/Ndz9PfnN/8641099.jpg",
+      title: "Premium Luxury gym equipment",
+      subtitle: "Experience the ultimate gym equipment",
       cta: "Explore Collection",
     },
     {
       id: 2,
-      image:
-        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "https://i.ibb.co/FbCv8Bmn/view-pair-boxing-gloves.jpg",
       title: "Sports Performance",
-      subtitle: "Unleash the power within",
+      subtitle: "Unleash the power within  Fit=Gear Site",
       cta: "View Models",
     },
     {
       id: 3,
       image:
-        "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+        "https://i.ibb.co/ymNtH4k5/top-view-perfectly-ordered-fitness-items.jpg",
       title: "Electric Future",
-      subtitle: "Sustainable mobility solutions",
+      subtitle: "Sustainable Best Design",
       cta: "Learn More",
     },
   ];

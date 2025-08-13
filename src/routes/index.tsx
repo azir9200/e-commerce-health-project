@@ -1,10 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Dashboard from "../components/layouts/Dashboard";
-import AddProduct from "../Dashboarditems/AddProduct";
-import EditProduct from "../Dashboarditems/EditProduce";
-import UserInfo from "../Dashboarditems/UserInfo";
-import ManageOrder from "../pages/Order/DashoardOrder";
 import Login from "../pages/users/Login";
 import Register from "../pages/users/Register";
 import AdminPrivateRoute from "../pages/PrivateRoute/AdminPrivateRoute";
@@ -20,30 +15,7 @@ const router = createBrowserRouter([
     children: routerGenerator(userspaths),
   },
 
-  // {
-  //   path: "dashboard",
-  //   element: <Dashboard></Dashboard>,
-  //   children: [
-  //     {
-  //       path: "user",
-  //       element: <UserInfo />,
-  //     },
-
-  //     {
-  //       path: "addProduct",
-  //       element: <AddProduct></AddProduct>,
-  //     },
-  //     {
-  //       path: "editProduct",
-  //       element: <EditProduct></EditProduct>,
-  //     },
-  //     {
-  //       path: "allorder",
-  //       element: <ManageOrder></ManageOrder>,
-  //     },
-  //   ],
-  // },
-  {
+   {
     path: "/login",
     element: <Login />,
   },
