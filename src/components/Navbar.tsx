@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import {
   Badge,
@@ -8,11 +9,9 @@ import {
   MapPin,
   Phone,
   Menu,
-  User,
   Search,
   ShoppingCart,
   Star,
-  X,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
@@ -35,12 +34,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const navigate = useNavigate();
@@ -350,7 +348,7 @@ const Navbar = () => {
                               {data?.name}
                             </p>
                             <p className="text-sm text-gray-600">
-                              {data?.email}
+                              email {data?.email}
                             </p>
                           </div>
                         </div>

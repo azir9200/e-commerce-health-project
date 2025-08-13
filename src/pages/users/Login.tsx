@@ -1,20 +1,26 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/api/authApi/authApi";
 import { setEmail, setPassword } from "../../redux/features/loginSlice";
 import { setUser } from "../../redux/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { verifyToken } from "../../redux/utils";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const { email, password } = useAppSelector((state: RootState) => state.login);
 
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
+  const toastId = "Loading....";
+  const location = useLocation();
+  const redirectTo = (location.state as any)?.from || "/";
 
+  const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -23,22 +29,24 @@ const Login: React.FC = () => {
       console.log("result", result);
       const user = verifyToken(result.data);
       dispatch(setUser({ user: user, token: result.data }));
-      console.log("object user", user);
+      console.log("object user admin", user);
 
       if (result.success && result.data) {
-        toast.success("Login successful!");
-        navigate("/");
+        navigate(redirectTo);
+        toast.success("Successfully logged in!", { id: toastId });
       } else {
-        toast.error("Login failed. Please check your credentials.");
+        toast.error("Invalid email or password");
       }
-    } catch (error) {
-      console.error("Login Error:", error);
-      toast.error("An error occurred while logging in.");
+    } catch (err: any) {
+      console.error("Login error:", err);
+      toast.error(`Error: ${err?.data?.message || err.message}`, {
+        id: toastId,
+      });
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-200 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-200 to-blue-200 p-4">
       <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-5xl grid grid-cols-1 md:grid-cols-2">
         {/* Image Section */}
         <div className="hidden md:block">
@@ -52,9 +60,12 @@ const Login: React.FC = () => {
         {/* Form Section */}
         <div className="p-8 mt-10">
           <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-            Welcome Back
+            Welcome to Fit-Gear
           </h2>
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col justify-between flex-grow w-full"
+          >
             {/* Email Field */}
             <div>
               <label
@@ -75,7 +86,7 @@ const Login: React.FC = () => {
             </div>
 
             {/* Password Field */}
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -83,23 +94,33 @@ const Login: React.FC = () => {
                 Password
               </label>
               <input
-                type="password"
                 id="password"
                 value={password}
                 onChange={(e) => dispatch(setPassword(e.target.value))}
                 required
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+                className="w-full border border-gray-300 mb-2 p-3 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
               />
+              <div
+                className="absolute right-0 flex items-center pr-3 cursor-pointer inset-y-12"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <FaEye className="text-gray-500" />
+                ) : (
+                  <FaEyeSlash className="text-gray-500" />
+                )}
+              </div>
             </div>
 
             {/* Submit Button */}
             <div>
               <button
                 type="submit"
-                className="w-full bg-slate-500 hover:bg-slate-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+                className="w-full bg-blue-600 hover:bg-slate-700 text-white py-4 rounded-lg font-semibold transition duration-300"
               >
-                Login
+                {isLoading ? "Logging in..." : "Login"}
               </button>
             </div>
           </form>
@@ -114,6 +135,14 @@ const Login: React.FC = () => {
               Sign Up
             </Link>
           </p>
+
+          {/* Back to Home Button */}
+          <Link
+            to="/"
+            className="block text-center px-6 py-3 text-blue-600 border border-blue-600 rounded-tl-lg rounded-br-lg hover:bg-blue-50"
+          >
+            ← Back to Home
+          </Link>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ const Register: React.FC = () => {
   const { name, email, password, address } = useAppSelector(
     (state: RootState) => state.register
   );
-  const [signUp] = useSignUpMutation();
+  const [signUp, { isLoading }] = useSignUpMutation();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -122,9 +122,9 @@ const Register: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full bg-slate-500 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+                className="w-full bg-blue-600 hover:bg-slate-700 text-white py-4 rounded-lg font-semibold transition duration-300"
               >
-                SignUp
+                {isLoading ? "Registering..." : "Register"}
               </button>
             </div>
           </form>
