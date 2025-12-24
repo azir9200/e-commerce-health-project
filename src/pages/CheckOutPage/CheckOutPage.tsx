@@ -5,7 +5,7 @@ import img2 from "../../../src/assets/assets/Screenshot_2025-05-02_210518-remove
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import {
-  Card,
+Card,
   CardContent,
   CardDescription,
   CardHeader,
@@ -51,7 +51,7 @@ const Checkout = () => {
         totalAmount: Number(total.toFixed(2)),
       };
       const res = await OrderCreate(orderPayload);
-      console.log(res);
+      
       if (res?.data.data) {
         window.location.href = res.data.data;
         setIsSubmitting(false);
@@ -72,7 +72,7 @@ const Checkout = () => {
 
   return (
     <CheckoutLayout>
-      <div className="flex w-full gap-5 ">
+      <div className="flex w-full gap-5 mt-">
         {/* Left side - Order details and summary */}
         <div className="w-2/3 space-y-8">
           <Card className="shadow-md">

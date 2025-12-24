@@ -12,7 +12,7 @@ import {
 
 const ManageOrder = () => {
   const { data, isLoading } = useGetAllOrderQuery(undefined);
-  console.log(data);
+  console.log("delete", data);
   const [
     deleteOrder,
     { isLoading: deletedLoading, isSuccess, data: deletedData, isError, error },

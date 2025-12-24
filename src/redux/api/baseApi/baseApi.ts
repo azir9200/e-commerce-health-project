@@ -4,11 +4,12 @@ import { RootState } from "../../store";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
+  //  baseUrl: "https://better-manage-project.vercel.app",
     baseUrl: "http://localhost:5000",
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
-
+     
       if (token) {
         headers.set("authorization", `${token}`);
       }
@@ -16,9 +17,8 @@ export const baseApi = createApi({
     },
   }),
 
-  tagTypes: ["Orders", "Products", "cart", "Auth"],
+  tagTypes: ["Orders", "Products", "cart", "Auth", "Supplement"],
 
   endpoints: () => ({}),
 });
 
-// https://better-manage-project.vercel.app

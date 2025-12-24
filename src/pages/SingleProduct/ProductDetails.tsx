@@ -4,10 +4,8 @@ import { Button } from "../../components/ui/button";
 import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cartSlice";
 import { addToCartFromCheckout } from "../../redux/features/addCart";
+import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 
-// import { addToCart } from "../../redux/features/cart/cartSlice";
-// import { addToCartFromCheckout } from "../../redux/features/product/productSlice";
-// import { useAppDispatch } from "../../redux/hooks/app";
 interface Product {
   id: string;
   _id: string;
@@ -27,15 +25,16 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
-  // const { data } = useGetAllProductQuery(undefined);
-  // console.log(data);
+  const { data } = useGetAllProductQuery(null);
+  const products = data?.data;
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleBuyNow = () => {
     dispatch(addToCartFromCheckout(productDetails));
     navigate("/checkout", {
-      state: { from: "productDetials" },
+      state: { from: "productDetails" },
     });
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,7 +52,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
             {productDetails?.category}
           </p>
           <h1 className="text-2xl font-bold">
-            {productDetails.brand}, {productDetails.model}
+            {products.name}, {productDetails.description}
           </h1>
         </div>
 

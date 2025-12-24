@@ -34,8 +34,8 @@ export function NewsletterSignup() {
   ];
 
   return (
-    <section className="py-4 bg-slate-100">
-      <div className="container mx-auto px-4">
+    <section className="py-4 bg-slate-200">
+      <div className="max-w-7xl mx-auto">
         <Card className="w-full mx-auto border-border/50 shadow-xl">
           <CardContent className="p-8 md:p-12">
             <div className="text-center mb-8">

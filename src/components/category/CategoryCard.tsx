@@ -60,7 +60,7 @@ const CategoryCard = ({ category }: { category: any }) => {
           <Link to="product-page">
             <Button
               variant="outline"
-              className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+              className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  group-hover:bg-primary hover:text-white text-white transition-colors"
             >
               Shop Now
             </Button>

@@ -3,8 +3,8 @@ import CreateProduct from "./CreateProduct";
 import { useGetProductDetailsQuery } from "../../../redux/api/productApi/ProductApi";
 
 const UpdateProduct = () => {
-  const { id } = useParams();
-  const { data } = useGetProductDetailsQuery(id);
+  const { id } = useParams<{ id: string }>();
+  const { data } = useGetProductDetailsQuery(id ?? "", { skip: !id });
   return (
     <div>
       <CreateProduct initialData={data?.data} />

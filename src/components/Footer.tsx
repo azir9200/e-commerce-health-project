@@ -1,20 +1,5 @@
 import { Link } from "react-router-dom";
 import { FaPaperPlane } from "react-icons/fa";
-
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  Mail,
-  Phone,
-  MapPin,
-  CreditCard,
-  Truck,
-  Shield,
-  RotateCcw,
-} from "lucide-react";
-import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import FooterSection from "./FooterSection";
 import { cn } from "../lib/utils";
@@ -72,50 +57,6 @@ const Footer = () => {
       title: "+8801640011818",
     },
   ];
-  const currentYear = new Date().getFullYear();
-
-  // const footerSections = [
-  //   {
-  //     title: "Shop",
-  //     links: [
-  //       { name: "All Products", href: "/product-page" },
-
-  //       { name: "Categories", href: "/categories" },
-  //       { name: "Sale Items", href: "/cart" },
-  //     ],
-  //   },
-  //   {
-  //     title: "Company",
-  //     links: [
-  //       { name: "About Us", href: "/about" },
-  //       { name: "Reviews", href: "/reviews" },
-  //       { name: "Contact", href: "/contact" },
-  //     ],
-  //   },
-  //   {
-  //     title: "Support",
-  //     links: [
-  //       { name: "Help Center", href: "/contact" },
-  //       { name: "Shipping Info", href: "/about" },
-  //       { name: "Returns", href: "/returns" },
-  //     ],
-  //   },
-  //   {
-  //     title: "Account",
-  //     links: [
-  //       { name: "My Account", href: "/dashboard/user" },
-  //       { name: "Order History", href: "/orders" },
-  //       { name: "Wishlist", href: "/" },
-  //     ],
-  //   },
-  // ];
-
-  // const features = [
-  //   { icon: Truck, text: "Free Shipping" },
-  //   { icon: RotateCcw, text: "Easy Returns" },
-  //   { icon: Shield, text: "Secure Payment" },
-  //   { icon: CreditCard, text: "Multiple Payment Options" },
-  // ];
 
   return (
     <section className="text-white bg-black">

@@ -24,11 +24,17 @@ import {
 
 import ProductDetails from "./ProductDetails";
 import ProductSlider from "./ProductSlider";
-import { useGetAllProductQuery, useGetProductDetailsQuery } from "../../redux/api/productApi/ProductApi";
+import {
+  useGetAllProductQuery,
+  useGetProductDetailsQuery,
+} from "../../redux/api/productApi/ProductApi";
 import ProductCard from "../../components/shared/ProductCard";
 const SingleProduct = () => {
-  const { id } = useParams();
-  const { data, isLoading } = useGetProductDetailsQuery(id);
+  const { id } = useParams<{ id: string }>();
+  const { data, isLoading } = useGetProductDetailsQuery(id ?? "", {
+    skip: !id,
+  });
+
   const { data: product } = useGetAllProductQuery({
     category: "",
     priceRange: "",

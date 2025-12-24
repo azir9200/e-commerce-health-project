@@ -16,7 +16,7 @@ const ProductPage = () => {
   // Extract unique categories from products
   const categories: string[] = useMemo(() => {
     if (!products) return [];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     return Array.from(
       new Set(products.map((product: any) => product.category))
     );
@@ -24,7 +24,7 @@ const ProductPage = () => {
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     return products.filter((product: any) => {
       const matchesSearch = product.name
         .toLowerCase()
@@ -40,8 +40,8 @@ const ProductPage = () => {
   }, [products, searchQuery, selectedCategory, priceRange]);
 
   return (
-    <div className="min-h-screen  py-8 pt-20">
-      <div className="max-w-7xl mx-auto px-4 ">
+    <div className="min-h-screen mt-20 py-8 pt-20">
+      <div className="max-w-8xl mx-auto px-4 ">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Filters sidebar */}
           <div className="lg:col-span-1">
@@ -63,8 +63,7 @@ const ProductPage = () => {
                 ? Array.from({ length: 6 }).map((_, index) => (
                     <ProductCardSkeleton key={index} />
                   ))
-                : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  filteredProducts.map((product: any) => (
+                : filteredProducts.map((product: any) => (
                     <ProductCart key={product._id} product={product} />
                   ))}
             </div>

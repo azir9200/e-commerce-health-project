@@ -1,19 +1,27 @@
-import ContactPage from "../pages/contact/Contact";
+import { Categories } from "../components/sections/Categories";
 import About from "../pages/about/About";
+import Cart from "../pages/carts/Cart";
+import Checkout from "../pages/CheckOutPage/CheckOutPage";
+import Commercial from "../pages/Commercial/Commercial";
+import ContactPage from "../pages/contact/Contact";
+import DashboardHome from "../pages/Dashboard/DashbordHome/DashboardHome";
+import ManageOrder from "../pages/Dashboard/ManageOrder/ManageOrder";
+import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
+import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
+import ManageProduct from "../pages/Dashboard/MangeProduct/ManageProduct";
+import UpdateProduct from "../pages/Dashboard/MangeProduct/UpdateProduct";
 import Home from "../pages/Home";
-import ProductPage from "../pages/product/ProductPage";
+import Order from "../pages/Order/Order";
+import OrderVerify from "../pages/payments/Orderdetails";
+import PaymentFailed from "../pages/payments/PaymentFailed";
+import PaymentSuccess from "../pages/payments/PaymentSuccess";
 import AdminPrivateRoute from "../pages/PrivateRoute/AdminPrivateRoute";
 import PrivateRoute from "../pages/PrivateRoute/UserPrivateRoute";
+import ProductPage from "../pages/product/ProductPage";
 import SingleProduct from "../pages/SingleProduct/SingleProduct";
-import DashboardHome from "../pages/Dashboard/DashbordHome/DashboardHome";
-import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
-import UpateProduct from "../pages/Dashboard/MangeProduct/UpateProduct";
-import ManageProduct from "../pages/Dashboard/MangeProduct/ManageProduct";
-import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
-import ManageOrder from "../pages/Dashboard/ManageOrder/ManageOrder";
-import MyProfile from "../pages/userDashboard/Profile/Profile";
+import Supplement from "../pages/Supplements/SupplementPage";
 import UserOrder from "../pages/userDashboard/Order/userOrder";
-import { Categories } from "../components/sections/Categories";
+import MyProfile from "../pages/userDashboard/Profile/Profile";
 
 export const userspaths = [
   {
@@ -25,6 +33,16 @@ export const userspaths = [
     name: "All Products",
     path: "/product-page",
     element: <ProductPage />,
+  },
+  {
+    name: "Supplement",
+    path: "/supplement",
+    element: <Supplement />,
+  },
+  {
+    name: "Commercial",
+    path: "/commercial",
+    element: <Commercial />,
   },
 
   {
@@ -38,41 +56,58 @@ export const userspaths = [
     element: <Categories />,
   },
 
-  // {
-  //   name: "Checkout",
-  //   path: "/checkout",
-  //   element: <CheckOutPage />,
-  // },
+  {
+    name: "Checkout",
+    path: "/checkout",
+    element: (
+      <PrivateRoute>
+        <Checkout />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/order",
+    element: <Order />,
+  },
+  {
+    path: "payment/failed",
+    element: <PaymentFailed></PaymentFailed>,
+  },
+  {
+    path: "payment/success",
+    element: <PaymentSuccess />,
+  },
   {
     name: "About",
     path: "/about",
     element: <About />,
   },
-  // {
-  //   name: "Cart",
-  //   path: "cart",
-  //   element: <Cart />,
-  // },
-  // {
-  //   name: "Service",
-  //   path: "service",
-  //   element: <ProductPage />,
-  // },
+  {
+    name: "Cart",
+    path: "cart",
+    element: <Cart />,
+  },
+
+  {
+    name: "Service",
+    path: "service",
+    element: <ProductPage />,
+  },
   {
     name: "Contact Us",
     path: "/contact",
     element: <ContactPage />,
   },
 
-  // {
-  //   name: "OrderVerify",
-  //   path: "order/verify",
-  //   element: (
-  //     <PrivateRoute>
-  //       <OrderVerify />
-  //     </PrivateRoute>
-  //   ),
-  // },
+  {
+    name: "OrderVerify",
+    path: "order/verify",
+    element: (
+      <PrivateRoute>
+        <OrderVerify />
+      </PrivateRoute>
+    ),
+  },
 ];
 
 export const Adminpaths = [
@@ -99,7 +134,7 @@ export const Adminpaths = [
     path: "/dashboard/updateProduct/:id",
     element: (
       <AdminPrivateRoute>
-        <UpateProduct />
+        <UpdateProduct />
       </AdminPrivateRoute>
     ),
   },

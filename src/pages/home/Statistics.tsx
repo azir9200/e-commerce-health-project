@@ -1,11 +1,10 @@
 import { Award, CheckCircle, Globe, Users } from "lucide-react";
-import { useGetAllRevinewQuery } from "../../redux/features/product/ProductApi";
+import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 const Statistics = () => {
-  const { data } = useGetAllRevinewQuery(undefined);
-  
+  const { data } = useGetAllProductQuery(null);
   const products = data?.data;
 
-  console.log(data);
+ 
   return (
     <div>
       <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
@@ -23,23 +22,23 @@ const Statistics = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               {
-                number: data?.data?.userCount
-                  ? `${data.data.userCount}+`
+                number: products?.data?.userCount
+                  ? `${products.data.userCount}+`
                   : "Load...",
                 label: "Happy Customers",
                 icon: Users,
               },
               {
-                number: data?.data?.carCount
-                  ? `${data.data.carCount}+`
+                number: products?.data?.carCount
+                  ? `${products.data.carCount}+`
                   : "Load...",
                 label: "Cars Sold",
                 icon: CheckCircle,
               },
               { number: "15+", label: "Years Experience", icon: Award },
               {
-                number: data?.data?.orderCount
-                  ? `${data.data.orderCount}+`
+                number: products?.data?.orderCount
+                  ? `${products.data.orderCount}+`
                   : "Load...",
                 label: "Order",
                 icon: Globe,

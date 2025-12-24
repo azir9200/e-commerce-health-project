@@ -5,7 +5,7 @@ import { Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react";
 const instagramPosts = [
   {
     id: 1,
-    image: "🏋️‍♂️",
+    image: "https://i.ibb.co/XZRQcpND/still-life-yoga-equipment.jpg",
     caption:
       "Morning workout session with our new dumbbell set! #FitGearStore #MorningMotivation",
     likes: 234,
@@ -14,7 +14,8 @@ const instagramPosts = [
   },
   {
     id: 2,
-    image: "🧘‍♀️",
+    image:
+      "https://i.ibb.co/MKHdVnn/exhausted-athlete-wiping-sweat-with-towel-after-sports-training-gym.jpg",
     caption:
       "Find your zen with our premium yoga collection. Perfect for both beginners and pros! #YogaLife",
     likes: 189,
@@ -23,7 +24,7 @@ const instagramPosts = [
   },
   {
     id: 3,
-    image: "🏃‍♀️",
+    image: "https://i.ibb.co/tPNby1Cv/young-woman-doing-fitness-sportswear.jpg",
     caption:
       "Cardio day just got better with our latest equipment arrivals! Who's ready to sweat? #CardioDay",
     likes: 156,
@@ -32,7 +33,7 @@ const instagramPosts = [
   },
   {
     id: 4,
-    image: "💪",
+    image: "https://i.ibb.co/XZRQcpND/still-life-yoga-equipment.jpg",
     caption:
       "Strength training essentials now available with FREE shipping! Link in bio #StrengthTraining",
     likes: 298,
@@ -41,7 +42,7 @@ const instagramPosts = [
   },
   {
     id: 5,
-    image: "🥊",
+    image: "https://i.ibb.co/tPNby1Cv/young-woman-doing-fitness-sportswear.jpg",
     caption:
       "Boxing accessories for the ultimate training experience. Get ready to unleash your power! #Boxing",
     likes: 167,
@@ -50,7 +51,8 @@ const instagramPosts = [
   },
   {
     id: 6,
-    image: "🎯",
+    image:
+      "https://i.ibb.co/MKHdVnn/exhausted-athlete-wiping-sweat-with-towel-after-sports-training-gym.jpg",
     caption:
       "Setting fitness goals? We've got the gear to help you achieve them! What's your next goal? #Goals",
     likes: 203,
@@ -62,7 +64,7 @@ const instagramPosts = [
 export function InstagramFeed() {
   return (
     <section className="py-16 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <Instagram className="w-8 h-8 text-primary mr-3" />
@@ -85,7 +87,11 @@ export function InstagramFeed() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <div className="aspect-square bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-300">
-                    {post.image}
+                    <img
+                      src={post.image}
+                      alt={post.caption}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                     <ExternalLink className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -1,4 +1,5 @@
-import { TRoute, TuserPath } from "../ts/types/ts.types";
+
+import { TRoute, TuserPath } from "../components/types/ts.types";
 
 
 

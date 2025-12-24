@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import React from "react";
 
+
 const About: React.FC = () => {
   return (
     <div className="min-h-screen   mt-10">
@@ -232,6 +233,7 @@ const About: React.FC = () => {
           </div>
         </motion.section>
       </div>
+     
     </div>
   );
 };

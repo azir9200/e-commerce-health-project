@@ -18,7 +18,7 @@ const authApi = baseApi.injectEndpoints({
     }),
     getAllUser: builder.query({
       query: () => ({
-        url: `auth/alluser`,
+        url: `api/user/alluser`,
         method: "GET",
       }),
       providesTags: ["Auth"],
@@ -26,21 +26,21 @@ const authApi = baseApi.injectEndpoints({
 
     getSingleUser: builder.query({
       query: () => ({
-        url: `auth/sigleuser`,
+        url: `api/user/sigleuser`,
         method: "GET",
       }),
       providesTags: ["Auth"],
     }),
     updateRoleUser: builder.mutation({
       query: (id) => ({
-        url: `auth/updateRole/${id}`,
+        url: `api/user/updateRole/${id}`,
         method: "PUT",
       }),
       invalidatesTags: ["Auth"],
     }),
     updateUser: builder.mutation({
       query: (body) => ({
-        url: `auth/upateuser`,
+        url: `api/user/upateuser`,
         method: "PUT",
         body: body,
       }),
@@ -48,7 +48,7 @@ const authApi = baseApi.injectEndpoints({
     }),
     changePassword: builder.mutation({
       query: (body) => ({
-        url: `auth/changePassword`,
+        url: `api/user/changePassword`,
         method: "PUT",
         body: body,
       }),
@@ -56,7 +56,7 @@ const authApi = baseApi.injectEndpoints({
     }),
     deleteUser: builder.mutation({
       query: (id) => ({
-        url: `auth/deletedUser/${id}`,
+        url: `api/user/deletedUser/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Auth"],

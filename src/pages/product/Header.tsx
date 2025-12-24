@@ -9,7 +9,7 @@ import { logout, selectCurrentUser } from "../../redux/features/userSlice";
 const Header = () => {
   const { data } = useGetMeQuery(undefined);
   const myself = data?.data;
-  console.log("object", myself?.name);
+  
 
   const dispatch = useAppDispatch();
   const products = useAppSelector((store) => store.cart.products);

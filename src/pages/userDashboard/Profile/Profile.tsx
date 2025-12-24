@@ -1,111 +1,25 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { useState } from "react";
 import avatar from "../../../assets/Dashboard/user.png";
-import { MdOutlineEdit } from "react-icons/md";
 import img8 from "../../../assets/Dashboard/check-out.png";
 import img5 from "../../../assets/Dashboard/reward.png";
 import img6 from "../../../assets/Dashboard/gross (1).png";
 import { Input } from "../../../components/ui/input";
-import { Button } from "../../../components/ui/button";
-import { toast } from "sonner";
 import { Skeleton } from "../../../components/ui/skeleton";
 import { useGetMeQuery } from "../../../redux/api/getMeApi/getMeApi";
 import { useGetProductDetailsQuery } from "../../../redux/api/productApi/ProductApi";
-import {
-  useChangePasswordMutation,
-  useUpdateUserMutation,
-} from "../../../redux/api/authApi/authApi";
+
+import { Button } from "../../../components/ui/button";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
   const { data: user, isLoading } = useGetMeQuery(undefined);
-  // eslint-disable-next-line no-constant-binary-expression
-  const shouldFetch = Boolean(user?.id);
-  const { data } = useGetProductDetailsQuery(undefined, { skip: !shouldFetch });
-  const [ChangePassword] = useChangePasswordMutation();
-  const [updateProfile] = useUpdateUserMutation();
-  const [editMode, setEditMode] = useState(false);
-  const [newPhoto, setNewPhoto] = useState(null);
-  const [uploading, setUploading] = useState(false);
 
-  // Password Change State
+  const { id } = useParams<{ id: string }>();
+  const { data } = useGetProductDetailsQuery(id ?? "", { skip: !id });
+
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  const handleCancel = () => {
-    setNewPhoto(null);
-    setEditMode(false);
-  };
-
-  const onImageChange = (e: any) => {
-    const file = e.target.files[0];
-    if (file) {
-      setNewPhoto(file);
-    }
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const uploadImage = async (file: any) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "Clooud_Gen");
-
-    try {
-      setUploading(true);
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dztxlecbe/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await res.json();
-      setUploading(false);
-      return data.secure_url;
-    } catch (error) {
-      console.error("Image upload failed", error);
-      setUploading(false);
-      return null;
-    }
-  };
-
-  // const handleSave = async () => {
-  //   if (newPhoto) {
-  //     const imageUrl = await uploadImage(newPhoto);
-  //     if (imageUrl) {
-  //       await updateProfile({ photo: imageUrl });
-  //     }
-  //   }
-  //   setEditMode(false);
-  // };
-
-  // Password Change Handler
-  // const handleChangePassword = async () => {
-  //   if (newPassword !== confirmPassword) {
-  //     setPasswordError("New passwords do not match.");
-  //     return;
-  //   }
-  //   setPasswordError(""); // Clear error
-
-  //   try {
-  //     const data ={
-  //       oldPassword,
-  //       newPassword
-  //     }
-  //     console.log(data);
-  //     await ChangePassword(data).unwrap();
-  //     toast.success("Password changed successfully!");
-  //     setOldPassword("");
-  //     setNewPassword("");
-  //     setConfirmPassword("");
-  //   } catch (error) {
-  //     toast.error("Failed to change password. Please try again.");
-  //   }
-  // }
 
   return (
     <div className="m-6 space-y-4">
@@ -120,12 +34,6 @@ const Profile = () => {
                 src={user?.data?.photo || avatar}
                 className="rounded-full h-full w-full object-cover object-center"
               />
-              <button
-                onClick={() => setEditMode(true)}
-                className="absolute bottom-0 right-0 bg-gray-200 p-1 rounded-full shadow-md"
-              >
-                <MdOutlineEdit className="text-lg text-slate-600" />
-              </button>
             </div>
             <div className="text-center md:text-start  ">
               <p className=" uppercase font-semibold">{user?.data?.role}</p>
@@ -133,46 +41,6 @@ const Profile = () => {
               <p>{user?.data?.email}</p>
             </div>
           </div>
-
-          {editMode && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white p-6 rounded-lg w-[90%] max-w-md">
-                <h2 className="text-lg font-semibold mb-4">
-                  Change Profile Picture
-                </h2>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={onImageChange}
-                  className="border-2 p-2 rounded-md w-full mb-4"
-                />
-                {newPhoto && (
-                  <div className="mb-4 flex justify-center">
-                    <img
-                      src={URL.createObjectURL(newPhoto)}
-                      alt="Preview"
-                      className="h-24 w-24 rounded-full object-cover"
-                    />
-                  </div>
-                )}
-                <div className="flex justify-end gap-2">
-                  <button
-                    // onClick={handleSave}
-                    className="rounded-full h-8 w-20 text-slate-600 border border-slate-200 flex items-center justify-center"
-                    disabled={uploading}
-                  >
-                    {uploading ? "Uploading..." : "Save"}
-                  </button>
-                  <button
-                    onClick={handleCancel}
-                    className="rounded-full h-8 w-20 text-slate-600 border border-slate-200 flex items-center justify-center"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       )}
       <div>
@@ -227,9 +95,7 @@ const Profile = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          {passwordError && (
-            <p className="text-red-500 text-sm">{passwordError}</p>
-          )}
+
           <Button>Change Password</Button>
           {/* <Button
            onClick={handleChangePassword} className="w-full">

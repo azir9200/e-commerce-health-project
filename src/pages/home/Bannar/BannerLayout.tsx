@@ -3,7 +3,7 @@ import RightBanner from "./RightBanner";
 
 export default function BannerLayout() {
   return (
-    <section className="w-full px-4  bg-gradient-to-br from-gray-50 to-white">
+    <section className="w-full px-4 pt-40  bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Main Banner */}

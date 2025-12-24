@@ -9,12 +9,13 @@ import {
 
 const ManageUser = () => {
   const { data, isLoading } = useGetAllUserQuery(undefined);
+ 
   const [
     deleteUser,
     { isLoading: deletedLoading, isSuccess, data: deletedData, isError, error },
   ] = useDeleteUserMutation();
   const handleDelete = async (id: string) => {
-    console.log(id);
+    
     await deleteUser(id);
   };
   const toastId = "deleteduser";

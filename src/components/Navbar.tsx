@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Badge,
   Clock,
   Globe,
-  Heart,
   Mail,
   MapPin,
   Phone,
@@ -15,7 +13,6 @@ import {
   LogOut,
   User,
   BookDashed,
-  Divide,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
@@ -43,19 +40,20 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const { data } = useGetMeQuery(undefined);
-  console.log("data", data);
+
   const myself = data?.data;
-  console.log("myself", myself);
+
   const products = useSelector((state: RootState) => state.cart.products);
+
   const user = useAppSelector(selectCurrentUser);
+
   const token = useAppSelector((state) => state.user.token);
   const dispatch = useAppDispatch();
 
@@ -74,9 +72,19 @@ const Navbar = () => {
     { name: "Home", href: "/" },
     { name: "Products", href: "/product-page" },
     { name: "Categories", href: "/categories" },
+    { name: "Supplement", href: "/supplement" },
+    { name: "Commercial", href: "/commercial" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav
@@ -107,7 +115,7 @@ const Navbar = () => {
                 </a>
               </div>
               <a
-                href="mailto:junayetshiblu0@gmail.com"
+                href="mailto:aziruddin83@gmail.com"
                 className="flex items-center space-x-2 group cursor-pointer"
               >
                 <div className="p-1.5 rounded-full bg-blue-600/20 group-hover:bg-blue-600/30 transition-colors">
@@ -149,33 +157,18 @@ const Navbar = () => {
                 </span>
               </div>
 
-              <div className="flex gap-1">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="relative hover:bg-blue-500 rounded-xl p-2 transition-all duration-300"
-                  onClick={() => navigate("/wishlist")}
-                >
-                  <Heart className="h-5 w-5 text-white hover:text-red-500 transition-colors" />
-
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs bg-red-500 hover:bg-red-600 animate-pulse">
-                    4
-                  </Badge>
-                </Button>
-
+              <div className="">
                 {/* Cart */}
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="relative hover:bg-blue-500 rounded-xl p-2 transition-all duration-300"
+                  className=" relative"
                   onClick={() => navigate("/cart")}
                 >
                   <ShoppingCart className="h-5 w-5 text-white hover:text-blue-500 transition-colors" />
-                  {products?.length > 0 && (
-                    <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs bg-blue-600 hover:bg-blue-700 animate-pulse">
-                      {products?.length}
-                    </Badge>
-                  )}
+                  <p className="absolute rounded-full -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 animate-pulse">
+                    {products.length}
+                  </p>
                 </Button>
               </div>
             </div>
@@ -224,7 +217,7 @@ const Navbar = () => {
                   <div className="relative">
                     <Input
                       type="text"
-                      placeholder="Search luxury cars, brands, models..."
+                      placeholder="Search ..."
                       value={searchQuery}
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       onChange={(e: any) => setSearchQuery(e.target.value)}
@@ -256,134 +249,83 @@ const Navbar = () => {
               <div className="hidden md:flex items-center gap-3">
                 {user ? (
                   <div className="flex items-center gap-4">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="rounded-full"
-                        >
-                          <Avatar className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-8 w-8 border-2 border-streetgrub-orange cursor-pointer">
-                            <AvatarImage src={user?.image || ""} alt="User" />
-
-                            <AvatarFallback>
-                              <p>AU</p>
-                              {myself?.name?.charAt(0).toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild>
-                          <Link
-                            to="/profile"
-                            className="flex items-center cursor-pointer"
+                    <div>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
                           >
-                            <User className="mr-2 h-4 w-4" />
-                            Profile
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
+                            <Avatar className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-8 w-8 border-2 border-blue-500 cursor-pointer">
+                              <AvatarImage src={user?.image || ""} alt="User" />
 
-                        {myself?.role == "admin" && (
-                          <div>
-                            <DropdownMenuItem asChild>
-                              <Link
-                                to="/dashboard"
-                                className="flex items-center cursor-pointer"
-                              >
-                                <BookDashed className="mr-2 h-4 w-4" />
-                                Dashboard
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                          </div>
-                        )}
-                        <DropdownMenuItem>
-                          <p
-                            onClick={() => handleLogout()}
-                            className="  text-[#333333] flex items-center gap-1 hover:text-[#FF6b35] transition-colors cursor-pointer"
-                          >
-                            <LogOut className="mr-2 h-4 w-4" />
-                            Logout
-                          </p>
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                              <AvatarFallback>
+                                <p>AU</p>
+                                {myself?.name?.charAt(0).toUpperCase()}
+                              </AvatarFallback>
+                            </Avatar>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem asChild>
+                            <Link
+                              to="/profile"
+                              className="flex items-center cursor-pointer"
+                            >
+                              <User className="mr-2 h-4 w-4" />
+                              Profile
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+
+                          {user?.role == "admin" && (
+                            <div>
+                              <DropdownMenuItem asChild>
+                                <Link
+                                  to="/dashboard"
+                                  className="flex items-center cursor-pointer"
+                                >
+                                  <BookDashed className="mr-2 h-4 w-4" />
+                                  Dashboard
+                                </Link>
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                            </div>
+                          )}
+                          <DropdownMenuItem>
+                            <p
+                              onClick={() => handleLogout()}
+                              className="  text-[#333333] flex items-center gap-1 hover:text-[#FF6b35] transition-colors cursor-pointer"
+                            >
+                              <LogOut className="mr-2 h-4 w-4" />
+                              Logout
+                            </p>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center gap-3">
                     <Link to={"login"}>
                       <Button
                         variant="ghost"
-                        className="  text-[#333333]  transition-colors"
+                        className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950"
                       >
                         Login
                       </Button>
                     </Link>
                     <Link to={"/register"}>
-                      <Button className="bg-[#FF6b35] text-white hover:bg-[#FF6b35]/90">
+                      <Button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950">
                         Sign Up
                       </Button>
                     </Link>
                   </div>
                 )}
               </div>
-
-              {/* <div className="border border-red-500">
-                {user ? (
-                  <p> {myself?.name} </p>
-                ) : (
-                  // <DropdownMenu>
-                  //   <DropdownMenuTrigger asChild>
-                  //     <Avatar className="cursor-pointer">
-                  //       <AvatarImage
-                  //         // src={data?.image || "/default-avatar.png"}
-                  //         src={data?.image}
-                  //       />
-                  //       <p className=" text-slate-800">
-                  //         <AvatarFallback>
-                  //           {data?.name?.charAt(0)}
-                  //         </AvatarFallback>
-                  //       </p>
-                  //     </Avatar>
-                  //   </DropdownMenuTrigger>
-                  //   <DropdownMenuContent align="end">
-                  //     {data?.role == "admin" && (
-                  //       <DropdownMenuItem>
-                  //         <Link to={"/dashboard"}>dashboard</Link>
-                  //       </DropdownMenuItem>
-                  //     )}
-                  //     <DropdownMenuItem>
-                  //       <Link to={"/profile"}>Profile</Link>
-                  //     </DropdownMenuItem>
-
-                  //     <div onClick={handleLogout}>
-                  //       <DropdownMenuItem>Logout</DropdownMenuItem>
-                  //     </div>
-                  //   </DropdownMenuContent>
-                  // </DropdownMenu>
-                  <div className="hidden lg:flex items-center space-x-3">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="font-semibold hover:bg-gray-50 rounded-xl px-4"
-                      onClick={() => navigate("/login")}
-                    >
-                      Login
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-6 font-semibold"
-                      onClick={() => navigate("/register")}
-                    >
-                      Sign Up
-                    </Button>
-                  </div>
-                )}
-              </div> */}
 
               {/* Mobile Menu */}
               <Drawer>

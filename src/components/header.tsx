@@ -14,8 +14,6 @@ const Header = () => {
   const products = useSelector((state: RootState) => state.cart.products);
   const myself = data?.data;
 
-  console.log("object", myself?.name);
-
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
 

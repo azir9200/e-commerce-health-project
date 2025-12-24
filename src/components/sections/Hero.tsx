@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[600px] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center">
-      <div className="container mx-auto px-4">
+    <section className="relative mt-20 min-h-[600px] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center">
+      <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">

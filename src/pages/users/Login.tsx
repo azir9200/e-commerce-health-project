@@ -26,10 +26,9 @@ const Login: React.FC = () => {
 
     try {
       const result = await login({ email, password }).unwrap();
-      console.log("result", result);
+
       const user = verifyToken(result.data);
       dispatch(setUser({ user: user, token: result.data }));
-      console.log("object user admin", user);
 
       if (result.success && result.data) {
         navigate(redirectTo);
@@ -42,6 +41,17 @@ const Login: React.FC = () => {
       toast.error(`Error: ${err?.data?.message || err.message}`, {
         id: toastId,
       });
+    }
+  };
+
+  // Function to pre-fill login credentials
+  const handleDefaultLogin = (type: "user" | "admin") => {
+    if (type === "user") {
+      dispatch(setEmail("user1@gmail.com"));
+      dispatch(setPassword("123456"));
+    } else {
+      dispatch(setEmail("admin1@gmail.com"));
+      dispatch(setPassword("123456"));
     }
   };
 
@@ -62,6 +72,27 @@ const Login: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
             Welcome to Fit-Gear
           </h2>
+
+          {/* Default Login Buttons */}
+          <div className="flex justify-center gap-4 mb-6">
+            <button
+              onClick={() => handleDefaultLogin("user")}
+              className="bg-gradient-to-r from-slate-500 via-blue-900 to-slate-500 
+             hover:from-blue-700 hover:via-blue-500 hover:to-blue900 
+             text-white py-2 px-4 rounded-lg transition duration-300"
+            >
+              {" "}
+              Login as User
+            </button>
+            <button
+              onClick={() => handleDefaultLogin("admin")}
+              className="bg-gradient-to-r from-slate-500 via-blue-900 to-slate-500 
+             hover:from-red-700 hover:via-red-800 hover:to-red-700 
+             text-white py-2 px-4 rounded-lg transition duration-300"
+            >
+              Login as Admin
+            </button>
+          </div>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col justify-between flex-grow w-full"
@@ -118,7 +149,7 @@ const Login: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-slate-700 text-white py-4 rounded-lg font-semibold transition duration-300"
+                className="w-full bg-gradient-to-r from-slate-500 via-blue-900 to-slate-500 hover:bg-slate-700 text-white py-4 rounded-lg font-semibold transition duration-300"
               >
                 {isLoading ? "Logging in..." : "Login"}
               </button>

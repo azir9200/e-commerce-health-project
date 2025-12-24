@@ -25,7 +25,7 @@ const ProductCard = ({ product }: { product: any }) => {
     dispatch(addToCart(product));
     toast.success(<div> You Product added to cart successfully! </div>);
   };
-  console.log(handleAddToCart);
+  
 
   return (
     <div className="relative">

@@ -9,6 +9,13 @@ const productApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+      // Fetch all products
+    getAllSupplement: builder.query({
+      query: () => ({
+        url: "api/supplement",
+        method: "GET",
+      }),
+    }),
     // Fetch a single product by ID
     getProductDetails: builder.query({
       query: (id: string) => ({
@@ -28,7 +35,7 @@ const productApi = baseApi.injectEndpoints({
     // Update an existing product
     updateProduct: builder.mutation({
       query: ({ id, ...updates }) => ({
-        url: `/product/update/${id}`,
+        url: `api/product/update/${id}`,
         method: "PUT",
         body: updates,
       }),
@@ -37,7 +44,7 @@ const productApi = baseApi.injectEndpoints({
     // Delete a product by ID (optional, but useful)
     deleteProduct: builder.mutation({
       query: (id: string) => ({
-        url: `/product/delete/${id}`,
+        url: `api/product/delete/${id}`,
         method: "DELETE",
       }),
     }),

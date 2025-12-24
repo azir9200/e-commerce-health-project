@@ -1,28 +1,26 @@
 import { CiCircleCheck } from "react-icons/ci";
 import { Link, useLocation } from "react-router-dom";
-
 import { DashboardData, ProfileData } from "./share/DashboardNavbar";
 
-import { useGetMeQuery } from "../../redux/api/getMeApi/getMeApi";
+import { selectCurrentUser } from "../../redux/features/userSlice";
+import { useAppSelector } from "../../redux/hooks";
 
 const DesktopLayout = () => {
   const router = useLocation();
-  const { data } = useGetMeQuery(undefined);
-  const myself = data?.data;
+
+  const user = useAppSelector(selectCurrentUser);
+  console.log("user23", user);
 
   const menuData =
-    data?.data?.role === "admin"
-      ? [...DashboardData, ...ProfileData]
-      : ProfileData;
+    user?.role === "admin" ? [...DashboardData, ...ProfileData] : ProfileData;
   return (
     <div className="flex h-screen">
       <div className="fixed top-0 left-0 h-screen w-72 flex flex-col justify-between border-r bg-white drop-shadow-sm">
         <div className="px-8">
           <div className="">
-            <Link to="/" className="flex gap-2 items-center justify-center">
-              image
-              {/* <img src={logo} alt="logo" width={100} height={100} /> */}
-            </Link>
+            {/* <Link to="/" className="flex gap-2 items-center justify-center">
+              <img src={logo} alt="logo" width={100} height={100} />
+            </Link> */}
           </div>
           <div className="pb-5 mb-6 border-b">
             <h3 className="font-semibold text-lg">
@@ -31,7 +29,7 @@ const DesktopLayout = () => {
               ) : (
                 <span className="uppercase">{user?.name}</span>
               )} */}
-              <span className="uppercase">{myself?.data?.name}</span>
+              <span className="uppercase">{user?.name}</span>
             </h3>
             <div className="text-gray-400">
               {/* {loading ? (
@@ -39,7 +37,7 @@ const DesktopLayout = () => {
               ) : (
                 user?.email
               )} */}
-              <span>{data?.data?.email}</span>
+              <span>{user?.email}</span>
             </div>
             <div className="flex items-center mt-2">
               <span className="px-3 py-1 font-semibold rounded-md text-sm">
@@ -69,7 +67,7 @@ const DesktopLayout = () => {
                 return (
                   <Link
                     key={_id}
-                    className={`flex items-center gap-2 hover:bg-secondary ${
+                    className={`flex items-center gap-2 hover:bg-text-white hover:bg-slate-800 ${
                       isActive
                         ? "bg-primary text-white p-2 rounded-lg"
                         : "p-2 rounded-lg"

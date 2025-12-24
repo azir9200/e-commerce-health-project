@@ -6,9 +6,9 @@ import { RootState } from "../../redux/store";
 
 const Cart = () => {
   const products = useSelector((state: RootState) => state.cart.products);
-  console.log(products);
+  
   return (
-    <div className=" max-w-7xl mx-auto min-h-[70vh] mt-20">
+    <div className=" max-w-7xl mx-auto min-h-[70vh] mt-40">
       <div className="flex lg:flex-row flex-col-reverse justify-center gap-6">
         <div className="space-y-5 lg:mt-0 mt-5 w-full lg:w-2/3 mb-6 md:mb-0">
           {products.length ? (

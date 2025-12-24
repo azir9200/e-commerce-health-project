@@ -33,7 +33,7 @@ export default function CheckOutPage() {
 
       if (res.success) {
         // window.location.href = res.data.payment_url;
-        console.log("href", res.data);
+       
       } else {
         console.error("Order creation failed:", res.message);
       }

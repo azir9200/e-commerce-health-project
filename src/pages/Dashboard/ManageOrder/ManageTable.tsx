@@ -63,7 +63,7 @@ const ManageTable: React.FC<ManageTableProps> = ({
   );
   const [UpdateRoleUser] = useUpdateRoleUserMutation();
   const UpdateRole = async (id: string) => {
-    console.log(id);
+    // console.log(id);
     await UpdateRoleUser(id);
   };
 

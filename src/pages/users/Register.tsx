@@ -21,8 +21,8 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const register = await signUp({ name, email, password, address });
-      console.log("User Registered:", register);
+      await signUp({ name, email, password, address });
+   
       toast.success("Registration successful!");
       navigate("/login");
     } catch (error) {
@@ -122,7 +122,7 @@ const Register: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-slate-700 text-white py-4 rounded-lg font-semibold transition duration-300"
+                className="w-full bg-gradient-to-r from-slate-500 via-blue-900 to-slate-500 hover:bg-slate-700 text-white py-4 rounded-lg font-semibold transition duration-300"
               >
                 {isLoading ? "Registering..." : "Register"}
               </button>

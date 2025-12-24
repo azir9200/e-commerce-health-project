@@ -1,4 +1,3 @@
-
 import {
   BarChart,
   Bar,
@@ -10,7 +9,6 @@ import {
   PieChart,
   Pie,
   Cell,
- 
 } from "recharts";
 import {
   TrendingUp,
@@ -25,10 +23,16 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { Navbar } from "../components/Navbar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import Navbar from "../components/Navbar";
 
 // Mock data for charts
 const salesData = [
@@ -95,7 +99,6 @@ const topProducts = [
 ];
 
 const AdminDashboard = () => {
-    
   const stats = [
     {
       title: "Total Revenue",
@@ -131,7 +134,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
           <p className="text-muted-foreground">
