@@ -17,7 +17,7 @@ import PaymentFailed from "../pages/payments/PaymentFailed";
 import PaymentSuccess from "../pages/payments/PaymentSuccess";
 import AdminPrivateRoute from "../pages/PrivateRoute/AdminPrivateRoute";
 import PrivateRoute from "../pages/PrivateRoute/UserPrivateRoute";
-import ProductPage from "../pages/product/ProductPage";
+import ProductPage from "../pages/product/Product";
 import SingleProduct from "../pages/SingleProduct/SingleProduct";
 import Supplement from "../pages/Supplements/SupplementPage";
 import UserOrder from "../pages/userDashboard/Order/userOrder";

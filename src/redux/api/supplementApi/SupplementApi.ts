@@ -1,9 +1,13 @@
+import { ISupplement } from "../../../pages/Supplements/type.supplemrnt";
 import { baseApi } from "../baseApi/baseApi";
+type SupplementResponse = {
+  data: ISupplement[];
+};
 
-const productApi = baseApi.injectEndpoints({
+const supplementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // Fetch all Supplement
-    getAllSupplement: builder.query({
+    getAllSupplement: builder.query<SupplementResponse, void>({
       query: () => ({
         url: "api/supplement",
         method: "GET",
@@ -50,4 +54,4 @@ export const {
   useAddSupplementMutation,
   useUpdateSupplementMutation,
   useDeleteSupplementMutation,
-} = productApi;
+} = supplementApi;

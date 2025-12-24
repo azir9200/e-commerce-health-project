@@ -226,10 +226,8 @@ const Navbar = () => {
                     <Button
                       type="submit"
                       size="sm"
-                      className="absolute right-2 top-2 bottom-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-md hover:shadow-lg transition-all duration-300"
-                    >
-                      <Search className="h-4 w-4" />
-                    </Button>
+                      className="absolute right-2 top-2 bottom-2 rounded-xl bg- hover:from-blue-700 hover:to-purple-700 shadow-md hover:shadow-lg transition-all duration-300"
+                    ></Button>
                   </div>
                 </form>
               </div>

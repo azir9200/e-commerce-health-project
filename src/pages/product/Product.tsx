@@ -5,7 +5,7 @@ import ProductCardSkeleton from "../../components/Skeleton/ProductCartSkeleton";
 import ProductCart from "../../components/ProductCard";
 import ProductFilters from "./ProductFilters";
 
-const ProductPage = () => {
+const Products = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
   const products = data?.data;
 
@@ -83,4 +83,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default Products;
