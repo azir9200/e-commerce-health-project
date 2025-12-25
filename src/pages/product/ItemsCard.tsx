@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 
-import { addToCart } from "../redux/features/cartSlice";
-import { useAppDispatch } from "../redux/hooks";
-import Modal from "./Modal";
-import toast from "react-hot-toast";
 
-const ProductCard = ({ product }: { product: any }) => {
+import toast from "react-hot-toast";
+import { useAppDispatch } from "../../redux/hooks";
+import { addToCart } from "../../redux/features/cartSlice";
+import Modal from "../../components/Modal";
+
+const ItemsCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -71,4 +72,4 @@ const ProductCard = ({ product }: { product: any }) => {
   );
 };
 
-export default ProductCard;
+export default ItemsCard;

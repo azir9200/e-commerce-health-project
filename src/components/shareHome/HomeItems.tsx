@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import ItemsCard from "../../pages/product/ItemsCard";
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
-import ProductCart from "../ProductCard";
-import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
 
+import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
 
 const HomeProducts = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
@@ -21,11 +21,9 @@ const HomeProducts = () => {
             : products
                 ?.slice(0, 4)
                 ?.map((product: any) => (
-                  <ProductCart key={product._id} product={product} />
+                  <ItemsCard key={product._id} product={product} />
                 ))}
         </div>
-
-        
       </div>
     </div>
   );

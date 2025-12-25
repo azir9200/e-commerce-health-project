@@ -2,8 +2,8 @@
 import { useState, useMemo } from "react";
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 import ProductCardSkeleton from "../../components/Skeleton/ProductCartSkeleton";
-import ProductCart from "../../components/ProductCard";
 import ProductFilters from "./ProductFilters";
+import ItemsCard from "./ItemsCard";
 
 const Products = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
@@ -64,7 +64,7 @@ const Products = () => {
                     <ProductCardSkeleton key={index} />
                   ))
                 : filteredProducts.map((product: any) => (
-                    <ProductCart key={product._id} product={product} />
+                    <ItemsCard key={product._id} product={product} />
                   ))}
             </div>
 

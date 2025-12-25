@@ -3,7 +3,7 @@ import { cn } from "../lib/utils";
 
 // FooterSection.tsx
 interface FooterSectionProps {
-    data: { href?: string; title: string }[]; // Data should be an array of objects with 'href' and 'title'
+    data: { href?: string; title: string }[]; 
     title: string; // Title of the section
     className?: string; // className is optional
   }

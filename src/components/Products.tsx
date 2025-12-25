@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ProductCard from "./ProductCard";
+
 import { useGetAllProductQuery } from "../redux/api/productApi/ProductApi";
+import ProductCard from "./shared/ProductCard";
 import ProductCardSkeleton from "./Skeleton/ProductCartSkeleton";
 
 const Products = () => {

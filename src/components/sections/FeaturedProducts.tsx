@@ -2,8 +2,9 @@
 import { Button } from "../ui/button";
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
-import ProductCard from "../ProductCard";
+
 import { Link } from "react-router-dom";
+import ProductCard from "../../pages/product/ItemsCard";
 
 const FeaturedProducts = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
