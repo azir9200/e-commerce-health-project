@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 import ProductCardSkeleton from "../../components/Skeleton/ProductCartSkeleton";
 import ProductFilters from "./ProductFilters";
-import ItemsCard from "./ItemsCard";
+import ProductCard from "./ProductCard";
 
 const Products = () => {
   const { data, isLoading } = useGetAllProductQuery(null);
@@ -40,45 +40,38 @@ const Products = () => {
   }, [products, searchQuery, selectedCategory, priceRange]);
 
   return (
-    <div className="min-h-screen mt-20 py-8 pt-20">
-      <div className="max-w-8xl mx-auto px-4 ">
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Filters sidebar */}
-          <div className="lg:col-span-1">
-            <ProductFilters
-              priceRange={priceRange}
-              onPriceRangeChange={setPriceRange}
-              selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
-              categories={categories}
-            />
-          </div>
-
-          {/* Products grid */}
-          <div className="lg:col-span-3">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {isLoading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <ProductCardSkeleton key={index} />
-                  ))
-                : filteredProducts.map((product: any) => (
-                    <ItemsCard key={product._id} product={product} />
-                  ))}
-            </div>
-
-            {/* No results message */}
-            {!isLoading && filteredProducts.length === 0 && (
-              <div className="text-center py-10">
-                <p className="text-lg text-gray-500">
-                  No products found matching your criteria
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+    <div className=" mt-20 py-8 pt-20">
+     
+      {/* Filters sidebar */}
+      <div className="">
+        <ProductFilters
+          priceRange={priceRange}
+          onPriceRangeChange={setPriceRange}
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          categories={categories}
+        />
       </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))
+          : filteredProducts.map((product: any) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+      </div>
+
+      {/* No results message */}
+      {!isLoading && filteredProducts.length === 0 && (
+        <div className="text-center py-10">
+          <p className="text-lg text-gray-500">
+            No products found matching your criteria
+          </p>
+        </div>
+      )}
     </div>
   );
 };

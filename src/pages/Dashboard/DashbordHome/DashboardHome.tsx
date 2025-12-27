@@ -7,15 +7,13 @@ import img3 from "../../../../src/assets/Dashboard/order-history.png";
 import img4 from "../../../../src/assets/Dashboard/transaction.png";
 import img6 from "../../../../src/assets/Dashboard/visitor-card.png";
 import img5 from "../../../../src/assets/Dashboard/visitor.png";
-
 import { PieCharts } from "./Chart";
 import { ChartVar } from "./ChartVar";
-import { useGetAllProductQuery } from "../../../redux/api/productApi/ProductApi";
+import { useGetAllRevinewQuery } from "../../../redux/api/productApi/ProductApi";
 
 const Dashboard = () => {
-  const { data: varchart } = useGetAllProductQuery(null);
-  const { data } = useGetAllProductQuery(null);
-  const products = data?.data;
+  const { data } = useGetAllRevinewQuery(undefined);
+  console.log(data, "revenue data");
 
   return (
     <div className=" p-4 space-y-4">
@@ -54,7 +52,7 @@ const Dashboard = () => {
           <img src={img6} alt="hello" className="h-16 w-16"></img>
           <div>
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-              {data?.data?.totalRevenue}$
+              {data?.data?.totalRevenue?.summary?.totalRevenue}$
             </h3>
             <p className="text-gray-600 dark:text-gray-400"> Total Revenue</p>
           </div>
@@ -63,7 +61,7 @@ const Dashboard = () => {
           <img src={img5} alt="hello" className="h-16 w-16"></img>
           <div>
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-              {products?.data?.userCount}
+              {data?.data?.totalRevenue?.summary?.userCount}
             </h3>
             <p className="text-gray-600 dark:text-gray-400"> Total User</p>
           </div>
@@ -93,7 +91,7 @@ const Dashboard = () => {
             ></img>
             <div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                {data?.data?.monthOrders}
+                {data?.data?.totalRevenue?.summary?.monthOrders}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
                 This Month Orders
@@ -110,7 +108,7 @@ const Dashboard = () => {
             ></img>
             <div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                {data?.data?.todayOrders}
+                {data?.data?.totalRevenue?.summary?.todayOrders}
               </h3>
               <p className="text-gray-600 dark:text-gray-400"> Today Orders</p>
             </div>
@@ -134,7 +132,7 @@ const Dashboard = () => {
             <div>
               <h3 className="text-2xl font-bold text-blue-600">
                 {" "}
-                {data?.data?.orderCount}
+                {data?.data?.totalRevenue?.summary?.orderCount}
               </h3>
               <p className="text-gray-600 dark:text-gray-400"> Total Order</p>
             </div>
@@ -146,7 +144,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
-        <ChartVar chartData={varchart?.data?.totalRevenue} />
+        <ChartVar chartData={data?.data?.totalRevenue?.chartData} />
       </div>
     </div>
   );

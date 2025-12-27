@@ -1,12 +1,13 @@
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "../../../components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function LeftBanner() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
+  const navigate = useNavigate();
 
   const bannerData = [
     {
@@ -103,6 +104,7 @@ export default function LeftBanner() {
           </p>
           <Button
             size="lg"
+            onClick={() => navigate("/product-page")}
             className="bg-white text-black hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
           >
             {bannerData[currentSlide].cta}

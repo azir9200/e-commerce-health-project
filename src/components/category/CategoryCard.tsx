@@ -57,7 +57,7 @@ const CategoryCard = ({ category }: { category: any }) => {
             {" "}
             Stock in Total: {category.stock}
           </p>
-          <Link to="product-page">
+          <Link to="/product-page">
             <Button
               variant="outline"
               className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  group-hover:bg-primary hover:text-white text-white transition-colors"

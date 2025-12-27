@@ -7,11 +7,20 @@ import cartReducer from "./features/cartSlice";
 import loginReducer from "./features/loginSlice";
 import registerReducer from "./features/RegisterSlice";
 import userReducer from "./features/userSlice";
+import wishlistReducer from "./features/wishlistSlice";
 
 const persistUserConfig = {
   key: "user",
   storage,
 };
+const persistWishlistConfig = {
+  key: "wishlist",
+  storage,
+};
+const persistedWishlistReducer = persistReducer(
+  persistWishlistConfig,
+  wishlistReducer
+);
 const persistedUserReducer = persistReducer(persistUserConfig, userReducer);
 const persistCartConfig = {
   key: "cart",
@@ -27,6 +36,7 @@ export const store = configureStore({
     register: registerReducer,
     user: persistedUserReducer,
     product: productReducer,
+    wishlist: persistedWishlistReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(

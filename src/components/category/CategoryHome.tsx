@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-
-
 import toast from "react-hot-toast";
 import { useAppDispatch } from "../../redux/hooks";
+import Modal from "../Modal";
 import { addToCart } from "../../redux/features/cartSlice";
-import Modal from "../../components/Modal";
+import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 
-const ItemsCard = ({ product }: { product: any }) => {
+const CategoryHome = ({ category }: { category: any }) => {
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
-  const handleShowModal = (product: any) => {
-    setSelectedProduct(product);
+  const handleShowModal = (category: any) => {
+    setSelectedProduct(category);
     setShowModal(true);
   };
 
@@ -22,11 +22,11 @@ const ItemsCard = ({ product }: { product: any }) => {
     setShowModal(false);
   };
 
-  const handleAddToCart = async (product: any) => {
-    dispatch(addToCart(product));
+  const handleAddToCart = async (category: any) => {
+    dispatch(addToCart(category));
     toast.success(<div> You Product added to cart successfully! </div>);
   };
-  
+  console.log(handleAddToCart);
 
   return (
     <div className="relative">
@@ -39,37 +39,35 @@ const ItemsCard = ({ product }: { product: any }) => {
       )}
 
       <div
-        onClick={() => handleShowModal(product)}
+        onClick={() => handleShowModal(category)}
         className="border rounded-lg shadow-lg bg-base-100 transition-transform transform flex flex-col h-full"
       >
+        <h3 className="text-xl text-center italic font-bold w-full  mb-2">
+          {category.name}
+        </h3>
         <img
-          src={product.image}
-          alt={product.name}
+          src={category.image}
+          alt={category.name}
           className="w-full h-40 object-cover transition-opacity duration-300 hover:opacity-75"
         />
         <div className="p-4 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold  mb-2">{product.name}</h3>
           <p className=" font-semibold text-lg mb-4 flex-grow">
-            {product.description.split(" ").slice(0, 5).join(" ") +
-              (product.description.split(" ").length > 5 ? "..." : "")}
+            {category.description.split(" ").slice(0, 5).join(" ") +
+              (category.description.split(" ").length > 5 ? "..." : "")}
           </p>
-          <p className="text-lg font-bold text-[#2453DF]  mb-4">
-            {" "}
-            Price: ${product.price}
-          </p>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleAddToCart(product);
-            }}
-            className="bg-slate-700  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
-          >
-            Add to Cart
-          </button>
+
+          <Link to="categories">
+            <Button
+              variant="outline"
+              className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  group-hover:bg-primary hover:text-white text-white transition-colors"
+            >
+              View
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default ItemsCard;
+export default CategoryHome;

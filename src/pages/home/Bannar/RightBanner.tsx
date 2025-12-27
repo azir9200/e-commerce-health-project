@@ -2,13 +2,11 @@ import { ArrowRight, Clock, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Badge } from "../../../components/ui/badge";
 import { Button } from "../../../components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function RightBanner() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  //
-  //
-  // 
-  // https://i.ibb.co/dJrmrQxX/workout-equipment-with-christmas-theme-decorations.jpg
+  const navigate = useNavigate();
 
   const promotionData = [
     {
@@ -95,6 +93,7 @@ export default function RightBanner() {
 
                   <Button
                     size="sm"
+                    onClick={() => navigate("/supplement")}
                     className="bg-white text-black hover:bg-gray-100 transition-all duration-300 w-fit group"
                   >
                     Learn More

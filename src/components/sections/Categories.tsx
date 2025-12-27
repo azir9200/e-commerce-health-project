@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllCategoryQuery } from "../../redux/api/categoryApi/categoryApi";
 import CategoryCard from "../category/CategoryCard";
-import HomeSlide from "../shareHome/Carousal";
 import ImageGallery from "../shareHome/ImageGallery";
 import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
 
@@ -34,8 +33,23 @@ export function Categories() {
                 ))}
         </div>
       </div>
+      
+      <div className="grid grid-cols-8 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6 gap-4">
+        {isLoading
+          ? Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="h-12 rounded-md bg-muted animate-pulse" />
+            ))
+          : categories?.map((category: any) => (
+              <div
+                key={category._id}
+                className="flex items-center justify-center h-12 rounded-lg border bg-background font-medium hover:bg-primary hover:text-white transition cursor-pointer"
+              >
+                {category.name}
+              </div>
+            ))}
+      </div>
+
       <ImageGallery />
-      <HomeSlide />
     </section>
   );
 }

@@ -35,7 +35,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import Footer from "../components/Footer";
+import Footer from "../components/shared/Footer";
 import Navbar from "../components/Navbar";
 
 const initialProducts = [

@@ -9,7 +9,7 @@ const productApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
-      // Fetch all products
+    // Fetch all products
     getAllSupplement: builder.query({
       query: () => ({
         url: "api/supplement",
@@ -20,6 +20,13 @@ const productApi = baseApi.injectEndpoints({
     getProductDetails: builder.query({
       query: (id: string) => ({
         url: `api/product/${id}`,
+        method: "GET",
+      }),
+    }),
+    // Revinew
+    getAllRevinew: builder.query({
+      query: () => ({
+        url: `api/order/revenue`,
         method: "GET",
       }),
     }),
@@ -57,4 +64,5 @@ export const {
   useAddProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  useGetAllRevinewQuery,
 } = productApi;

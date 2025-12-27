@@ -1,65 +1,184 @@
-# FFitGear Store Frontend
+🏋️‍♂️ Fit Gear
 
-FitGear Store Frontend is a **React-based web application** designed for a seamless and interactive fitness equipment shopping experience. It features **modern UI components, advanced state management, and a fully responsive design**.
+Fit Gear is a modern Gym & Health Equipment E-Commerce Platform built with React, TypeScript, Redux Toolkit, and Tailwind CSS.
+The platform allows users to explore fitness instruments, supplements, and commercial gym products while supporting joint business promotions with commercial partners.
 
-## 🚀 Live URL
-[Live Demo](#) *([https://imagine-redux-story.vercel.app])*
+🚀 Project Overview
 
----
+Fit Gear is designed to serve fitness enthusiasts, gym owners, and health-conscious users by providing a seamless online shopping experience for:
 
-## ✨ Features
-- 🏎️ **Modern UI/UX** with Tailwind CSS  
-- 📦 **State Management** using Redux Toolkit  
-- 🔐 **Authentication & Authorization** (JWT-based)  
-- 🔍 **Product Search & Filters**  
-- 🚗 **Dynamic Product Listings**  
-- 💳 **Checkout & Payment Integration (SurjoPay)**  
-- 🛠️ **User Dashboard** (Order tracking, Profile management)  
-- 🏢 **Admin Dashboard** (User, Product, and Order Management)  
+Gym & fitness instruments
 
----
+Health supplements
 
-## 🛠️ Technologies Used
-- **React.js** – Frontend framework  
-- **Next.js** *(if applicable)* – Server-side rendering  
-- **Redux Toolkit & RTK Query** – State management & API calls  
-- **React Router DOM** – Navigation & routing  
-- **Tailwind CSS** – Styling framework  
-- **React Hook Form** – Form handling  
-- **ShadCN UI** – UI components  
-- **Recharts** – Data visualization  
-- **Axios** – API requests  
-- **JWT Decode** – Authentication token management  
+Commercial gym equipment
 
----
+Joint business & partner promotions
 
-## 📦 Installation & Setup
+The project focuses on performance, scalability, and user experience using modern frontend technologies.
 
-### 📌 Prerequisites
-Make sure you have installed:  
-✔️ [Node.js (LTS)](https://nodejs.org/)  
-✔️ npm or yarn  
+✨ Key Features
+🛒 E-Commerce Functionality
 
-### 🚀 Steps to Run
+Product listing with categories
 
-### **Installation**  
+Supplement and fitness equipment cards
 
-1. Clone the repository:  
-   ```bash
-   git clone <repository-url>
-   cd blogging_site
-   ```
+Add to cart & persistent cart (Redux Persist)
 
-2. Install dependencies:  
-   ```bash
-   npm install
-   ```
+Responsive product grid layouts
+📦 Category-Based Browsing
 
-3. Run the Development Server:  
-   ```bash
-   npm run dev
-   ```
-4. Run the Production Server:  
-   ```bash
-   npm run build
-   ```
+Dynamic category listing
+
+Category-wise product filtering
+
+Grid-based category display
+
+🤝 Commercial & Partner Section
+
+Business partner promotions
+
+Commercial gym product showcase
+
+Marketing banners & galleries
+
+🎨 UI / UX Experience
+
+Fully responsive design
+
+Smooth animations (Framer Motion, GSAP)
+
+Skeleton loaders for better UX
+
+Modern UI components using Radix UI
+
+🔐 Authentication & State Management
+
+JWT-based authentication handling
+
+Global state management with Redux Toolkit
+
+Form validation using React Hook Form & Zod
+🧰 Tech Stack
+⚛️ Frontend
+
+React 18
+
+TypeScript
+
+Vite
+
+🎨 Styling & UI
+
+Tailwind CSS
+
+DaisyUI
+
+Radix UI
+
+Lucide React / React Icons
+
+ShadCN utilities (CVA, clsx, tailwind-merge)
+
+🔄 State Management
+
+Redux Toolkit
+
+Redux Persist
+
+React Redux
+
+🧪 Forms & Validation
+
+React Hook Form
+
+Zod
+
+🎞 Animations & UI Effects
+
+Framer Motion
+
+GSAP
+
+Swiper
+
+Embla Carousel
+
+React Fast Marquee
+
+📊 Data Visualization
+
+Recharts
+
+🔔 Notifications
+
+React Hot Toast
+
+Sonner
+
+src/
+── components/
+│ ├── category/
+│ ├── products/
+│ ├── shared/
+│ └── ui/
+├── pages/
+├── redux/
+│ ├── api/
+│ ├── features/
+│ └── store.ts
+├── routes/
+├── hooks/
+├── utils/
+└── App.tsx
+
+⚙️ Installation & Setup
+1️⃣ Clone the repository
+
+git clone https://github.com/your-username/fit-gear.git
+cd fit-gear
+cd fit-gear
+2️⃣ Install dependencies
+bash
+Copy code
+npm install
+3️⃣ Run the development server
+bash
+Copy code
+npm run dev
+4️⃣ Build for production
+bash
+Copy code
+npm run build
+🌐 Scripts
+Command Description
+npm run dev Start development server
+npm run build Build for production
+npm run lint Run ESLint
+npm run preview Preview production build
+
+🎯 Future Improvements
+Payment gateway integration
+
+User dashboard & order history
+
+Admin panel for product management
+
+Wishlist & product comparison
+
+Backend integration with analytics
+
+🤝 Contribution
+Contributions are welcome!
+Feel free to fork the project, create a feature branch, and submit a pull request.
+
+📜 License
+This project is licensed under the MIT License.
+
+🙌 Acknowledgements
+Open-source libraries & tools
+
+Fitness community inspiration
+
+UI/UX best practices

@@ -32,7 +32,7 @@ const ProductFilters = ({
   categories,
 }: ProductFiltersProps) => {
   return (
-    <div className="space-y-6 p-6 bg-white rounded-lg shadow-md  border">
+    <div className="space-y-6 lg:flex justify-between items-center   p-6 bg-white rounded-lg shadow-md  border">
       <div className="space-y-2">
         <Label>Search Products</Label>
         <div className="relative">

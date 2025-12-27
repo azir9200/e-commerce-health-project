@@ -1,8 +1,10 @@
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { Users, Target, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function AboutUs() {
+  const navigate = useNavigate();
   return (
     <section className="py-16 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -41,7 +43,9 @@ export function AboutUs() {
               </div>
             </div>
 
-            <Button size="lg">Learn More About Us</Button>
+            <Button onClick={() => navigate("/about")} size="lg">
+              Learn More About Us
+            </Button>
           </div>
 
           <div className="space-y-6">

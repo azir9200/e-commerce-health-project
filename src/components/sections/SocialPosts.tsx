@@ -1,5 +1,4 @@
 import { Card, CardContent } from "../ui/card";
-import { Button } from "../ui/button";
 import { Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react";
 
 const instagramPosts = [
@@ -31,34 +30,6 @@ const instagramPosts = [
     comments: 8,
     user: "@fitgear_official",
   },
-  {
-    id: 4,
-    image: "https://i.ibb.co/XZRQcpND/still-life-yoga-equipment.jpg",
-    caption:
-      "Strength training essentials now available with FREE shipping! Link in bio #StrengthTraining",
-    likes: 298,
-    comments: 24,
-    user: "@fitgear_official",
-  },
-  {
-    id: 5,
-    image: "https://i.ibb.co/tPNby1Cv/young-woman-doing-fitness-sportswear.jpg",
-    caption:
-      "Boxing accessories for the ultimate training experience. Get ready to unleash your power! #Boxing",
-    likes: 167,
-    comments: 15,
-    user: "@fitgear_official",
-  },
-  {
-    id: 6,
-    image:
-      "https://i.ibb.co/MKHdVnn/exhausted-athlete-wiping-sweat-with-towel-after-sports-training-gym.jpg",
-    caption:
-      "Setting fitness goals? We've got the gear to help you achieve them! What's your next goal? #Goals",
-    likes: 203,
-    comments: 19,
-    user: "@fitgear_official",
-  },
 ];
 
 export function InstagramFeed() {
@@ -73,7 +44,7 @@ export function InstagramFeed() {
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join our fitness community on Instagram for daily motivation,
+            Below our fitness community on Instagram for daily motivation,
             workout tips, and the latest product updates.
           </p>
         </div>
@@ -130,12 +101,12 @@ export function InstagramFeed() {
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        {/* <div className="text-center mt-8">
           <Button size="lg" variant="outline" className="group">
             <Instagram className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
             Follow @fitgear_official
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

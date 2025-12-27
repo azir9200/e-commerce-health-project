@@ -22,18 +22,19 @@ import {
   TabsTrigger,
 } from "../../components/ui/tabs";
 
-import ProductDetails from "./ProductDetails";
-import ProductSlider from "./ProductSlider";
 import {
   useGetAllProductQuery,
   useGetProductDetailsQuery,
 } from "../../redux/api/productApi/ProductApi";
-import ProductCard from "../../components/shared/ProductCard";
+import ProductDetails from "./ProductDetails";
+import ProductSlider from "./ProductSlider";
+import ProductCard from "../product/ProductCard";
 const SingleProduct = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading } = useGetProductDetailsQuery(id ?? "", {
     skip: !id,
   });
+  console.log(data, "aadded");
 
   const { data: product } = useGetAllProductQuery({
     category: "",
@@ -73,7 +74,7 @@ const SingleProduct = () => {
     <div className=" max-w-7xl mx-auto px-2 md:px-0 pt-44">
       <div className="flex flex-col items-center justify-center w-full my-10 lg:flex-row lg:items-start md:gap-20">
         <div className="w-full lg:w-[50%] overflow-hidden">
-          <ProductSlider images={data?.data?.images} />
+          <ProductSlider images={data?.data?.image} />
         </div>
         <div className="w-full  lg:w-[50%]">
           <ProductDetails productDetails={data?.data} />
@@ -91,11 +92,11 @@ const SingleProduct = () => {
           <TabsContent value="description" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>About {data?.data.model}</CardTitle>
+                <CardTitle>About {data?.data?.model}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  {data?.data.description}
+                  {data?.data?.description}
                 </p>
               </CardContent>
             </Card>
@@ -146,7 +147,7 @@ const SingleProduct = () => {
                 <CardTitle>Customer Reviews</CardTitle>
               </CardHeader>
               <CardContent>
-                {reviews.length > 0 ? (
+                {reviews?.length > 0 ? (
                   <div className="space-y-6">
                     {reviews.map((review) => (
                       <div key={review.id} className="border-b pb-4">

@@ -22,6 +22,7 @@ import SingleProduct from "../pages/SingleProduct/SingleProduct";
 import Supplement from "../pages/Supplements/SupplementPage";
 import UserOrder from "../pages/userDashboard/Order/userOrder";
 import MyProfile from "../pages/userDashboard/Profile/Profile";
+import Wishlist from "../pages/WishList/WishList";
 
 export const userspaths = [
   {
@@ -85,7 +86,12 @@ export const userspaths = [
   {
     name: "Cart",
     path: "cart",
-    element: <Cart />,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <Cart />,{" "}
+      </PrivateRoute>
+    ),
   },
 
   {
@@ -175,6 +181,11 @@ export const userpaths = [
         <MyProfile />
       </PrivateRoute>
     ),
+  },
+  {
+    name: "Wishlist",
+    path: "/profile/wishlist",
+    element: <Wishlist />,
   },
   {
     name: "Show Order",

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "../ui/button";
-import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
-import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
 
+import ProductCardSkeleton from "../Skeleton/ProductCartSkeleton";
 import { Link } from "react-router-dom";
-import ProductCard from "../../pages/product/ItemsCard";
+import { useGetAllCategoryQuery } from "../../redux/api/categoryApi/categoryApi";
+import CategoryHome from "../category/CategoryHome";
 
 const FeaturedProducts = () => {
-  const { data, isLoading } = useGetAllProductQuery(null);
-  const products = data?.data;
+  const { data, isLoading } = useGetAllCategoryQuery(null);
+  const categories = data?.data?.data;
   return (
     <section className="py-6 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -27,17 +27,17 @@ const FeaturedProducts = () => {
             ? Array.from({ length: 8 }).map((_, index) => (
                 <ProductCardSkeleton key={index} />
               ))
-            : products
+            : categories
                 ?.slice(0, 4)
-                ?.map((product: any) => (
-                  <ProductCard key={product._id} product={product} />
+                ?.map((category: any) => (
+                  <CategoryHome key={category._id} category={category} />
                 ))}
         </div>
 
         <div className="text-center mt-8">
-          <Link to="product-page">
+          <Link to="/product-page">
             <Button variant="outline" size="lg">
-              View All Products
+              View All Categories
             </Button>
           </Link>
         </div>

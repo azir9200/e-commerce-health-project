@@ -1,4 +1,4 @@
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight,} from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
@@ -23,10 +23,10 @@ export function Hero() {
                 </Button>
               </Link>
 
-              <Button variant="outline" size="lg" className="text-lg px-8">
+              {/* <Button variant="outline" size="lg" className="text-lg px-8">
                 <Play className="mr-2 w-5 h-5" />
                 All Categories
-              </Button>
+              </Button> */}
             </div>
             <div className="flex items-center space-x-8 pt-4">
               <div className="text-center">
@@ -56,13 +56,7 @@ export function Hero() {
                     alt="Banner Image 1"
                     className="object-cover w-full h-full"
                   />
-                  {/* <img
-                    src="https://i.ibb.co/YRvx6Jr/pexels-shotpot-4047156.jpg"
-
-                    
-                    alt="Banner Image 1"
-                    className="object-cover w-full h-full"
-                  /> */}
+                 
                 </div>
               </div>
             </div>

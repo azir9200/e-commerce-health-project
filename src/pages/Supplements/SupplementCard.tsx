@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { ISupplement } from "./type.supplemrnt";
+import { useAppDispatch  } from "../../redux/hooks";
+import { addToCart } from "../../redux/features/cartSlice";
+import toast from "react-hot-toast";
 
 type SupplementCardProps = {
   supplement: ISupplement;
@@ -8,6 +11,11 @@ type SupplementCardProps = {
 const SupplementCard = ({ supplement }: SupplementCardProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useAppDispatch();
+  const handleAddToCart = (supplement: ISupplement) => {
+    dispatch(addToCart(supplement));
+    toast.success(<div> You Supplement added to cart successfully! </div>);
+  };
 
   return (
     <div className=" py-6">
@@ -81,7 +89,13 @@ const SupplementCard = ({ supplement }: SupplementCardProps) => {
               </button>
             </div>
 
-            <button className="bg-slate-700  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddToCart(supplement);
+              }}
+              className="bg-slate-700  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
+            >
               ADD TO CART
             </button>
           </div>

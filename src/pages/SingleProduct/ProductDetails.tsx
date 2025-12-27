@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Button } from "../../components/ui/button";
+import { addToCart, clearCart } from "../../redux/features/cartSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { addToCart } from "../../redux/features/cartSlice";
-import { addToCartFromCheckout } from "../../redux/features/addCart";
-import { useGetAllProductQuery } from "../../redux/api/productApi/ProductApi";
 
 interface Product {
   id: string;
@@ -15,7 +13,7 @@ interface Product {
   model: string;
   price: number;
   quantity: number;
-  inStock: boolean;
+  stock: number;
   description: string;
   image: string[];
 }
@@ -25,14 +23,12 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
-  const { data } = useGetAllProductQuery(null);
-  const products = data?.data;
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleBuyNow = () => {
-    dispatch(addToCartFromCheckout(productDetails));
+    dispatch(clearCart());
+    dispatch(addToCart(productDetails));
     navigate("/checkout", {
       state: { from: "productDetails" },
     });
@@ -52,7 +48,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
             {productDetails?.category}
           </p>
           <h1 className="text-2xl font-bold">
-            {products.name}, {productDetails.description}
+            {productDetails?.name}, {productDetails?.description}
           </h1>
         </div>
 
@@ -60,14 +56,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
         <div className="space-y-2">
           <div className="flex items-center justify-start gap-3">
             <p className=" text-xs text-primary border-primary">
-              {productDetails.inStock
-                ? `In Stock(${productDetails.quantity})`
+              {productDetails?.stock != 0
+                ? `In Stock(${productDetails?.stock})`
                 : "Out Stock"}
             </p>
           </div>
           <div className="flex items-end gap-1">
             <h1 className="text-xl font-bold text-blue-600">
-              ৳ {productDetails.price}
+              ৳ {productDetails?.price}
             </h1>
           </div>
           <div className="text-sm ">

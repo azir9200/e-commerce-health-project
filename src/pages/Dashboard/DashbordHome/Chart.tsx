@@ -127,12 +127,7 @@ export function PieCharts() {
         <div className="leading-none text-muted-foreground">
           Total visitors for the last 6 months
         </div>
-        {/* Display additional metrics */}
-        {/* <div className="">
-          <p><strong>Total Visitors Today:</strong> {todayVisitors.toLocaleString()}</p>
-          <p><strong>This Month Visitors:</strong> {monthVisitors.toLocaleString()}</p>
-          <p><strong>New Accounts This Month:</strong> {newAccountsThisMonth.toLocaleString()}</p>
-        </div> */}
+      
       </CardFooter>
     </Card>
   );
