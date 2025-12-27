@@ -1,23 +1,16 @@
-🏋️‍♂️ Fit Gear
+## 🏋️‍♂️ Fit Gear
 
 Fit Gear is a modern Gym & Health Equipment E-Commerce Platform built with React, TypeScript, Redux Toolkit, and Tailwind CSS.
 The platform allows users to explore fitness instruments, supplements, and commercial gym products while supporting joint business promotions with commercial partners.
 
-🚀 Project Overview
+## 🚀 Project Overview
 
 Fit Gear is designed to serve fitness enthusiasts, gym owners, and health-conscious users by providing a seamless online shopping experience for:
 
-Gym & fitness instruments
+Gym & fitness instruments, Health supplements, Commercial gym equipment, Joint business & partner promotions, the project focuses on performance, scalability, and user experience using modern frontend technologies.
 
-Health supplements
+## ✨ Key Features
 
-Commercial gym equipment
-
-Joint business & partner promotions
-
-The project focuses on performance, scalability, and user experience using modern frontend technologies.
-
-✨ Key Features
 🛒 E-Commerce Functionality
 
 Product listing with categories
@@ -81,64 +74,43 @@ Lucide React / React Icons
 
 ShadCN utilities (CVA, clsx, tailwind-merge)
 
-🔄 State Management
+🔄 State Management :
 
-Redux Toolkit
+Redux Toolkit, Redux Persist, React Redux,
 
-Redux Persist
+🧪 Forms & Validation: React Hook Form, Zod,
 
-React Redux
+🎞 Animations & UI Effects: Framer Motion, GSAP, Swiper, Embla Carousel, React Fast Marquee,
 
-🧪 Forms & Validation
+📊 Data Visualization: Recharts,
 
-React Hook Form
+🔔 Notifications: React Hot Toast, Sonner,
 
-Zod
+          Folder Structure:
+                    src/
+                        |── components/
+                        │ ├── category/
+                        │ ├── products/
+                        │ ├── shared/
+                        │ └── ui/
+                        ├── pages/
+                        ├── redux/
+                        │ ├── api/
+                        │ ├── features/
+                        │ └── store.ts
+                        ├── routes/
+                        ├── hooks/
+                        ├── utils/
+                        └── App.tsx
 
-🎞 Animations & UI Effects
+## ⚙️ Installation & Setup:
 
-Framer Motion
+1️⃣ Clone the repository  
+ git clone https://github.com/your-username/fit-gear.git
 
-GSAP
+                  cd fit-gear
+                  cd fit-gear
 
-Swiper
-
-Embla Carousel
-
-React Fast Marquee
-
-📊 Data Visualization
-
-Recharts
-
-🔔 Notifications
-
-React Hot Toast
-
-Sonner
-
-src/
-── components/
-│ ├── category/
-│ ├── products/
-│ ├── shared/
-│ └── ui/
-├── pages/
-├── redux/
-│ ├── api/
-│ ├── features/
-│ └── store.ts
-├── routes/
-├── hooks/
-├── utils/
-└── App.tsx
-
-⚙️ Installation & Setup
-1️⃣ Clone the repository
-
-git clone https://github.com/your-username/fit-gear.git
-cd fit-gear
-cd fit-gear
 2️⃣ Install dependencies
 bash
 Copy code
