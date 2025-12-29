@@ -1,4 +1,4 @@
-import { MdFileDownload } from "react-icons/md";
+
 import { PiGreaterThanLight } from "react-icons/pi";
 import img from "../../../../src/assets/Dashboard/choices.png";
 import img2 from "../../../../src/assets/Dashboard/clipboard.png";
@@ -37,13 +37,6 @@ const Dashboard = () => {
             </li>
           </ul>
         </div>
-        <a
-          href="#"
-          className="flex items-center bg-blue-500 text-white px-4 gap-1 justify-center py-2 rounded-lg hover:bg-blue-600 transition sm:w-48 w-full"
-        >
-          <MdFileDownload className=" text-xl" />
-          <span>Export Report</span>
-        </a>
       </div>
 
       {/* Summary Cards Section */}

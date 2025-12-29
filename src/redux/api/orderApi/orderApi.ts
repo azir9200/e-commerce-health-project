@@ -42,7 +42,7 @@ export const OderApi = baseApi.injectEndpoints({
     deleteOrder: builder.mutation({
       query: (id) => ({
         url: `orders/${id}`,
-        method: "DELETE",
+          method: "PATCH",
       }),
       invalidatesTags: ["Orders"],
     }),

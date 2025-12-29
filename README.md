@@ -154,3 +154,19 @@ Open-source libraries & tools
 Fitness community inspiration
 
 UI/UX best practices
+
+Server:
+  - git clone https://github.com/azir9200/latest_food_backend
+  - cd latest_food_backend
+  - npm install
+
+  => Fit Gear is a full production-ready food discovery system with:
+  =>Building modern apps with React, TypeScript & Node.js.
+
+
+  
+👨‍💻 Author:
+
+## Azir Uddin - Full-Stack Web Developer
+
+** Feel free to explore, test, and evaluate the project!

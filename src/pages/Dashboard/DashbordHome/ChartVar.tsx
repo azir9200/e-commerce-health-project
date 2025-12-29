@@ -19,14 +19,7 @@ import {
 
 export const description = "A multiple bar chart for order statuses";
 
-// const chartData = [
-//   { month: "January", approved: 186, pending: 80, rejected: 20 },
-//   { month: "February", approved: 305, pending: 50, rejected: 10 },
-//   { month: "March", approved: 237, pending: 120, rejected: 15 },
-//   { month: "April", approved: 73, pending: 60, rejected: 30 },
-//   { month: "May", approved: 209, pending: 90, rejected: 40 },
-//   { month: "June", approved: 214, pending: 100, rejected: 25 },
-// ];
+
 interface OrderChartData {
   month: string;
   approved: number;

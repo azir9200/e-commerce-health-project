@@ -74,7 +74,7 @@ const SingleProduct = () => {
     <div className=" max-w-7xl mx-auto px-2 md:px-0 pt-44">
       <div className="flex flex-col items-center justify-center w-full my-10 lg:flex-row lg:items-start md:gap-20">
         <div className="w-full lg:w-[50%] overflow-hidden">
-          <ProductSlider images={data?.data?.image} />
+          <ProductSlider image={data?.data?.image} />
         </div>
         <div className="w-full  lg:w-[50%]">
           <ProductDetails productDetails={data?.data} />

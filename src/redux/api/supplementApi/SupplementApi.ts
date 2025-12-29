@@ -1,4 +1,4 @@
-import { ISupplement } from "../../../pages/Supplements/type.supplemrnt";
+import { ISupplement } from "../../../components/types/supplementType";
 import { baseApi } from "../baseApi/baseApi";
 type SupplementResponse = {
   data: ISupplement[];
@@ -42,7 +42,7 @@ const supplementApi = baseApi.injectEndpoints({
     deleteSupplement: builder.mutation({
       query: (id: string) => ({
         url: `api/supplement/delete/${id}`,
-        method: "DELETE",
+        method: "PATCH",
       }),
     }),
   }),

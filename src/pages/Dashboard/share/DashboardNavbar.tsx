@@ -8,15 +8,16 @@ import { Heart } from "lucide-react";
 
 export const DashboardData = [
   { route: "/dashboard", name: "Dashboard", icon: <MdOutlineDashboard /> },
-  {
-    route: "/dashboard/createProduct",
-    name: "Create Product",
-    icon: <MdOutlineCreateNewFolder />,
-  },
+
   {
     route: "/dashboard/manageProduct",
     name: "Manage Products",
     icon: <AiOutlineProduct />,
+  },
+  {
+    route: "/dashboard/manageSupplement",
+    name: "Manage Supplement",
+    icon: <MdOutlineCreateNewFolder />,
   },
   { route: "/dashboard/user", name: "Manage Users", icon: <FiUsers /> },
   {

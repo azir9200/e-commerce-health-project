@@ -57,7 +57,7 @@ const authApi = baseApi.injectEndpoints({
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `api/user/deletedUser/${id}`,
-        method: "DELETE",
+        method: "PATCH",
       }),
       invalidatesTags: ["Auth"],
     }),

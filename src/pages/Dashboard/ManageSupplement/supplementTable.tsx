@@ -31,7 +31,7 @@ interface ManageTableProps {
   onDelete: (id: string) => void;
 }
 
-const ManageTable: React.FC<ManageTableProps> = ({
+const SupplementTable: React.FC<ManageTableProps> = ({
   data,
   loading,
   columns,
@@ -87,10 +87,10 @@ const ManageTable: React.FC<ManageTableProps> = ({
           className="px-3 py-2 border rounded-md w-1/3"
         />
         <Link
-          to="/dashboard/createProduct"
+          to="/dashboard/createSupplement"
           className="flex items-center gap-3 group"
         >
-          <span className="text-gray-600 font-semibold">Create Product</span>
+          <span className="text-gray-600 font-semibold">Create Supplement</span>
         </Link>
         <p className="text-gray-600 font-semibold">
           Total Data: {filteredData?.length}
@@ -185,4 +185,4 @@ const ManageTable: React.FC<ManageTableProps> = ({
   );
 };
 
-export default ManageTable;
+export default SupplementTable;

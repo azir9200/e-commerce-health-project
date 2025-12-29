@@ -1,15 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Heart } from "lucide-react";
+import { Heart, ShoppingBag } from "lucide-react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cartSlice";
 import { toggleWishlistItem } from "../../redux/features/wishlistSlice";
-
+import { useState } from "react";
+import { Button } from "../../components/ui/button";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: any }) => {
+  console.log("product", product);
   const dispatch = useAppDispatch();
+  const [isHovered, setIsHovered] = useState(false);
   const wishlistItems = useAppSelector((state) => state?.wishlist?.items);
 
   const isInWishlist = wishlistItems?.some((item) => item._id === product._id);
@@ -20,57 +23,118 @@ const ProductCard = ({ product }: { product: any }) => {
   };
 
   const handleAddToCart = (product: any) => {
+    console.log("handle add ");
     dispatch(addToCart(product));
     toast.success(<div> You Product added to cart successfully! </div>);
   };
 
   return (
-    <div className="relative">
-      <div className="border rounded-lg shadow-lg bg-base-100 transition-transform transform flex flex-col h-full">
-        <div className="absolute z-50 top-5 right-5 flex items-center gap-2 bg-primary/60 shadow-sm rounded-full px-2 py-0.5 border border-gray-200">
-          <button onClick={handleToggleWishlist} aria-label="Toggle Wishlist">
-            {isInWishlist ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="red"
-                viewBox="0 0 24 24"
-                stroke="none"
-                className="h-5 w-5"
-              >
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-            ) : (
-              <Heart className="h-5 w-5 text-white hover:text-red-500" />
-            )}
-          </button>
-        </div>
-        <Link to={`/allproduct/${product._id}`}>
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-40 object-cover transition-opacity duration-300 hover:opacity-75"
-          />
-        </Link>
-        <div className="p-4 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold  mb-2">{product.name}</h3>
-          <p className=" font-semibold text-lg mb-4 flex-grow">
-            {product.description.split(" ").slice(0, 5).join(" ") +
-              (product.description.split(" ").length > 5 ? "..." : "")}
-          </p>
-          <p className="text-lg font-bold text-[#2453DF]  mb-4">
-            {" "}
-            Price: ${product.price}
-          </p>
+    <div
+      className="group relative bg-card rounded-2xl overflow-hidden shadow-card border border-border/30 transition-all duration-500 hover:shadow-hover hover:-translate-y-1"
+      style={{ animationDelay: `${100}ms` }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Wishlist Button */}
+      <button
+        onClick={handleToggleWishlist}
+        className={`absolute top-4 right-4 z-20 p-2.5 rounded-full backdrop-blur-md transition-all duration-300 ${
+          isInWishlist
+            ? "bg-destructive/90 text-destructive-foreground"
+            : "bg-card/80 text-muted-foreground hover:bg-card hover:text-destructive"
+        }`}
+        aria-label="Toggle Wishlist"
+      >
+        <Heart
+          className={`h-4 w-4 transition-transform duration-300 ${
+            isInWishlist ? "fill-current scale-110" : ""
+          }`}
+        />
+      </button>
 
-          <button
+      {/* Stock Badge */}
+      {product.stock == 0 && (
+        <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-full">
+          Out of Stock
+        </div>
+      )}
+
+      {/* Image Container */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-secondary/30">
+        <img
+          src={product.image}
+          alt={product.name}
+          className={`w-full h-full object-cover transition-transform duration-700 ${
+            isHovered ? "scale-110" : "scale-100"
+          }`}
+        />
+
+        {/* Quick Add Overlay */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent flex items-end justify-center pb-6 transition-opacity duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Button
             onClick={(e) => {
               e.stopPropagation();
               handleAddToCart(product);
             }}
-            className="bg-slate-700  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
+            size="lg"
+            className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100 z-50"
           >
+            <ShoppingBag className="h-4 w-4 mr-2" />
             Add to Cart
-          </button>
+          </Button>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5">
+        {/* Category */}
+        <span className="text-xs font-medium text-slate-800 uppercase tracking-wider">
+          {product.category}
+        </span>
+
+        {/* Name */}
+        <h3 className="font-display text-lg font-semibold text-foreground mt-1 mb-2 line-clamp-1">
+          {product.name}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+          {product.description}
+        </p>
+
+        {/* Rating */}
+        {/* <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-1">
+            <Star className="h-4 w-4 fill-accent text-[#f7e70f]" />
+            <span className="text-sm font-medium text-foreground">
+              {product.rating}
+            </span>
+          </div>
+          <span className="text-sm text-muted-foreground">
+            ({product.reviews} reviews)
+          </span>
+        </div> */}
+
+        {/* Price & CTA */}
+        <div className="flex items-center justify-between pt-3 border-t border-border/50">
+          <div className="flex flex-col">
+            <span className="text-2xl font-display font-bold text-foreground">
+              ${product.price}
+            </span>
+          </div>
+          <Link to={`/allproduct/${product._id}`}>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-500  hover:text-white hover:bg-gray-600"
+            >
+              View Details
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

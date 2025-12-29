@@ -22,17 +22,17 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../components/ui/card";
+} from "../../../components/ui/card";
 
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "../components/ui/tabs";
-import { Button } from "../components/ui/button";
-import { Badge } from "../components/ui/badge";
-import Navbar from "../components/Navbar";
+} from "../../../components/ui/tabs";
+import { Button } from "../../../components/ui/button";
+import { Badge } from "../../../components/ui/badge";
+import Navbar from "../../../components/shared/Navbar";
 
 // Mock data for charts
 const salesData = [

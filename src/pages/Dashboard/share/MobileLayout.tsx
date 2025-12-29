@@ -3,13 +3,9 @@ import { useEffect, useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { IoIosMenu } from "react-icons/io";
-
-import { CiCircleCheck } from "react-icons/ci";
 import { Link, useLocation } from "react-router-dom";
 import { DashboardData, ProfileData } from "./DashboardNavbar";
 import { useGetMeQuery } from "../../../redux/api/getMeApi/getMeApi";
-
-
 
 const MobileLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +22,11 @@ const MobileLayout = () => {
     };
   }, [isOpen]);
 
- const {data}=useGetMeQuery(undefined)  
-    const menuData = data?.data?.role === 'admin' ? [...DashboardData, ...ProfileData] : ProfileData;
+  const { data } = useGetMeQuery(undefined);
+  const menuData =
+    data?.data?.role === "admin"
+      ? [...DashboardData, ...ProfileData]
+      : ProfileData;
 
   return (
     <>
@@ -52,30 +51,22 @@ const MobileLayout = () => {
             <div className="pl-4">
               <div className="">
                 <Link to="/" className="flex gap-3">
-                  <h4 className=" text-blue-600">CarBazaar</h4>
+                  <h4 className="text-xl font-semibold ">
+                    FIT GEAR
+                  </h4>
                 </Link>
               </div>
 
               <div className="pb-5 mb-6 border-b">
-                <h3 className="font-semibold my-2 text-lg">
-                  Hello {data?.data?.name}
-                </h3>
+                
                 <p className="text-gray-400 text-sm">{data?.data.email}</p>
-                <div className="flex items-center mt-2">
-                  <span className="px-3 py-1 font-semibold rounded-md text-sm">
-                    {'000'}
-                    <span className="font-medium ms-1">BDT</span>
-                  </span>
-                  <span className="text-xl text-green-500">
-                    <CiCircleCheck />
-                  </span>
-                </div>
+                
               </div>
 
               <div className="mt-4 flex flex-col">
                 <div className="mb-5 flex flex-col gap-2">
                   <div className="flex flex-col gap-3 text-[14px] text-[#637381]">
-                  {menuData?.map((item, _id) => {
+                    {menuData?.map((item, _id) => {
                       const isActive = router.pathname === item?.route;
                       return (
                         <Link

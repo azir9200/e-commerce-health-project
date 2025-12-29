@@ -6,6 +6,8 @@ import Commercial from "../pages/Commercial/Commercial";
 import ContactPage from "../pages/contact/Contact";
 import DashboardHome from "../pages/Dashboard/DashbordHome/DashboardHome";
 import ManageOrder from "../pages/Dashboard/ManageOrder/ManageOrder";
+import CreateSupplement from "../pages/Dashboard/ManageSupplement/CreateSupplement";
+import ManageSupplement from "../pages/Dashboard/ManageSupplement/ManageSupplement";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
 import ManageProduct from "../pages/Dashboard/MangeProduct/ManageProduct";
@@ -150,6 +152,24 @@ export const Adminpaths = [
     element: (
       <AdminPrivateRoute>
         <ManageProduct />
+      </AdminPrivateRoute>
+    ),
+  },
+  {
+    name: "Manage Supplement",
+    path: "/dashboard/manageSupplement",
+    element: (
+      <AdminPrivateRoute>
+        <ManageSupplement />
+      </AdminPrivateRoute>
+    ),
+  },
+  {
+    name: "Create Product",
+    path: "/dashboard/createSupplement",
+    element: (
+      <AdminPrivateRoute>
+        <CreateSupplement />
       </AdminPrivateRoute>
     ),
   },

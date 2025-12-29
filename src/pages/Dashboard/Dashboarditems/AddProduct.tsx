@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useAddProductMutation } from "../redux/api/productApi/ProductApi";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAddProductMutation } from "../../../redux/api/productApi/ProductApi";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import toast from "react-hot-toast";
 import {
   setDescription,
   setName,
   setPrice,
   setRatings,
-} from "../redux/features/ProductSlice";
+} from "../../../redux/features/ProductSlice";
 
 const AddProduct = () => {
   const dispatch = useAppDispatch();

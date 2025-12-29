@@ -1,4 +1,3 @@
-
 import {
   Select,
   SelectContent,
@@ -6,11 +5,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
-import { Search } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { Slider } from "../../components/ui/slider";
-
 
 interface ProductFiltersProps {
   priceRange: number[];
@@ -32,47 +30,78 @@ const ProductFilters = ({
   categories,
 }: ProductFiltersProps) => {
   return (
-    <div className="space-y-6 lg:flex justify-between items-center   p-6 bg-white rounded-lg shadow-md  border">
-      <div className="space-y-2">
-        <Label>Search Products</Label>
-        <div className="relative">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search products..."
-            value={searchQuery}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(e:any) => onSearchChange(e.target.value)}
-            className="pl-10"
-          />
+    <div className="bg-card rounded-2xl shadow-card border border-border/50 p-6 lg:p-8 animate-fade-in">
+      <div className="flex items-center gap-2 mb-6">
+        <SlidersHorizontal className="h-5 w-5 text-accent" />
+        <h2 className="font-display text-lg font-semibold text-foreground">
+          Filters
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Search */}
+        <div className="space-y-3">
+          <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+            Search Products
+          </Label>
+          <div className="relative group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-accent" />
+            <Input
+              placeholder="What are you looking for?"
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="pl-11 h-12 bg-secondary/50 border-border/50 rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-300"
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-2">
-        <Label>Category</Label>
-        <Select value={selectedCategory} onValueChange={onCategoryChange}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Categories</SelectItem>
-            {categories.map((category) => (
-              <SelectItem key={category} value={category.toLowerCase()}>
-                {category}
+        {/* Category */}
+        <div className="space-y-3">
+          <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+            Category
+          </Label>
+          <Select value={selectedCategory} onValueChange={onCategoryChange}>
+            <SelectTrigger className="h-12 bg-secondary/50 border-border/50 rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-300">
+              <SelectValue placeholder="All Categories" />
+            </SelectTrigger>
+            <SelectContent className="rounded-xl border-border/50 shadow-hover">
+              <SelectItem value="all" className="rounded-lg">
+                All Categories
               </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+              {categories.map((category) => (
+                <SelectItem
+                  key={category}
+                  value={category.toLowerCase()}
+                  className="rounded-lg"
+                >
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
 
-      <div className="space-y-4">
-        <Label>Price Range: ${priceRange[0]} - ${priceRange[1]}</Label>
-        <Slider
-          value={priceRange}
-          max={1000}
-          step={10}
-          onValueChange={onPriceRangeChange}
-          className="w-full"
-        />
+        {/* Price Range */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <Label className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+              Price Range
+            </Label>
+            <span className="text-sm font-semibold text-foreground">
+              ${priceRange[0]} — ${priceRange[1]}
+            </span>
+          </div>
+          <div className="pt-2">
+            <Slider
+              value={priceRange}
+              max={500}
+              min={0}
+              step={10}
+              onValueChange={onPriceRangeChange}
+              className="w-full"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
