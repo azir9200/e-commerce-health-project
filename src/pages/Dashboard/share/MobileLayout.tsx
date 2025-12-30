@@ -5,7 +5,8 @@ import "react-modern-drawer/dist/index.css";
 import { IoIosMenu } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { DashboardData, ProfileData } from "./DashboardNavbar";
-import { useGetMeQuery } from "../../../redux/api/getMeApi/getMeApi";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectCurrentUser } from "../../../redux/features/userSlice";
 
 const MobileLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,11 +23,9 @@ const MobileLayout = () => {
     };
   }, [isOpen]);
 
-  const { data } = useGetMeQuery(undefined);
+  const user = useAppSelector(selectCurrentUser);
   const menuData =
-    data?.data?.role === "admin"
-      ? [...DashboardData, ...ProfileData]
-      : ProfileData;
+    user?.role === "admin" ? [...DashboardData, ...ProfileData] : ProfileData;
 
   return (
     <>
@@ -36,6 +35,7 @@ const MobileLayout = () => {
             onClick={toggleDrawer}
             className="hover:bg-foundation/60 p-2 text-xl"
           >
+            {" "}
             <IoIosMenu />
           </button>
         </div>
@@ -46,21 +46,17 @@ const MobileLayout = () => {
           direction="right"
           className="bla bla bla"
         >
-          <div className="flex h-full w-full flex-col justify-between bg-white py-10 drop-shadow-sm overflow-y-auto lg:hidden">
+          <div className="flex h-full w-full flex-col justify-between py-10 drop-shadow-sm overflow-y-auto lg:hidden">
             {/* user */}
             <div className="pl-4">
               <div className="">
                 <Link to="/" className="flex gap-3">
-                  <h4 className="text-xl font-semibold ">
-                    FIT GEAR
-                  </h4>
+                  <h4 className="text-xl text-gray-800 font-semibold ">FIT GEAR</h4>
                 </Link>
               </div>
 
               <div className="pb-5 mb-6 border-b">
-                
-                <p className="text-gray-400 text-sm">{data?.data.email}</p>
-                
+                <p className="text-gray-400 text-sm">{user?.email}</p>
               </div>
 
               <div className="mt-4 flex flex-col">

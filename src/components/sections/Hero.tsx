@@ -1,4 +1,4 @@
-import { ArrowRight,} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
@@ -22,11 +22,6 @@ export function Hero() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-
-              {/* <Button variant="outline" size="lg" className="text-lg px-8">
-                <Play className="mr-2 w-5 h-5" />
-                All Categories
-              </Button> */}
             </div>
             <div className="flex items-center space-x-8 pt-4">
               <div className="text-center">
@@ -52,11 +47,10 @@ export function Hero() {
                 <div className="text-6xl">
                   {" "}
                   <img
-                    src="https://i.ibb.co/fVrHD7LK/group-people-exercising-with-dumbbells-fitness-club-gym.jpg"
+                    src="https://i.ibb.co/FbgSDvdD/jimi-a-a-EW9-W-rd-P5-U-unsplash.jpg"
                     alt="Banner Image 1"
                     className="object-cover w-full h-full"
                   />
-                 
                 </div>
               </div>
             </div>

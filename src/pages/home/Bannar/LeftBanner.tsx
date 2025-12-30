@@ -12,25 +12,40 @@ export default function LeftBanner() {
   const bannerData = [
     {
       id: 1,
-      image: "https://i.ibb.co/Ndz9PfnN/8641099.jpg",
-      title: "Premium Luxury gym equipment",
-      subtitle: "Experience the ultimate gym equipment",
+      image: "https://i.ibb.co/LhYWqkf1/3d-gym-equipment.jpg",
+      title: "Premium Luxury fitness accessories",
+      subtitle: "Experience the ultimate gym for fit life",
       cta: "Explore Collection",
     },
+
     {
       id: 2,
-      image: "https://i.ibb.co/FbCv8Bmn/view-pair-boxing-gloves.jpg",
+      image:
+        "https://i.ibb.co/N6G4RLBN/2207-i305-003-S-m005-c13-realistic-rug-yoga-foam-roller-trigger-point-ball-myofascial-set.jpg",
       title: "Sports Performance",
       subtitle: "Unleash the power within  Fit=Gear Site",
       cta: "View Models",
     },
     {
       id: 3,
-      image:
-        "https://i.ibb.co/ymNtH4k5/top-view-perfectly-ordered-fitness-items.jpg",
+      image: "https://i.ibb.co/hFygYDwZ/24059.jpg",
       title: "Electric Future",
       subtitle: "Sustainable Best Design",
       cta: "Learn More",
+    },
+    {
+      id: 4,
+      image: "https://i.ibb.co/Xxhy2C4j/36598-O0-UWZ5.jpg",
+      title: "Electric Future",
+      subtitle: "Sustainable Best Design",
+      cta: "Learn More",
+    },
+    {
+      id: 5,
+      image: "https://i.ibb.co/84xDYvfH/40168.jpg",
+      title: "Premium Luxury gym equipment",
+      subtitle: "Experience the ultimate gym equipment",
+      cta: "Explore Collection",
     },
   ];
 

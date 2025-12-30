@@ -12,6 +12,7 @@ import {
 } from "../../components/ui/dropdown-menu";
 import { useAppDispatch } from "../../redux/hooks";
 import { logout } from "../../redux/features/userSlice";
+import MobileLayout from "../Dashboard/share/MobileLayout";
 
 const AdminHeader = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +26,7 @@ const AdminHeader = () => {
       <div className="flex items-center gap-4">
         <h1 className="text-xl font-medium hidden md:block">Dashbaord</h1>
       </div>
-
+      <MobileLayout />
       <div className="flex items-center gap-4">
         {/* Download button */}
         <Button

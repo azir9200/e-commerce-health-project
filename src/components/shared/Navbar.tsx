@@ -54,13 +54,12 @@ const Navbar = () => {
 
   const user = useAppSelector(selectCurrentUser);
 
-  const token = useAppSelector((state) => state.user.token);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
   };
-  
+
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/product-page" },
@@ -338,34 +337,20 @@ const Navbar = () => {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="lg:hidden hover:bg-gray-50 rounded-xl p-2"
+                      className="lg:hidden rounded-full hover:bg-gray-100"
                     >
-                      <Menu className="h-6 w-6 text-gray-600" />
+                      <Menu className="h-6 w-6 text-gray-900" />
                     </Button>
                   </DrawerTrigger>
-                  <DrawerContent
-                    className="h-[92vh] rounded-t-[32px] 
-  bg-white/20 backdrop-blur-2xl backdrop-saturate-150
-  border-t border-white/30
-  shadow-[0_-20px_60px_rgba(0,0,0,0.25)]
-"
-                  >
-                    <DrawerHeader className="relative overflow-hidden px-6 pt-6 pb-4">
-                      {/* Gradient glow */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-emerald-600/30 blur-3xl opacity-70" />
-
-                      <div className="relative flex items-center justify-between">
-                        <DrawerTitle
-                          className="text-2xl font-extrabold tracking-tight 
-      bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 
-      bg-clip-text text-transparent"
-                        >
-                          FitGear
-                        </DrawerTitle>
-
+                  <DrawerContent className="h-[90vh] rounded-t-3xl bg-white">
+                    <DrawerHeader className="px-6 py-4 border-b">
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-2xl font-bold text-gray-900">
+                          FitGear jhgjhgjhgjh
+                        </h2>
                         <DrawerClose asChild>
-                          <button className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition">
-                            <X className="h-5 w-5 text-black" />
+                          <button className="p-2 rounded-full hover:bg-gray-100">
+                            <X className="h-5 w-5 text-gray-700" />
                           </button>
                         </DrawerClose>
                       </div>
@@ -373,132 +358,29 @@ const Navbar = () => {
 
                     <div className="px-6 pb-8">
                       {/* Mobile Navigation Links */}
-                      <div className="px-6 mt-6 space-y-3">
+                      <div className="px-6 mt-6 space-y-2">
                         {navItems.map((link) => (
                           <DrawerClose key={link.href} asChild>
                             <Link
                               to={link.href}
-                              className={`group relative overflow-hidden rounded-2xl p-4
-          bg-white/20 backdrop-blur-lg border border-white/20
-          hover:bg-white/30 transition-all duration-300
-          ${location.pathname === link.href ? "ring-2 ring-blue-500/50" : ""}`}
+                              className={`flex items-center justify-between px-4 py-4 rounded-xl text-base font-medium
+        ${
+          location.pathname === link.href
+            ? "bg-blue-600 text-white"
+            : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+        }`}
                             >
-                              <div className="flex items-center justify-between">
-                                <span className="text-lg font-semibold text-white">
-                                  {link.name}
-                                </span>
-                                <span className="opacity-40 group-hover:opacity-100 transition">
-                                  →
-                                </span>
-                              </div>
+                              {link.name}
+                              <span className="text-sm">›</span>
                             </Link>
                           </DrawerClose>
                         ))}
-                      </div>
-
-                      {/* Mobile data Section */}
-                      {token ? (
-                        <div className="pt-6 border-t border-gray-200 space-y-3">
-                          <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
-                            <Avatar className="h-12 w-12 ring-2 ring-white">
-                              <AvatarImage
-                                src={data?.avatar}
-                                alt={data?.name}
-                              />
-                              <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                                {data?.name?.charAt(0).toUpperCase()}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <p className="font-semibold text-gray-900">
-                                {data?.name}
-                              </p>
-                              <p className="text-sm text-gray-600">
-                                email {data?.email}
-                              </p>
-                            </div>
-                          </div>
-                          <DrawerClose asChild>
-                            <Button
-                              variant="outline"
-                              className="w-full py-3 rounded-xl font-semibold border-red-200 text-red-600 hover:bg-red-50"
-                              onClick={handleLogout}
-                            >
-                              Logout
-                            </Button>
-                          </DrawerClose>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col space-y-3 pt-6 border-t border-gray-200">
-                          <DrawerClose asChild>
-                            <Button
-                              variant="outline"
-                              className="w-full py-3 rounded-xl font-semibold border-blue-200 hover:bg-blue-50"
-                              onClick={() => navigate("/login")}
-                            >
-                              Login
-                            </Button>
-                          </DrawerClose>
-                          <DrawerClose asChild>
-                            <Button
-                              className="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
-                              onClick={() => navigate("/register")}
-                            >
-                              Sign Up
-                            </Button>
-                          </DrawerClose>
-                        </div>
-                      )}
-
-                      {/* Mobile Contact Info */}
-                      <div className="mt-8 pt-6 border-t border-gray-200">
-                        <h4 className="font-semibold text-gray-900 mb-4">
-                          Contact Us
-                        </h4>
-                        <div className="flex flex-col space-y-3 text-sm text-gray-600">
-                          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl">
-                            <Phone className="h-4 w-4 text-blue-600" />
-                            <span>+880 1640 011818</span>
-                          </div>
-                          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl">
-                            <Mail className="h-4 w-4 text-blue-600" />
-                            <span>junayetshiblu0@gmail.com</span>
-                          </div>
-                          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl">
-                            <MapPin className="h-4 w-4 text-blue-600" />
-                            <span>Dhaka Bangladesh</span>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </DrawerContent>
                 </Drawer>
               </div>
             </div>
-
-            {/* Mobile Search Bar
-            {showMobileSearch && (
-              <div className="lg:hidden py-4 border-t border-gray-100 bg-gray-50/50">
-                <form onSubmit={handleSearchSubmit} className="relative">
-                  <Input
-                    type="text"
-                    placeholder="Search cars, brands, models..."
-                    value={searchQuery}
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    onChange={(e: any) => setSearchQuery(e.target.value)}
-                    className="pl-5 pr-14 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 bg-white shadow-sm"
-                    autoFocus
-                  />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="absolute right-2 top-2 bottom-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600"
-                  >
-                    <Search className="h-4 w-4" />
-                  </Button>
-                </form>
-              </div>
-            )} */}
           </div>
         </div>
       </nav>

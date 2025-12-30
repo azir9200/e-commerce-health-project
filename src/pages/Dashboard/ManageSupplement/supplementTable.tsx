@@ -19,7 +19,6 @@ interface Column {
 
 interface DataItem {
   _id: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -47,7 +46,6 @@ const SupplementTable: React.FC<ManageTableProps> = ({
     columns.some((column) =>
       column.value
         .split(".")
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .reduce((o: any, k: string) => (o?.[k] ? o[k] : ""), item)
         ?.toString()
         ?.toLowerCase()

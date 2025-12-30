@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { useDeleteProductMutation } from "../../../redux/api/productApi/ProductApi";
 import SupplementTable from "./supplementTable";
-import { useDeleteSupplementMutation, useGetAllSupplementQuery } from "../../../redux/api/supplementApi/SupplementApi";
+import {
+  useDeleteSupplementMutation,
+  useGetAllSupplementQuery,
+} from "../../../redux/api/supplementApi/SupplementApi";
 
 const ManageSupplement = () => {
-  const { data, isLoading } = useGetAllSupplementQuery({});
+  const { data, isLoading } = useGetAllSupplementQuery();
   console.log("use SUP", data);
   const [
     deleteSupplement,
@@ -51,7 +53,7 @@ const ManageSupplement = () => {
       </p>
       <SupplementTable
         isvalue={"product"}
-        data={data?.data}
+        data={data?.data ?? []}
         columns={columns}
         loading={isLoading}
         onDelete={handleDelete}

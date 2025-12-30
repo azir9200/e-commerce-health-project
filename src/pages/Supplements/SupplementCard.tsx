@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ISupplement } from "./type.supplemrnt";
 import { useAppDispatch  } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cartSlice";
 import toast from "react-hot-toast";
+import { ISupplement } from "../../components/types/supplementType";
 
 type SupplementCardProps = {
   supplement: ISupplement;
