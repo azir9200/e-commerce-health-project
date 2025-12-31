@@ -23,7 +23,6 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
 import { Button } from "../ui/button";
@@ -40,7 +39,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Input } from "../ui/input";
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
@@ -58,6 +59,16 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+  };
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!searchQuery.trim()) return;
+
+    navigate(`/product-page?search=${encodeURIComponent(searchQuery)}`);
+
+    setSearchQuery("");
+    setShowMobileSearch(false);
   };
 
   const navItems = [
@@ -96,7 +107,7 @@ const Navbar = () => {
         <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white border-b border-blue-800/30">
           <div className="max-w-7xl mx-auto ">
             <div className="flex justify-between items-center py-2.5 text-sm">
-              <div className="hidden lg:flex items-center space-x-8">
+              <div className="flex items-center space-x-8">
                 <div className="flex items-center space-x-2 group cursor-pointer">
                   <a
                     href="https://wa.me/00353838485737"
@@ -114,7 +125,7 @@ const Navbar = () => {
                 </div>
                 <a
                   href="mailto:aziruddin83@gmail.com"
-                  className="flex items-center space-x-2 group cursor-pointer"
+                  className="hidden items-center space-x-2 group cursor-pointer"
                 >
                   <div className="p-1.5 rounded-full bg-blue-600/20 group-hover:bg-blue-600/30 transition-colors">
                     <Mail className="h-3.5 w-3.5" />
@@ -133,7 +144,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <div className=" md:flex items-center space-x-2">
+              <div className="hidden md:flex items-center space-x-2">
                 <div className="flex items-center space-x-1 bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 rounded-full text-xs font-semibold text-white">
                   <Star className="h-3 w-3" />
                   <span>FREE SHIPPING ON ORDERS $500+</span>
@@ -141,7 +152,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center space-x-6">
-                <div className="hidden lg:flex items-center space-x-1 group cursor-pointer">
+                <div className=" flex items-center space-x-1 group cursor-pointer">
                   <Clock className="h-3.5 w-3.5 group-hover:text-blue-200 transition-colors" />
                   <span className="group-hover:text-blue-200 transition-colors">
                     24/7 Support
@@ -212,7 +223,7 @@ const Navbar = () => {
                     ></span>
                   </Link>
                 ))}
-                {/* <div className="hidden lg:block flex-1 max-w-[300px] mx-8">
+                <div className="hidden lg:block flex-1 max-w-[300px] mx-8">
                   <form
                     onSubmit={handleSearchSubmit}
                     className="relative group"
@@ -229,11 +240,13 @@ const Navbar = () => {
                       <Button
                         type="submit"
                         size="sm"
-                        className="absolute right-2 top-2 bottom-2 rounded-xl bg- hover:from-blue-700 hover:to-purple-700 shadow-md hover:shadow-lg transition-all duration-300"
-                      ></Button>
+                        className="absolute right-2 top-2 bottom-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-md hover:shadow-lg"
+                      >
+                        <Search className="h-4 w-4 text-white" />
+                      </Button>
                     </div>
                   </form>
-                </div> */}
+                </div>
               </div>
 
               <div className="flex items-center space-x-3">
@@ -243,11 +256,19 @@ const Navbar = () => {
                   className="lg:hidden hover:bg-blue-50 rounded-xl p-2"
                   onClick={() => setShowMobileSearch(!showMobileSearch)}
                 >
-                  <Search className="h-5 w-5 text-gray-600" />
+                  <Input
+                    type="text"
+                    placeholder="Search ..."
+                    value={searchQuery}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    onChange={(e: any) => setSearchQuery(e.target.value)}
+                    className="pl-5 pr-14 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 transition-all duration-300 bg-gray-50/50 hover:bg-white focus:bg-white shadow-sm hover:shadow-md"
+                  />
+                  {/* <Search className="h-5 w-5 text-gray-600" /> */}
                 </Button>
 
                 {/* data Menu */}
-                <div className="hidden md:flex items-center gap-3">
+                <div className="md:flex items-center gap-3">
                   {user ? (
                     <div className="flex items-center gap-4">
                       <div>
@@ -322,11 +343,6 @@ const Navbar = () => {
                           Login
                         </Button>
                       </Link>
-                      <Link to={"/register"}>
-                        <Button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950">
-                          Sign Up
-                        </Button>
-                      </Link>
                     </div>
                   )}
                 </div>
@@ -345,12 +361,12 @@ const Navbar = () => {
                   <DrawerContent className="h-[90vh] rounded-t-3xl bg-white">
                     <DrawerHeader className="px-6 py-4 border-b">
                       <div className="flex items-center justify-between">
-                        <h2 className="text-2xl font-bold text-gray-900">
-                          FitGear jhgjhgjhgjh
+                        <h2 className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-xl p-1 rounded text-white border-b border-blue-800/30">
+                          FitGear
                         </h2>
                         <DrawerClose asChild>
-                          <button className="p-2 rounded-full hover:bg-gray-100">
-                            <X className="h-5 w-5 text-gray-700" />
+                          <button className=" rounded-full hover:bg-gray-100">
+                            <X className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  rounded w-10 h-10 text-white border-b border-blue-800/30" />
                           </button>
                         </DrawerClose>
                       </div>
@@ -371,7 +387,7 @@ const Navbar = () => {
         }`}
                             >
                               {link.name}
-                              <span className="text-sm">›</span>
+                              <span className="text-lg">›</span>
                             </Link>
                           </DrawerClose>
                         ))}

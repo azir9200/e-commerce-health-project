@@ -15,12 +15,12 @@ const SupplementPage = () => {
   }
 
   return (
-    <div className="bg-slate-100 py-10">
+    <div className="bg-slate-100 mt-12 py-10">
       <div className="max-w-6xl mx-auto bg-white p-8 rounded-xl shadow">
         {supplements.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-1">
             {supplements.map((supplement) => (
-              <SupplementCard key={supplement.id} supplement={supplement} />
+              <SupplementCard key={supplement?._id} supplement={supplement} />
             ))}
           </div>
         ) : (

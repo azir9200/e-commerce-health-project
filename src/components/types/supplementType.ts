@@ -1,5 +1,5 @@
 export type ISupplement = {
-  id: string;
+  _id?: string;
   name: string;
   brand?: string;
   description?: string;

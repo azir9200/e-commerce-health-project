@@ -12,70 +12,60 @@ import TableSkeleton from "../../../AllSkeleton/DashbordTableSkeleton";
 import { Link } from "react-router-dom";
 import { useUpdateRoleUserMutation } from "../../../redux/api/authApi/authApi";
 
-interface Column {
-  label: string;
-  value: string;
+interface ManageTableProps<T extends { id?: string; _id?: string }> {
+  data: T[];
+  columns: { label: string; value: keyof T | string }[];
+  loading?: boolean;
+  isvalue?: string;
+  onDelete?: (id: string) => void;
 }
 
-interface DataItem {
-  _id: string;
-  [key: string]: any;
-}
-
-interface ManageTableProps {
-  data: DataItem[];
-  loading: boolean;
-  columns: Column[];
-  isvalue: string;
-  onDelete: (id: string) => void;
-}
-
-const SupplementTable: React.FC<ManageTableProps> = ({
+function SupplementTable<T extends { id?: string; _id?: string }>({
   data,
   loading,
   columns,
   onDelete,
   isvalue,
-}) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
+}: ManageTableProps<T>) {
+  const getId = (item: T) => item._id ?? item.id ?? "";
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Filtered data based on search
   const filteredData = data?.filter((item) =>
     columns.some((column) =>
       column.value
+        .toString()
         .split(".")
-        .reduce((o: any, k: string) => (o?.[k] ? o[k] : ""), item)
+        .reduce((o: any, k: string) => o?.[k], item)
         ?.toString()
         ?.toLowerCase()
         .includes(searchTerm.toLowerCase())
     )
   );
 
-  // Pagination Logic
-  const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
-  const paginatedData = filteredData?.slice(
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const paginatedData = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-  const [UpdateRoleUser] = useUpdateRoleUserMutation();
-  const UpdateRole = async (id: string) => {
-    // console.log(id);
-    await UpdateRoleUser(id);
+
+  const [updateRoleUser] = useUpdateRoleUserMutation();
+
+  const updateRole = async (id: string) => {
+    await updateRoleUser(id);
   };
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
 
-  if (loading) {
-    return <TableSkeleton />;
-  }
+  if (loading) return <TableSkeleton />;
 
   return (
     <div className="bg-white border rounded-md p-4">
-      {/* Search Input */}
+      {/* Search */}
       <div className="flex justify-between items-center mb-4">
         <input
           type="text"
@@ -84,96 +74,90 @@ const SupplementTable: React.FC<ManageTableProps> = ({
           onChange={(e) => setSearchTerm(e.target.value)}
           className="px-3 py-2 border rounded-md w-1/3"
         />
-        <Link
-          to="/dashboard/createSupplement"
-          className="flex items-center gap-3 group"
-        >
+
+        <Link to="/dashboard/createSupplement">
           <span className="text-gray-600 font-semibold">Create Supplement</span>
         </Link>
+
         <p className="text-gray-600 font-semibold">
-          Total Data: {filteredData?.length}
+          Total Data: {filteredData.length}
         </p>
       </div>
 
-      {filteredData?.length > 0 ? (
+      {filteredData.length ? (
         <Table>
           <TableHeader className="bg-gray-100">
             <TableRow>
-              {columns?.map((column, idx) => (
-                <TableHead key={idx} className="text-black">
-                  {column.label}
-                </TableHead>
+              {columns.map((column, idx) => (
+                <TableHead key={idx}>{column.label}</TableHead>
               ))}
-              {isvalue != "userOrder" && (
-                <TableHead className="text-black">Actions</TableHead>
-              )}
+              {isvalue !== "userOrder" && <TableHead>Actions</TableHead>}
             </TableRow>
           </TableHeader>
-          <TableBody className="text-gray-500">
-            {paginatedData?.map((item, index) => (
-              <TableRow key={index}>
-                {columns?.map((column, idx) => (
-                  <TableCell key={idx}>
-                    {column.value
-                      .split(".")
-                      .reduce(
-                        (o: any, k: string) => (o?.[k] ? o[k] : ""),
-                        item
+
+          <TableBody>
+            {paginatedData.map((item, index) => {
+              const id = getId(item);
+
+              return (
+                <TableRow key={id || index}>
+                  {columns.map((column, idx) => (
+                    <TableCell key={idx}>
+                      {column.value
+                        .toString()
+                        .split(".")
+                        .reduce((o: any, k: string) => o?.[k], item)}
+                    </TableCell>
+                  ))}
+
+                  {isvalue !== "userOrder" && (
+                    <TableCell className="flex gap-2">
+                      {isvalue === "product" && (
+                        <Link to={`/dashboard/updateProduct/${id}`}>
+                          <button className="btn-blue">Update</button>
+                        </Link>
                       )}
-                  </TableCell>
-                ))}
-                <TableCell className="flex gap-2">
-                  {isvalue == "product" && (
-                    <Link to={`/dashboard/updateProduct/${item._id}`}>
-                      <button className="px-2 py-1 cursor-pointer text-blue-500 transition border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white">
-                        Update
+
+                      {isvalue === "user" && (
+                        <button
+                          onClick={() => updateRole(id)}
+                          className="btn-blue"
+                        >
+                          Update Role
+                        </button>
+                      )}
+
+                      <button
+                        onClick={() => onDelete?.(id)}
+                        className="btn-red"
+                      >
+                        Delete
                       </button>
-                    </Link>
+                    </TableCell>
                   )}
-                  {isvalue == "user" && (
-                    <button
-                      onClick={() => UpdateRole(item._id)}
-                      className="px-2 py-1 cursor-pointer text-blue-500 transition border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white"
-                    >
-                      {"Update Role"}
-                    </button>
-                  )}
-                  {isvalue != "userOrder" && (
-                    <button
-                      onClick={() => onDelete(item._id)}
-                      className="px-2 cursor-pointer py-1 text-red-500 transition border border-red-500 rounded-md hover:bg-red-500 hover:text-white"
-                    >
-                      Delete
-                    </button>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       ) : (
         <p className="text-center p-4">No Data Available</p>
       )}
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-end mt-4 gap-2">
           <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
-            className="px-3 py-1 border rounded-md disabled:opacity-50"
           >
             Previous
           </button>
-          <span className="px-3 py-1">
+          <span>
             Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 border rounded-md disabled:opacity-50"
           >
             Next
           </button>
@@ -181,6 +165,6 @@ const SupplementTable: React.FC<ManageTableProps> = ({
       )}
     </div>
   );
-};
+}
 
 export default SupplementTable;

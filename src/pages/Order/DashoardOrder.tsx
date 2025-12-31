@@ -1,5 +1,5 @@
 import { useGetSingleOrderQuery } from "../../redux/api/orderApi/orderApi";
-import ManageTable from "../../redux/features/ManageTable";
+import ManageTable from "../Dashboard/ManageOrder/ManageTable";
 
 const ManageOrder = () => {
   const { data, isLoading } = useGetSingleOrderQuery(undefined);
@@ -14,7 +14,6 @@ const ManageOrder = () => {
     { label: "Price", value: "totalPrice" },
     { label: "Status", value: "status" },
     { label: "OrderDate", value: "createdAt" },
-
     { label: "Transaction ID", value: "transaction.id" },
   ];
 

@@ -94,7 +94,7 @@ export default function RightBanner() {
                   <Button
                     size="sm"
                     onClick={() => navigate("/supplement")}
-                    className="bg-white text-black hover:bg-gray-100 transition-all duration-300 w-fit group"
+                    className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950"
                   >
                     Learn More
                     <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />

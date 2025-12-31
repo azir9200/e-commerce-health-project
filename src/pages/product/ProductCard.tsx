@@ -81,7 +81,7 @@ const ProductCard = ({ product }: { product: any }) => {
               handleAddToCart(product);
             }}
             size="lg"
-            className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100 z-50"
+            className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  group-hover:bg-primary hover:text-white text-white transition-colors"
           >
             <ShoppingBag className="h-4 w-4 mr-2" />
             Add to Cart
@@ -130,7 +130,7 @@ const ProductCard = ({ product }: { product: any }) => {
             <Button
               variant="ghost"
               size="sm"
-              className="text-gray-500  hover:text-white hover:bg-gray-600"
+              className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950"
             >
               View Details
             </Button>

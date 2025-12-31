@@ -8,7 +8,7 @@ import {
 
 const ManageSupplement = () => {
   const { data, isLoading } = useGetAllSupplementQuery();
-  console.log("use SUP", data);
+  
   const [
     deleteSupplement,
     { isLoading: deletedLoading, isSuccess, data: deletedData, isError, error },
@@ -45,12 +45,7 @@ const ManageSupplement = () => {
   ];
   return (
     <div className=" m-6">
-      <p>
-        {" "}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id tempora
-        vero recusandae. Velit, qui? Beatae ut perferendis voluptate et, dolorum
-        est vitae libero, minima omnis voluptatem a reprehenderit praesentium?
-      </p>
+    
       <SupplementTable
         isvalue={"product"}
         data={data?.data ?? []}

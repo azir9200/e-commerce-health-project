@@ -120,7 +120,7 @@ export default function LeftBanner() {
           <Button
             size="lg"
             onClick={() => navigate("/product-page")}
-            className="bg-white text-black hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+            className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950"
           >
             {bannerData[currentSlide].cta}
           </Button>
@@ -130,16 +130,16 @@ export default function LeftBanner() {
       {/* Navigation Controls */}
       <button
         onClick={handlePrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-sm"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950 hover:bg-black/60 p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-sm"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-6 h-6 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950" />
       </button>
 
       <Button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-sm"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950 hover:bg-black/60 p-5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 backdrop-blur-sm"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-8 h-8 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950" />
       </Button>
 
       {/* Play/Pause Control */}
