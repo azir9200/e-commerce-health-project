@@ -94,7 +94,7 @@ const SupplementCard = ({ supplement }: SupplementCardProps) => {
                 e.stopPropagation();
                 handleAddToCart(supplement);
               }}
-              className="bg-slate-700  text-white   font-semibold py-2 px-4 rounded-lg  transition duration-300 shadow-md hover:shadow-lg"
+              className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950 px-2 py-2 rounded"
             >
               ADD TO CART
             </button>

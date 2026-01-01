@@ -42,7 +42,7 @@ import {
 import { Input } from "../ui/input";
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  // const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -68,7 +68,7 @@ const Navbar = () => {
     navigate(`/product-page?search=${encodeURIComponent(searchQuery)}`);
 
     setSearchQuery("");
-    setShowMobileSearch(false);
+    // setShowMobileSearch(false);
   };
 
   const navItems = [
@@ -250,7 +250,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center space-x-3">
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="sm"
                   className="lg:hidden hover:bg-blue-50 rounded-xl p-2"
@@ -260,12 +260,12 @@ const Navbar = () => {
                     type="text"
                     placeholder="Search ..."
                     value={searchQuery}
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                   
                     onChange={(e: any) => setSearchQuery(e.target.value)}
                     className="pl-5 pr-14 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 transition-all duration-300 bg-gray-50/50 hover:bg-white focus:bg-white shadow-sm hover:shadow-md"
                   />
-                  {/* <Search className="h-5 w-5 text-gray-600" /> */}
-                </Button>
+                  <Search className="h-5 w-5 text-gray-600" />
+                </Button> */}
 
                 {/* data Menu */}
                 <div className="md:flex items-center gap-3">

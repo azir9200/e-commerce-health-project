@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Design from "./Design";
 import Equipment from "./Equipment";
 import Resource from "./Resources";
@@ -37,18 +38,26 @@ const Commercial = () => {
 
             {/* BUTTONS */}
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <button className="bg-gray-600 text-white px-6 py-3 font-semibold rounded hover:bg-gray-700">
-                CONTACT US
-              </button>
-              <button className="bg-gray-600 text-white px-6 py-3 font-semibold rounded hover:bg-gray-700">
-                BOOK CONSULT
-              </button>
-              <button className="bg-gray-600 text-white px-6 py-3 font-semibold rounded hover:bg-gray-700">
-                ABOUT REP
-              </button>
-              <button className="bg-gray-600 text-white px-6 py-3 font-semibold rounded hover:bg-gray-700">
-                GET A QUOTE
-              </button>
+              <Link to="/contact">
+                <button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white text-semibold hover:bg-blue-950 px-6 py-3 rounded">
+                  CONTACT US
+                </button>
+              </Link>
+              <Link to="/supplement">
+                <button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white text-semibold hover:bg-blue-950 px-6 py-3 rounded">
+                  BOOK CONSULT
+                </button>
+              </Link>
+              <Link to="/product-page">
+                <button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white text-semibold hover:bg-blue-950 px-6 py-3 rounded">
+                  ABOUT HEALTH
+                </button>
+              </Link>
+              <Link to="/about">
+                <button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white text-semibold hover:bg-blue-950 px-6 py-3 rounded">
+                  Book Appointment
+                </button>
+              </Link>
             </div>
           </div>
 

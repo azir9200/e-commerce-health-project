@@ -33,7 +33,7 @@ const Design = () => {
             AND MORE.
           </h2>
 
-          <button className="bg-blue-600 text-white px-6 py-3 font-semibold rounded hover:bg-blue-700 w-fit">
+         <button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white font-semibold hover:bg-blue-950 px-6 py-3 rounded">
             START BUILDING
           </button>
         </div>
@@ -51,8 +51,8 @@ const Design = () => {
               </div>
 
               <div className="mt-3">
-                <span className="inline-block bg-black text-white text-sm font-semibold px-4 py-2 rounded">
-                  {item.title}
+                <span className="inline-block bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white font-semibold hover:bg-blue-950 px-6 py-3 rounded">
+                  {item.title} 
                 </span>
               </div>
             </div>

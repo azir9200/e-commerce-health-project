@@ -15,9 +15,12 @@ export function Hero() {
               Your gateway to quality fitness products and excellent service.
               Transform your workout with premium gym equipment and accessories.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex justify-center flex-col sm:flex-row gap-4">
               <Link to="/product-page">
-                <Button size="lg" className="text-lg px-8">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950"
+                >
                   Shop Now
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>

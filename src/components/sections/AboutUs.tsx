@@ -43,7 +43,11 @@ export function AboutUs() {
               </div>
             </div>
 
-            <Button onClick={() => navigate("/about")} size="lg">
+            <Button
+              className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950"
+              onClick={() => navigate("/about")}
+              size="lg"
+            >
               Learn More About Us
             </Button>
           </div>
@@ -91,7 +95,7 @@ export function AboutUs() {
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <Heart className="w-8 h-8 text-primary" />
+                    <Heart className="w-8  h-8 p-2 text-white bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">

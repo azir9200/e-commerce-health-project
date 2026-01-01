@@ -44,7 +44,7 @@ const Resource = () => {
               <h3 className="font-bold text-lg mb-4">{item.title}</h3>
 
               {/* Learn More */}
-              <button className="flex items-center gap-2 text-sm font-semibold tracking-wide hover:underline">
+              <button className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white font-semibold hover:bg-blue-950 px-2 py-2 rounded tracking-wide hover:underline">
                 LEARN MORE
                 <span className="text-xl">→</span>
               </button>

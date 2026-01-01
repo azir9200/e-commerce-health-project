@@ -123,7 +123,7 @@ export function NewsletterSignup() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full text-lg py-2"
+                      className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950 px-2  rounded w-full text-lg py-2"
                     >
                       Subscribe & Get 10% Off
                     </Button>

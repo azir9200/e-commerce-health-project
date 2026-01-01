@@ -71,19 +71,20 @@ export function BestSellers() {
                   />
 
                   <h3 className="text-lg font-bold mb-1">{product.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    ${product.price}
-                  </p>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleAddToCart(product);
-                    }}
-                    className="bg-primary w-full text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                  >
-                    Add to Cart
-                  </button>
+                  <div className="flex justify-between">
+                    <div>
+                      <p className="text- mb-3">Price- ${product.price}</p>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(product);
+                      }}
+                      className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  text-white hover:bg-blue-950 px-2  rounded"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </CardContent>
               </Card>
             ))}

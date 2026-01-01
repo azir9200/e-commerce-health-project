@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import FooterSection from "./FooterSection";
 import { cn } from "../../lib/utils";
 
+
 const Footer = () => {
   const Accounts = [
     {
@@ -73,9 +74,17 @@ const Footer = () => {
             className="flex items-center justify-between space-x-4 group"
           >
             <div className="flex flex-col">
-              <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                FitGear Store
-              </span>
+               <Link to="/" className="flex items-center gap-3 group">
+                {/* <MotionConfig.div
+                  whileHover={{ rotate: 15 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Dumbbell className="w-8 h-8 text-primary" />
+                </motion.div> */}
+                <span className="text-3xl font-bold bg-gradient-to-r from-black via-green-600 to-blue-800 bg-clip-text text-transparent">
+                  FitGear
+                </span>
+              </Link>
             </div>
           </Link>{" "}
           <p className="my-4">Subscribe</p>
