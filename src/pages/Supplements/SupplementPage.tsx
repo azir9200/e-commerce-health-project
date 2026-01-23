@@ -1,5 +1,6 @@
 import { useGetAllSupplementQuery } from "../../redux/api/supplementApi/SupplementApi";
 import SupplementCard from "./SupplementCard";
+import BenefitSplement from "./BenefitSplement";
 
 const SupplementPage = () => {
   const { data, isLoading, isError } = useGetAllSupplementQuery();
@@ -16,6 +17,10 @@ const SupplementPage = () => {
 
   return (
     <div className="bg-slate-100 mt-12 py-10">
+      {/* 🔥 Benefits Section */}
+      <BenefitSplement />
+
+      {/* 🛒 Supplement Cards */}
       <div className="max-w-6xl mx-auto bg-white p-8 rounded-xl shadow">
         {supplements.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-1">

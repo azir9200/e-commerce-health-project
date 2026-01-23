@@ -29,15 +29,15 @@ export default function LeftBanner() {
     {
       id: 3,
       image: "https://i.ibb.co/hFygYDwZ/24059.jpg",
-      title: "Electric Future",
+      title: "Comfort Features",
       subtitle: "Sustainable Best Design",
       cta: "Learn More",
     },
     {
       id: 4,
       image: "https://i.ibb.co/Xxhy2C4j/36598-O0-UWZ5.jpg",
-      title: "Electric Future",
-      subtitle: "Sustainable Best Design",
+      title: "More Handy Items",
+      subtitle: "Best quality products for you",
       cta: "Learn More",
     },
     {
@@ -70,7 +70,7 @@ export default function LeftBanner() {
 
   const handlePrevious = () => {
     setCurrentSlide(
-      (prev) => (prev - 1 + bannerData.length) % bannerData.length
+      (prev) => (prev - 1 + bannerData.length) % bannerData.length,
     );
   };
 
