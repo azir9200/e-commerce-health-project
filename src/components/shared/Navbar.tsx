@@ -42,7 +42,7 @@ import {
 import { Input } from "../ui/input";
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  // const [showMobileSearch, setShowMobileSearch] = useState(false);
+  
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,7 +50,7 @@ const Navbar = () => {
   const { data } = useGetMeQuery(undefined);
 
   const myself = data?.data;
-
+ 
   const products = useSelector((state: RootState) => state.cart.products);
 
   const user = useAppSelector(selectCurrentUser);
@@ -224,23 +224,29 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <div className="hidden lg:block flex-1 max-w-[300px] mx-8">
-                  <form
-                    onSubmit={handleSearchSubmit}
-                    className="relative group"
-                  >
+                  <form onSubmit={handleSearchSubmit} className="relative">
                     <div className="relative">
                       <Input
                         type="text"
-                        placeholder="Search ..."
+                        placeholder="Search..."
                         value={searchQuery}
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        onChange={(e: any) => setSearchQuery(e.target.value)}
-                        className="pl-5 pr-14 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 transition-all duration-300 bg-gray-50/50 hover:bg-white focus:bg-white shadow-sm hover:shadow-md"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setSearchQuery(e.target.value)
+                        }
+                        className="h-12 pl-5 pr-14 rounded-2xl border-2 border-gray-200
+                 focus:border-blue-500 bg-gray-50/50
+                 hover:bg-white focus:bg-white
+                 shadow-sm hover:shadow-md"
                       />
+
                       <Button
                         type="submit"
-                        size="sm"
-                        className="absolute right-2 top-2 bottom-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-md hover:shadow-lg"
+                        size="icon"
+                        className="absolute right-2 top-1/2 -translate-y-1/2
+                 h-9 w-9 rounded-xl
+                 bg-gradient-to-r from-blue-600 to-purple-600
+                 hover:from-blue-700 hover:to-purple-700
+                 shadow-md hover:shadow-lg"
                       >
                         <Search className="h-4 w-4 text-white" />
                       </Button>

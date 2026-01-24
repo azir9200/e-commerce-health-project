@@ -56,7 +56,7 @@ const Checkout = () => {
         window.location.href = res.data.data;
         setIsSubmitting(false);
       } else {
-        console.error("Payment URL not found in response.");
+       
         setIsSubmitting(false);
       }
     } catch (err) {
@@ -111,7 +111,7 @@ const Checkout = () => {
             <Card className="sticky top-6 shadow-md">
               <CardHeader className="border-b bg-muted/30">
                 <CardTitle>Payment Summary</CardTitle>
-                <CardDescription>Secure payment via Stripe</CardDescription>
+                <CardDescription>Secure payment via Shurjopay</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
                 <div className="space-y-2">

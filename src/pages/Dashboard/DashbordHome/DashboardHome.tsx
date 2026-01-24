@@ -13,7 +13,7 @@ import { useGetAllRevinewQuery } from "../../../redux/api/productApi/ProductApi"
 
 const Dashboard = () => {
   const { data } = useGetAllRevinewQuery(undefined);
-  console.log(data, "revenue data");
+
 
   return (
     <div className=" p-4 space-y-4">

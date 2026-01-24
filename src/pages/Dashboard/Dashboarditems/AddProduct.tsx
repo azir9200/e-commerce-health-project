@@ -21,7 +21,7 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       await product({ name, description, price, image, ratings });
-      console.log("add product");
+    
       toast.success("You are logged in successfully!");
       navigate("/products");
     } catch (error) {

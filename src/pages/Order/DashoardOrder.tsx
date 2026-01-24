@@ -4,7 +4,7 @@ import ManageTable from "../Dashboard/ManageOrder/ManageTable";
 const ManageOrder = () => {
   const { data, isLoading } = useGetSingleOrderQuery(undefined);
   const handleDelete = () => {
-    console.log(handleDelete);
+  
   };
 
   const columns = [

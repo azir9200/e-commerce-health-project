@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
 
 // FooterSection.tsx
@@ -8,26 +9,30 @@ interface FooterSectionProps {
 }
 
 const FooterSection: React.FC<FooterSectionProps> = ({
-  data = [],
-  title = "",
-  className = "",
+  data,
+  title,
+  className,
 }) => {
   return (
-    <div className={cn("xl:mx-auto", className)}>
-      <div className="flex flex-col gap-3">
-        <p className="text-lg font-medium lg:text-xl">{title}</p>
-        <div className="flex flex-col gap-3 mt-2 md:mt-4 sm:mt-3">
-          {data.map((item, key) => (
-            <a
-              href={item.href}
-              className="md:text-sm text-[12px] font-normal"
-              key={key}
-            >
-              {item?.title}
-            </a>
-          ))}
-        </div>
-      </div>
+    <div className={cn("space-y-4", className)}>
+      <h4 className="text-lg font-semibold">{title}</h4>
+
+      <ul className="space-y-2">
+        {data.map((item, index) => (
+          <li key={index}>
+            {item.href ? (
+              <Link
+                to={item.href}
+                className="text-sm text-gray-400 hover:text-white transition"
+              >
+                {item.title}
+              </Link>
+            ) : (
+              <p className="text-sm text-gray-400">{item.title}</p>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

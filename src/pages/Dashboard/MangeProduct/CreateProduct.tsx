@@ -71,7 +71,7 @@ const CreateProduct: React.FC<ProductFormProps> = ({ initialData }) => {
         navigate("/dashboard/manageProduct");
       } else {
         const response = await createProduct(payload).unwrap();
-        console.log("create pro", response);
+       
         toast.success(response.message || "Product added successfully!", {
           id: toastId,
         });

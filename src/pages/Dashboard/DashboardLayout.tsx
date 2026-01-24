@@ -9,7 +9,6 @@ const DesktopLayout = () => {
   const router = useLocation();
 
   const user = useAppSelector(selectCurrentUser);
-  console.log("user23", user);
 
   const menuData =
     user?.role === "admin" ? [...DashboardData, ...ProfileData] : ProfileData;

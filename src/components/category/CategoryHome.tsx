@@ -1,14 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { useAppDispatch } from "../../redux/hooks";
 import Modal from "../Modal";
-import { addToCart } from "../../redux/features/cartSlice";
+
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 
 const CategoryHome = ({ category }: { category: any }) => {
-  const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
@@ -21,12 +18,6 @@ const CategoryHome = ({ category }: { category: any }) => {
     setSelectedProduct(null);
     setShowModal(false);
   };
-
-  const handleAddToCart = async (category: any) => {
-    dispatch(addToCart(category));
-    toast.success(<div> You Product added to cart successfully! </div>);
-  };
-  console.log(handleAddToCart);
 
   return (
     <div className="relative">

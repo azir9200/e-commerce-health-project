@@ -56,7 +56,7 @@ export default function OrderVerify() {
     searchParams.get("order_id"),
     {
       refetchOnMountOrArgChange: true,
-    }
+    },
   );
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -70,7 +70,34 @@ export default function OrderVerify() {
     <SkeletonVerify />
   ) : (
     <div className=" max-w-7xl mx-auto md:px-0 px-2 mb-6 pt-20">
-      <h1 className="text-xl font-bold my-4">Order Verification</h1>
+      <div>
+        <div className="max-w-xl mx-auto text-center bg-white border rounded-2xl shadow-md p-6 space-y-4">
+          {/* Status Message */}
+
+          <p className="text-3xl font-bold text-green-600">
+            🎉 Payment Successful!
+          </p>
+
+          <p className="text-gray-600 text-base">
+            Thank you for shopping with us. Your payment has been processed
+            successfully and your order is now confirmed.
+          </p>
+
+          <p className="text-sm text-gray-500">
+            We’re getting your items ready and will notify you once they’re on
+            the way.
+          </p>
+          <div className="border-t pt-4 mt-4">
+            <h2 className="text-lg font-semibold text-gray-800">
+              Order Verification
+            </h2>
+            <p className="text-sm text-gray-500">
+              Please review the details below to confirm your order.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -84,7 +111,7 @@ export default function OrderVerify() {
               <dd className=" text-blue-600">
                 {orderData?.currency} {orderData?.amount?.toFixed(2)}
               </dd>
-              <dt className="font-semibold">Status:</dt>
+              <dt className="text-green-700 text-2xl font-bold">Status:</dt>
               <dd>
                 <Badge
                   variant={

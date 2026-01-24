@@ -34,7 +34,7 @@ const SingleProduct = () => {
   const { data, isLoading } = useGetProductDetailsQuery(id ?? "", {
     skip: !id,
   });
-  console.log(data, "aadded");
+ 
 
   const { data: product } = useGetAllProductQuery({
     category: "",

@@ -1,8 +1,12 @@
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Separator } from "../../components/ui/separator";
+import { selectCurrentUser } from "../../redux/features/userSlice";
+import { useAppSelector } from "../../redux/hooks";
 
 const BillingDetails = () => {
+  const user = useAppSelector(selectCurrentUser);
+
   return (
     <div className="grid gap-6">
       <div className="grid gap-4">
@@ -10,11 +14,19 @@ const BillingDetails = () => {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="first-name">First Name</Label>
-            <Input id="first-name" placeholder="John" defaultValue="John" />
+            <Input
+              id="first-name"
+              placeholder="John"
+              defaultValue={user?.firstName || "John"}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="last-name">Last Name</Label>
-            <Input id="last-name" placeholder="Doe" defaultValue="Doe" />
+            <Input
+              id="last-name"
+              placeholder="Doe"
+              defaultValue={user?.lastName || "Doe"}
+            />
           </div>
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="email">Email Address</Label>
@@ -22,7 +34,7 @@ const BillingDetails = () => {
               id="email"
               type="email"
               placeholder="john.doe@example.com"
-              defaultValue="john.doe@example.com"
+              defaultValue={user?.email || "john.doe@example.com"}
             />
           </div>
           <div className="space-y-2 md:col-span-2">
@@ -47,7 +59,7 @@ const BillingDetails = () => {
             <Input
               id="address"
               placeholder="123 Main St"
-              defaultValue="123 Main St"
+              defaultValue={user?.address || "123 Main St"}
             />
           </div>
           <div className="space-y-2">
@@ -55,7 +67,7 @@ const BillingDetails = () => {
             <Input
               id="city"
               placeholder="San Francisco"
-              defaultValue="San Francisco"
+              defaultValue={user?.city || "Dublin, Ireland"}
             />
           </div>
           <div className="space-y-2">
@@ -63,7 +75,7 @@ const BillingDetails = () => {
             <Input
               id="state"
               placeholder="California"
-              defaultValue="California"
+              defaultValue={user?.state || "Leinster"}
             />
           </div>
           <div className="space-y-2">
@@ -74,8 +86,8 @@ const BillingDetails = () => {
             <Label htmlFor="country">Country</Label>
             <Input
               id="country"
-              placeholder="United States"
-              defaultValue="United States"
+              placeholder="Ireland"
+              defaultValue={user?.country || "Ireland"}
             />
           </div>
         </div>

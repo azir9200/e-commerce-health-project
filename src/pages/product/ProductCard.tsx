@@ -10,7 +10,7 @@ import { Button } from "../../components/ui/button";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: any }) => {
-  console.log("product", product);
+
   const dispatch = useAppDispatch();
   const [isHovered, setIsHovered] = useState(false);
   const wishlistItems = useAppSelector((state) => state?.wishlist?.items);
@@ -23,7 +23,7 @@ const ProductCard = ({ product }: { product: any }) => {
   };
 
   const handleAddToCart = (product: any) => {
-    console.log("handle add ");
+   
     dispatch(addToCart(product));
     toast.success(<div> You Product added to cart successfully! </div>);
   };
