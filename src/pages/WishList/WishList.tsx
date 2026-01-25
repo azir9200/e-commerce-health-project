@@ -25,7 +25,7 @@ const Wishlist = () => {
     <div className="  min-h-[70vh] pt-5">
       <div className=" grid md:grid-cols-3 grid-cols-1 gap-2">
         {wishlistItems.map((item) => (
-          <ProductCard key={item._id} product={item} />
+          <ProductCard key={item.id} product={item} />
         ))}
       </div>
     </div>

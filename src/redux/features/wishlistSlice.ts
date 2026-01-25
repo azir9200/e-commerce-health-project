@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Product {
-  _id: string;
-  category: string;
-  brand: string;
-  model: string;
-  price: number;
-  images: string[];
-}
+import { Product } from "../../lib/product";
 
 interface WishlistState {
   items: Product[];
@@ -22,13 +14,11 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
     toggleWishlistItem: (state, action: PayloadAction<Product>) => {
-      const exists = state.items.find(
-        (item) => item._id === action.payload._id
-      );
+      const exists = state.items.find((item) => item.id === action.payload.id);
       if (exists) {
         // Remove from wishlist
         state.items = state.items.filter(
-          (item) => item._id !== action.payload._id
+          (item) => item.id !== action.payload.id,
         );
       } else {
         // Add to wishlist

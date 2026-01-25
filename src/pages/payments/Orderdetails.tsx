@@ -71,22 +71,23 @@ export default function OrderVerify() {
   ) : (
     <div className=" max-w-7xl mx-auto md:px-0 px-2 mb-6 pt-20">
       <div>
-        <div className="max-w-xl mx-auto text-center bg-white border rounded-2xl shadow-md p-6 space-y-4">
+        <div className="max-w-xl pt-12 mx-auto text-center bg-white border rounded-2xl shadow-md p-6 space-y-4">
           {/* Status Message */}
+          <div className=" bg-green-600">
+            <p className="text-3xl font-bold text-green-600">
+              🎉 Payment Successful!
+            </p>
 
-          <p className="text-3xl font-bold text-green-600">
-            🎉 Payment Successful!
-          </p>
+            <p className="text-gray-600 text-base">
+              Thank you for shopping with us. Your payment has been processed
+              successfully and your order is now confirmed.
+            </p>
 
-          <p className="text-gray-600 text-base">
-            Thank you for shopping with us. Your payment has been processed
-            successfully and your order is now confirmed.
-          </p>
-
-          <p className="text-sm text-gray-500">
-            We’re getting your items ready and will notify you once they’re on
-            the way.
-          </p>
+            <p className="text-sm text-gray-500">
+              We’re getting your items ready and will notify you once they’re on
+              the way.
+            </p>
+          </div>
           <div className="border-t pt-4 mt-4">
             <h2 className="text-lg font-semibold text-gray-800">
               Order Verification
