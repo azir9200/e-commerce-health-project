@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import AnimatedSection from "../contact/AnimatedSection";
+import FitnessCube from "../../components/shared/FitnessCube";
 
 const About = () => {
   const frontendTech = [
@@ -142,32 +143,47 @@ const About = () => {
         </div>
 
         <div className="container-custom relative z-10 px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-medium mb-6"
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-3xl"
             >
-              ABOUT OUR PROJECT
-            </motion.span>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-none mb-6">
-              BUILDING THE
-              <br />
-              <span className="gradient-text">FUTURE OF</span>
-              <br />
-              FITNESS
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-xl">
-              A full-stack e-commerce platform crafted with modern technologies,
-              delivering premium gym equipment to fitness enthusiasts worldwide.
-            </p>
-          </motion.div>
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-medium mb-6"
+              >
+                ABOUT OUR PROJECT
+              </motion.span>
+              <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-none mb-6">
+                BUILDING THE
+                <br />
+                <span className="gradient-text">FUTURE OF</span>
+                <br />
+                FITNESS
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-xl">
+                A full-stack e-commerce platform crafted with modern
+                technologies, delivering premium gym equipment to fitness
+                enthusiasts worldwide.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="flex justify-center lg:justify-end"
+            >
+              <div className="relative">
+                <FitnessCube />
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl -z-10" />
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         <motion.div

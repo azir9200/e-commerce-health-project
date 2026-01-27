@@ -52,34 +52,36 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="py-16 bg-muted/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-2">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section className="py-16 bg-gradient-to-br from-slate-400 via-grey-400 to-slate-900 text-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Why Choose FitGear Store?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-blue-100 max-w-2xl mx-auto">
             We're committed to providing the best shopping experience with
             unmatched service and quality.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <Card
               key={index}
-              className="group hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/20"
+              className="group hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 border-white/10 hover:border-blue-400/50 bg-white/5 backdrop-blur-sm"
             >
-              <CardContent className="p-6 text-center">
+              <CardContent className="p-8 text-center">
                 <div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-background shadow-lg mb-4 group-hover:scale-110 transition-transform ${benefit.color}`}
+                  className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/10 shadow-xl mb-6 group-hover:scale-110 transition-all duration-300 ${benefit.color} group-hover:bg-white/20`}
                 >
-                  <benefit.icon className="w-8 h-8" />
+                  <benefit.icon className="w-10 h-10" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
+                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-200 transition-colors">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
+                <p className="text-blue-100 leading-relaxed">
+                  {benefit.description}
+                </p>
               </CardContent>
             </Card>
           ))}

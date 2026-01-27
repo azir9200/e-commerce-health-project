@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import {
   Clock,
   Globe,
@@ -177,8 +177,9 @@ const Navbar = () => {
                       <DropdownMenuItem
                         key={item.id}
                         className="flex gap-3 items-center cursor-pointer"
-                        onClick={() => navigate(`/product/${item.id}`)}
+                        onClick={() => navigate(`/allproduct/${item.id}`)}
                       >
+                        {/* <Link to={`/allproduct/${product._id}`}></Link> */}
                         <img
                           src={item.image}
                           alt={item.name}
@@ -195,7 +196,7 @@ const Navbar = () => {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                       className="justify-center font-semibold text-blue-600 cursor-pointer"
-                      onClick={() => navigate("/wishlist")}
+                      onClick={() => navigate("/profile/wishlist")}
                     >
                       View All Wishlist →
                     </DropdownMenuItem>
