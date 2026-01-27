@@ -83,7 +83,7 @@ const categories = [
   "Resistance Training",
   "Wearables",
   "Cardio",
-  "Supplements",
+  "Supplements", 
 ];
 
 export default function AdminProducts() {

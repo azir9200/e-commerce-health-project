@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -9,12 +8,6 @@ import {
   Star,
   Award,
   Shield,
-  CheckCircle,
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  ArrowRight,
   Users,
   Target,
   Zap,

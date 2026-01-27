@@ -10,6 +10,7 @@ import CreateSupplement from "../pages/Dashboard/ManageSupplement/CreateSuppleme
 import ManageSupplement from "../pages/Dashboard/ManageSupplement/ManageSupplement";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
+import DeleteConfirm from "../pages/Dashboard/MangeProduct/DeleteConfirm";
 import ManageProduct from "../pages/Dashboard/MangeProduct/ManageProduct";
 import UpdateProduct from "../pages/Dashboard/MangeProduct/UpdateProduct";
 import Home from "../pages/Home";
@@ -143,6 +144,24 @@ export const Adminpaths = [
     element: (
       <AdminPrivateRoute>
         <UpdateProduct />
+      </AdminPrivateRoute>
+    ),
+  },
+  {
+    name: "update Product",
+    path: "/dashboard/updateProduct/:id",
+    element: (
+      <AdminPrivateRoute>
+        <UpdateProduct />
+      </AdminPrivateRoute>
+    ),
+  },
+  {
+    name: "Delete Product",
+    path: "/dashboard/delete/product/:id",
+    element: (
+      <AdminPrivateRoute>
+        <DeleteConfirm />
       </AdminPrivateRoute>
     ),
   },
