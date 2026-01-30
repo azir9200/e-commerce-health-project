@@ -1,47 +1,68 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
+import {
+  useDeleteProductMutation,
+  useGetProductDetailsQuery,
+} from "../../../redux/api/productApi/ProductApi";
 
-interface Props {
-  onDelete: (id: string) => void;
-}
-
-const DeleteConfirm = ({ onDelete }: Props) => {
-  const { id, type } = useParams();
+const DeleteConfirm = () => {
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  // 🟢 fetch product info
+  const { data, isLoading: productLoading } = useGetProductDetailsQuery(id!, {
+    skip: !id,
+  });
+  const [deleteProduct, { isLoading }] = useDeleteProductMutation();
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!id) return;
-    onDelete(id);
-    navigate(-1); // go back after delete
+
+    try {
+      await deleteProduct(id).unwrap();
+      toast.success("Product deleted successfully");
+      navigate(-1);
+    } catch (err: any) {
+      toast.error(err?.data?.message || "Delete failed");
+    }
   };
+  if (productLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading product info...
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center"
-      >
-        <h2 className="text-xl font-bold text-gray-800 mb-4">Delete {type}?</h2>
+    <div className="min-h-screen flex items-center justify-center">
+      <motion.div className="bg-white p-8 rounded-xl shadow-lg text-center">
+        <h2 className="text-xl font-bold mb-4">Delete product?</h2>
 
-        <p className="text-gray-600 mb-6">
-          Are you sure you want to delete this {type}? This action cannot be
-          undone.
+        {/* 🔥 Product Info */}
+        <div className="mb-6 border rounded-lg p-4 bg-gray-50">
+          <p className="text-lg font-semibold">{data?.data?.name}</p>
+          <p className="text-gray-600">Price: ${data?.data?.price}</p>
+        </div>
+
+        <p className="mb-6 text-gray-700">
+          This action <strong>cannot be undone</strong>.
         </p>
-
         <div className="flex gap-4 justify-center">
           <button
             onClick={() => navigate(-1)}
-            className="px-5 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold"
+            className="px-5 py-2 bg-gray-300 rounded"
           >
             Cancel
           </button>
 
           <button
             onClick={handleConfirm}
-            className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold"
+            disabled={isLoading}
+            className="px-5 py-2 bg-red-600 text-white rounded"
           >
-            Yes, Delete
+            {isLoading ? "Deleting..." : "Yes, Delete"}
           </button>
         </div>
       </motion.div>

@@ -11,6 +11,7 @@ import ManageSupplement from "../pages/Dashboard/ManageSupplement/ManageSuppleme
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
 import DeleteConfirm from "../pages/Dashboard/MangeProduct/DeleteConfirm";
+
 import ManageProduct from "../pages/Dashboard/MangeProduct/ManageProduct";
 import UpdateProduct from "../pages/Dashboard/MangeProduct/UpdateProduct";
 import Home from "../pages/Home";

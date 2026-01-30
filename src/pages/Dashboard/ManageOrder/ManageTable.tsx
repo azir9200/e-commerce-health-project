@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import { useUpdateRoleUserMutation } from "../../../redux/api/authApi/authApi";
 import { motion, AnimatePresence } from "framer-motion";
 import { Edit2, Trash2, Search } from "lucide-react";
-import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
 interface Column {
@@ -32,19 +31,19 @@ interface ManageTableProps {
   loading: boolean;
   columns: Column[];
   isvalue: string;
-  onDelete: (id: string) => void;
+
 }
 
 const ManageTable: React.FC<ManageTableProps> = ({
   data,
   loading,
   columns,
-  onDelete,
+  // onDelete,
   isvalue,
 }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  // const [deletingId, setDeletingId] = useState<string | null>(null);
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
@@ -53,7 +52,6 @@ const ManageTable: React.FC<ManageTableProps> = ({
     columns.some((column) =>
       column.value
         .split(".")
-
         .reduce((o: any, k: string) => (o?.[k] ? o[k] : ""), item)
         ?.toString()
         ?.toLowerCase()
@@ -77,13 +75,13 @@ const ManageTable: React.FC<ManageTableProps> = ({
     setCurrentPage(1);
   }, [searchTerm]);
 
-  const handleDelete = (id: string) => {
-    setDeletingId(id);
-    setTimeout(() => {
-      onDelete(id);
-      setDeletingId(null);
-    }, 300);
-  };
+  // const handleDelete = (id: string) => {
+  //   setDeletingId(id);
+  //   setTimeout(() => {
+  //     onDelete(id);
+  //     setDeletingId(null);
+  //   }, 300);
+  // };
 
   if (loading) {
     return <TableSkeleton />;
@@ -164,9 +162,9 @@ const ManageTable: React.FC<ManageTableProps> = ({
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ duration: 0.3 }}
-                    className={`border-b hover:bg-blue-50 transition ${
-                      deletingId === item._id ? "opacity-50" : ""
-                    }`}
+                    // className={`border-b hover:bg-blue-50 transition ${
+                    //   deletingId === item._id ? "opacity-50" : ""
+                    // }`}
                   >
                     {columns?.map((column, idx) => (
                       <TableCell key={idx} className="text-gray-700">
@@ -221,42 +219,6 @@ const ManageTable: React.FC<ManageTableProps> = ({
                             Delete
                           </motion.button>
 
-                          {/* //delete button  end*/}
-
-                          {isvalue != "userOrder" && (
-                            <motion.button
-                              whileHover={{ scale: 1.1 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={() => {
-                                const toastId = toast(
-                                  <div className="flex gap-2">
-                                    <span>Delete this {isvalue}?</span>
-                                    <button
-                                      onClick={() => {
-                                        handleDelete(item._id);
-                                        toast.dismiss(toastId);
-                                      }}
-                                      className="px-3 py-1 bg-red-500 text-white rounded text-sm font-bold hover:bg-red-600"
-                                    >
-                                      Confirm
-                                    </button>
-                                    <button
-                                      onClick={() => toast.dismiss(toastId)}
-                                      className="px-3 py-1 bg-gray-400 text-white rounded text-sm font-bold hover:bg-gray-500"
-                                    >
-                                      Cancel
-                                    </button>
-                                  </div>,
-                                  { duration: 5000 },
-                                );
-                              }}
-                              disabled={deletingId === item._id}
-                              className="flex items-center gap-2 px-3 py-1.5 text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition font-medium disabled:opacity-50"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                              Delete
-                            </motion.button>
-                          )}
                         </div>
                       </TableCell>
                     )}
