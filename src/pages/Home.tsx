@@ -10,25 +10,17 @@ import { InstagramFeed } from "../components/sections/SocialPosts";
 import { Testimonials } from "../components/sections/Testimonials";
 
 import BannerLayout from "./home/Bannar/BannerLayout";
+import Floating from "./home/Floating";
 
 const Home = () => {
   return (
     <div className="">
-      {/* <HomeSlide /> */}
-      {/* <Banner />
-      <HomeProducts /> */}
+      <Floating />
       <BannerLayout />
-      {/* <ProductSection />
-      <ChooseSection /> */}
-      {/* <Statistics /> */}
-      {/* <AwardSection /> */}
-      {/* <ContactSection />
-      */}
 
       <Hero />
       <BestSellers />
       <FeaturedProducts />
-      {/* <Categories /> */}
 
       <Benefits />
       <AboutUs />

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-// import { useDeleteUserMutation, useGetAllUserQuery } from "../../../redux/features/auth/authApi";
 import ManageTable from "../ManageOrder/ManageTable";
 import { toast } from "sonner";
 import {

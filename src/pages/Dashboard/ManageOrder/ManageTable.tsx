@@ -31,7 +31,7 @@ interface ManageTableProps {
   loading: boolean;
   columns: Column[];
   isvalue: string;
-
+  onDelete: (id: string) => void;
 }
 
 const ManageTable: React.FC<ManageTableProps> = ({
