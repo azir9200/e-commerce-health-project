@@ -10,7 +10,7 @@ import {
 } from "../../../components/ui/table";
 import TableSkeleton from "../../../AllSkeleton/DashbordTableSkeleton";
 import { Link } from "react-router-dom";
-import { useUpdateRoleUserMutation } from "../../../redux/api/authApi/authApi";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Edit2, Trash2, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ const ManageTable: React.FC<ManageTableProps> = ({
   data,
   loading,
   columns,
-  // onDelete,
+
   isvalue,
 }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -66,10 +66,10 @@ const ManageTable: React.FC<ManageTableProps> = ({
     currentPage * itemsPerPage,
   );
 
-  const [UpdateRoleUser] = useUpdateRoleUserMutation();
-  const UpdateRole = async (id: string) => {
-    await UpdateRoleUser(id);
-  };
+  // const [UpdateRoleUser] = useUpdateRoleUserMutation();
+  // const UpdateRole = async (id: string) => {
+  //   await UpdateRoleUser(id);
+  // };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -197,7 +197,7 @@ const ManageTable: React.FC<ManageTableProps> = ({
                             <motion.button
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
-                              onClick={() => UpdateRole(item._id)}
+                              onClick={() => navigate(`/dashboard/updateUserRole/${item._id}`)}
                               className="px-3 py-1.5 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 transition font-medium"
                             >
                               Update Role

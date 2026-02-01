@@ -9,6 +9,7 @@ import ManageOrder from "../pages/Dashboard/ManageOrder/ManageOrder";
 import CreateSupplement from "../pages/Dashboard/ManageSupplement/CreateSupplement";
 import ManageSupplement from "../pages/Dashboard/ManageSupplement/ManageSupplement";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
+import UpdateUserRole from "../pages/Dashboard/ManageUser/UpdateUserRole";
 import CreateProduct from "../pages/Dashboard/MangeProduct/CreateProduct";
 import DeleteConfirm from "../pages/Dashboard/MangeProduct/DeleteConfirm";
 
@@ -199,6 +200,15 @@ export const Adminpaths = [
     element: (
       <AdminPrivateRoute>
         <ManageUser />
+      </AdminPrivateRoute>
+    ),
+  },
+  {
+    name: "Update User Role",
+    path: "/dashboard/updateUserRole/:id",
+    element: (
+      <AdminPrivateRoute>
+        <UpdateUserRole />
       </AdminPrivateRoute>
     ),
   },
