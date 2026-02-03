@@ -32,9 +32,10 @@ const authApi = baseApi.injectEndpoints({
       providesTags: ["Auth"],
     }),
     updateRoleUser: builder.mutation({
-      query: (id) => ({
+      query: ({ id, role }: { id: string; role: string }) => ({
         url: `api/user/updateRole/${id}`,
         method: "PUT",
+        body: { role },
       }),
       invalidatesTags: ["Auth"],
     }),

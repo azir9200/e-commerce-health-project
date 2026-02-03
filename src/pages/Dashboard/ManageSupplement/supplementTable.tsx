@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 import {
   Table,
   TableBody,
@@ -53,8 +54,13 @@ function SupplementTable<T extends { id?: string; _id?: string }>({
 
   const [updateRoleUser] = useUpdateRoleUserMutation();
 
-  const updateRole = async (id: string) => {
-    await updateRoleUser(id);
+  const updateRole = async (id: string, role: string) => {
+    try {
+      const res = await updateRoleUser({ id, role }).unwrap();
+      toast.success(res?.message || "Role updated");
+    } catch (err) {
+      toast.error(typeof err === "string" ? err : JSON.stringify(err));
+    }
   };
 
   useEffect(() => {
@@ -110,7 +116,7 @@ function SupplementTable<T extends { id?: string; _id?: string }>({
                     </TableCell>
                   ))}
 
-                  {isvalue !== "userOrder" && (
+                  {isvalue !== "user" && (
                     <TableCell className="flex gap-2">
                       {isvalue === "product" && (
                         <Link to={`/dashboard/updateProduct/${id}`}>
@@ -120,7 +126,11 @@ function SupplementTable<T extends { id?: string; _id?: string }>({
 
                       {isvalue === "user" && (
                         <button
-                          onClick={() => updateRole(id)}
+                          onClick={() => {
+                            const currentRole = (item as any).role;
+                            const newRole = currentRole === "admin" ? "user" : "admin";
+                            updateRole(id, newRole);
+                          }}
                           className="btn-blue"
                         >
                           Update Role

@@ -197,7 +197,11 @@ const ManageTable: React.FC<ManageTableProps> = ({
                             <motion.button
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
-                              onClick={() => navigate(`/dashboard/updateUserRole/${item._id}`)}
+                              onClick={() =>
+                                navigate(
+                                  `/dashboard/updateUserRole/${item._id}`,
+                                )
+                              }
                               className="px-3 py-1.5 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 transition font-medium"
                             >
                               Update Role
@@ -218,7 +222,6 @@ const ManageTable: React.FC<ManageTableProps> = ({
                             <Trash2 className="w-4 h-4" />
                             Delete
                           </motion.button>
-
                         </div>
                       </TableCell>
                     )}

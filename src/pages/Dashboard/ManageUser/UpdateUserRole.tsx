@@ -1,4 +1,4 @@
-import { useEffect,  } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import {
@@ -16,7 +16,12 @@ import {
 const UpdateUserRole = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { data: user, isLoading, error } = useGetSingleUserQuery(id!);
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useGetSingleUserQuery(id ?? skipToken);
+  console.log(user);
   const [
     updateRole,
     {
@@ -28,21 +33,29 @@ const UpdateUserRole = () => {
     },
   ] = useUpdateRoleUserMutation();
 
+  const currentRole = user?.data?.role;
+  const newRole = currentRole === "admin" ? "user" : "admin";
+
   const handleUpdateRole = async () => {
-    if (id) {
-      await updateRole(id);
+    if (!id) return;
+    try {
+      const res = await updateRole({ id, role: newRole }).unwrap();
+      toast.success(res?.message || "Role updated successfully");
+      navigate("/dashboard/user");
+    } catch (err) {
+      toast.error(typeof err === "string" ? err : JSON.stringify(err));
     }
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      toast.success(updateData?.message || "Role updated successfully");
-      navigate("/dashboard/user");
-    }
     if (isError) {
-      toast.error(JSON.stringify(updateError));
+      toast.error(
+        typeof updateError === "string"
+          ? updateError
+          : JSON.stringify(updateError),
+      );
     }
-  }, [isSuccess, isError, updateData, updateError, navigate]);
+  }, [isError, updateError]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -51,9 +64,6 @@ const UpdateUserRole = () => {
   if (error) {
     return <div>Error loading user</div>;
   }
-
-  const currentRole = user?.data?.role;
-  const newRole = currentRole === "admin" ? "user" : "admin";
 
   return (
     <div className="p-6">

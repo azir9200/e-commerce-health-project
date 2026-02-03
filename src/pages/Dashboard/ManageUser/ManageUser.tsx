@@ -7,25 +7,37 @@ import {
 } from "../../../redux/api/authApi/authApi";
 
 const ManageUser = () => {
-  const { data, isLoading } = useGetAllUserQuery(undefined);
- 
+  const { data, isLoading, refetch } = useGetAllUserQuery(undefined);
+  console.log("manage data", data);
   const [
     deleteUser,
     { isLoading: deletedLoading, isSuccess, data: deletedData, isError, error },
   ] = useDeleteUserMutation();
   const handleDelete = async (id: string) => {
-    
     await deleteUser(id);
   };
+  // const handleRefresh = () => {
+  //   refetch();
+  //   toast.success("Users refreshed!");
+  // };
   const toastId = "deleteduser";
   useEffect(() => {
     if (deletedLoading) toast.loading("Processing ...", { id: toastId });
 
     if (isSuccess) {
-      toast.success(deletedData?.message, { id: toastId });
+      toast.success(deletedData?.message || "User deleted successfully!", {
+        id: toastId,
+      });
+      refetch();
     }
-
-    if (isError) toast.error(JSON.stringify(error), { id: toastId });
+    if (isError) {
+      toast.error(
+        typeof error === "string"
+          ? error
+          : JSON.stringify(error || "Error deleting user"),
+        { id: toastId },
+      );
+    }
   }, [
     deletedData?.data,
     deletedData?.message,
@@ -36,8 +48,8 @@ const ManageUser = () => {
   ]);
   const columns = [
     { label: "Name", value: "name" },
-    { label: "email", value: "email" },
-    { label: "role", value: "role" },
+    { label: "Email", value: "email" },
+    { label: "Role", value: "role" },
   ];
   return (
     <div className="m-6">

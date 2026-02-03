@@ -57,11 +57,9 @@ const ManageProduct = () => {
   // Handle Update
   const columns = [
     { label: "Name", value: "name" },
-    { label: "Brand", value: "brand" },
-    { label: "Model", value: "model" },
     { label: "Category", value: "category" },
     { label: "Price", value: "price" },
-    { label: "Quantity", value: "quantity" },
+    { label: "Stock", value: "stock" },
   ];
 
   return (
